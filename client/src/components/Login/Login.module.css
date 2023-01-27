@@ -1,0 +1,52 @@
+.maindiv {
+  display: flex;
+  color: var(--gray);
+}
+
+/* Image */
+.maindiv .side-image {
+  margin: 0;
+}
+
+.image {
+  width: 45vw;
+  height: 100vh;
+  object-fit: cover;
+  margin: 0;
+}
+
+/* Login */
+.maindiv .login {
+  padding: 70px 90px;
+  width: 55vw;
+}
+
+.maindiv .login .head {
+  display: flex;
+  align-items: center;
+}
+
+.head h1 {
+  font-size: 50px;
+  margin: 0;
+  margin-left: 30px;
+}
+
+.login h2 {
+  font-size: 35px;
+  margin-top: 30px;
+}
+
+.login p {
+  margin-top: 15px;
+}
+
+/* Footer Links */
+.footer {
+  margin-top: 30px;
+}
+
+.footer a {
+  color: var(--purpleblue);
+  font-weight: 700;
+}
