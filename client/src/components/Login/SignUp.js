@@ -45,7 +45,7 @@ const SignUp = (props) => {
             placeholder="Enter your Password"
           />
           <Input
-            id="password"
+            id="re-password"
             type="password"
             label="Confirm Password"
             placeholder="Re-Enter your Password"
