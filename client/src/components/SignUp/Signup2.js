@@ -8,9 +8,13 @@ const Signup2 = (props) => {
       props.setConfPassInput(props.passInput);
     }
   };
+  const passwordFormSubmitHandler = (event) => {
+    event.preventDefault();
+    props.setCurrentPage(3);
+  };
   return (
     <>
-      <form onSubmit={props.passwordFormSubmitHandler}>
+      <form onSubmit={passwordFormSubmitHandler}>
         <Input
           id="password"
           type="password"
@@ -26,7 +30,7 @@ const Signup2 = (props) => {
           onChange={confPassChangeHandler}
         />
         <button type="submit" className={`${btnstyles.btn} ${btnstyles.login}`}>
-          SIGN UP
+          NEXT
         </button>
       </form>
     </>
