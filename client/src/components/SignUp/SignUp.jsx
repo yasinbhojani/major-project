@@ -1,28 +1,29 @@
-import React, { useState } from "react";
-
-import styles from "../Login/Login.module.css";
+import React, { useState } from "react";import styles from "../Login/Login.module.css";
 
 import minipc from "../../assets/minipc.png";
 import BrandName from "../Login/BrandName";
 
-import Signup1 from "./Signup1";
-import Signup2 from "./Signup2";
+
 const SignUp = (props) => {
   const [nameInput, setNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
-  const [currentPage, setCurrentPage] = useState(true);
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [passInput, setPassInput] = useState("");
   const [confPassInput, setConfPassInput] = useState("");
 
-  const nextPage = () => setCurrentPage(false);
-  const passwordFormSubmitHandler = (event) => {
+  const [otp, setOtp] = useState("");
+
+  const onVerificationFormSubmitHandler = (event) => {
     event.preventDefault();
-    console.log("Name : " + nameInput);
-    console.log("Email : " + emailInput);
-    console.log("Password : " + passInput);
-    console.log("Confirem Password : " + confPassInput);
+    console.log(nameInput);
+    console.log(emailInput);
+    console.log(passInput);
+    console.log(confPassInput);
+    console.log(otp);
   };
+
   return (
     <main className={styles.maindiv}>
       <section className={styles["side-image"]}>
@@ -33,26 +34,35 @@ const SignUp = (props) => {
         <BrandName />
         <h2>Sign Up</h2>
         <p>Create Your Free Account Now !</p>
-        {currentPage ? (
+        {/* {currentPage === 1 && (
           <Signup1
-            nextPage={nextPage}
+            setCurrentPage={setCurrentPage}
             setNameInput={setNameInput}
             setEmailInput={setEmailInput}
           />
-        ) : (
+        )}
+        {currentPage === 2 && (
           <Signup2
             passInput={passInput}
             setPassInput={setPassInput}
-            setConfPassInput={setConfPassInput}
-            passwordFormSubmitHandler={passwordFormSubmitHandler}
+            setConfPassInput={setConfPassInput}   
+            setCurrentPage={setCurrentPage}
           />
         )}
+        {currentPage === 3 && (
+          <Signup3
+            setOtp={setOtp}
+            onVerificationFormSubmitHandler={onVerificationFormSubmitHandler}
+          />
+        )} */}
         <footer className={styles.footer}>
           <p>
             Already have an account?{" "}
             <a href="https://github.com/yasinbhojani/major-project">Log In</a>
           </p>
-          <p>{currentPage ? 1 : 2} of 2</p>
+          <p>{currentPage === 1 && "1 of 3"}</p>
+          <p>{currentPage === 2 && "2 of 3"}</p>
+          <p>{currentPage === 3 && "3 of 3"}</p>
         </footer>
       </section>
     </main>

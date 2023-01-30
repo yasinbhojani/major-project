@@ -4,7 +4,10 @@ import btnstyles from "../../css/button.module.css";
 const Signup1 = (props) => {
   const nameChangeHandler = (event) => props.setNameInput(event.target.value);
   const emailChangeHandler = (event) => props.setEmailInput(event.target.value);
-  const nameAndEmailSubmitHandler = (event) => event.preventDefault();
+  const nameAndEmailSubmitHandler = (event) => {
+    event.preventDefault();
+    props.setCurrentPage(2);
+  };
   return (
     <>
       <form onSubmit={nameAndEmailSubmitHandler}>
@@ -22,12 +25,7 @@ const Signup1 = (props) => {
           placeholder="Enter your Email"
           onChange={emailChangeHandler}
         />
-        <button
-          className={`${btnstyles.btn} ${btnstyles.login}`}
-          onClick={props.nextPage}
-        >
-          NEXT
-        </button>
+        <button className={`${btnstyles.btn} ${btnstyles.login}`}>NEXT</button>
       </form>
     </>
   );
