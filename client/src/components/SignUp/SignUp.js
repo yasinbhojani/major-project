@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styles from "../Login/Login.module.css";
 
 import minipc from "../../assets/minipc.png";
-import logo from "../../assets/shell-logo.png";
+import BrandName from "../Login/BrandName";
 
 import Signup1 from "./Signup1";
 import Signup2 from "./Signup2";
@@ -30,14 +30,7 @@ const SignUp = (props) => {
       </section>
 
       <section className={`${styles.login} container`}>
-        <div className={styles.head}>
-          <img
-            src={logo}
-            style={{ width: "50px", height: "50px" }}
-            alt="logo"
-          />
-          <h1>Shell</h1>
-        </div>
+        <BrandName />
         <h2>Sign Up</h2>
         <p>Create Your Free Account Now !</p>
         {currentPage ? (

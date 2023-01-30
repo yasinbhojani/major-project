@@ -1,13 +1,17 @@
-import React from "react";
-import Input from "../UI/Input/Input";
-
+import React, { useState } from "react";
 import styles from "./Login.module.css";
-import btnstyles from "../../css/button.module.css";
 
 import macintosh from "../../assets/macintosh.jpg";
-import logo from "../../assets/shell-logo.png";
-
+import Login1 from "./Login1";
+import BrandName from "./BrandName";
 const Login = (props) => {
+  const [emailInput, setEmailInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+  const emailAndPasswordFormSubmitHandler = (event) => {
+    event.preventDefault();
+    console.log("Email : " + emailInput);
+    console.log("Password : " + passwordInput);
+  };
   return (
     <main className={styles.maindiv}>
       <section className={styles["side-image"]}>
@@ -15,36 +19,14 @@ const Login = (props) => {
       </section>
 
       <section className={`${styles.login} container`}>
-        <div className={styles.head}>
-          <img
-            src={logo}
-            style={{ width: "50px", height: "50px" }}
-            alt="logo"
-          />
-          <h1>Shell</h1>
-        </div>
+        <BrandName />
         <h2>Log In</h2>
         <p>Enter you Email and Password to Login on Shell</p>
-        <form>
-          <Input
-            id="email"
-            type="email"
-            label="Email"
-            placeholder="Enter your Email"
-          />
-          <Input
-            id="password"
-            type="password"
-            label="Password"
-            placeholder="Enter your Password"
-          />
-          <button
-            type="submit"
-            className={`${btnstyles.btn} ${btnstyles.login}`}
-          >
-            LOG IN
-          </button>
-        </form>
+        <Login1
+          setEmailInput={setEmailInput}
+          setPasswordInput={setPasswordInput}
+          emailAndPasswordFormSubmitHandler={emailAndPasswordFormSubmitHandler}
+        />
         <footer className={styles.footer}>
           <p>
             Dont have an account?{" "}
