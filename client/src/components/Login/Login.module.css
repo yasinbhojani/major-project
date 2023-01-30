@@ -25,11 +25,17 @@
   display: flex;
   align-items: center;
 }
-
-.head h1 {
+.head span {
   font-size: 50px;
   margin: 0;
   margin-left: 30px;
+  font-weight: 300;
+}
+.head span h1 {
+  display: inline;
+  font-size: 50px;
+  margin: 0;
+  color: var(--purpleblue);
 }
 
 .login h2 {
