@@ -25,15 +25,16 @@
   display: flex;
   align-items: center;
 }
-.head span {
+.head h1 {
   font-size: 50px;
   margin: 0;
   margin-left: 30px;
   font-weight: 300;
 }
-.head span h1 {
-  display: inline;
+
+.head span {
   font-size: 50px;
+  font-weight: bold;
   margin: 0;
   color: var(--purpleblue);
 }
