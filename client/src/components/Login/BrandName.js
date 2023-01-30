@@ -5,9 +5,9 @@ const BrandName = () => {
     <>
       <div className={styles.head}>
         <img src={logo} style={{ width: "50px", height: "50px" }} alt="logo" />
-        <span>
-          Welcome To <h1>Shell</h1>
-        </span>
+        <h1>
+          Welcome To <span>Shell</span>
+        </h1>
       </div>
     </>
   );
