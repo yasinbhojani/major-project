@@ -57,3 +57,17 @@
   color: var(--purpleblue);
   font-weight: 700;
 }
+
+/* OTP Section Styling */
+.btnLink {
+  border: none;
+  margin: 0px 5px;
+  margin-top: 3px;
+  background-color: transparent;
+  color: var(--purpleblue);
+  font-weight: bold;
+  float: right;
+}
+.btnLink:disabled {
+  color: rgb(148, 148, 148);
+}
