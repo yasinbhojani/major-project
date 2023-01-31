@@ -1,9 +1,12 @@
-import React, { useState } from "react";import styles from "../Login/Login.module.css";
+import React, { useState } from "react";
+import styles from "../Login/Login.module.css";
 
 import minipc from "../../assets/minipc.png";
 import BrandName from "../Login/BrandName";
 
-
+import Signup1 from "./Signup1";
+import Signup2 from "./Signup2";
+import Signup3 from "./Signup3";
 const SignUp = (props) => {
   const [nameInput, setNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
@@ -17,11 +20,11 @@ const SignUp = (props) => {
 
   const onVerificationFormSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(nameInput);
-    console.log(emailInput);
-    console.log(passInput);
-    console.log(confPassInput);
-    console.log(otp);
+    console.log("Name : " + nameInput);
+    console.log("Email : " + emailInput);
+    console.log("Password : " + passInput);
+    console.log("Confirm Password : " + confPassInput);
+    console.log("OTP : " + otp);
   };
 
   return (
@@ -34,7 +37,7 @@ const SignUp = (props) => {
         <BrandName />
         <h2>Sign Up</h2>
         <p>Create Your Free Account Now !</p>
-        {/* {currentPage === 1 && (
+        {currentPage === 1 && (
           <Signup1
             setCurrentPage={setCurrentPage}
             setNameInput={setNameInput}
@@ -45,7 +48,7 @@ const SignUp = (props) => {
           <Signup2
             passInput={passInput}
             setPassInput={setPassInput}
-            setConfPassInput={setConfPassInput}   
+            setConfPassInput={setConfPassInput}
             setCurrentPage={setCurrentPage}
           />
         )}
@@ -54,7 +57,7 @@ const SignUp = (props) => {
             setOtp={setOtp}
             onVerificationFormSubmitHandler={onVerificationFormSubmitHandler}
           />
-        )} */}
+        )}
         <footer className={styles.footer}>
           <p>
             Already have an account?{" "}
