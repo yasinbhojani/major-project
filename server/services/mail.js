@@ -1,33 +1,27 @@
-const nodemailer = require("nodemailer");
-
 const transporter = require("../configs/nodemailer.config");
-const generateRandomOTP = require("../utils/otp.util");
+const { otpMessage, welcomeMessage } = require("../utils/messages.util");
 
 const mail = async (req, res) => {
-  const { name, email } = req.body;
+  const { name, email, type } = req.body;
+
+  let content = {};
+  if (type === "otp") {
+    content = otpMessage(name);
+  } else if (type === "welcome") {
+    content = welcomeMessage(name);
+  }
 
   const mailOptions = {
     from: '"Shell" <shellproject.services@gmail.com>',
     to: email,
-    subject: "Please verify your email",
-    html: `
-      <p>Hey ${name},</p>
-      <p>Welcome to Shell!</p>
-      <p>Before we get started, Authenticate your email with the given OTP,</p>
-      
-      <p>
-        <b>OTP:</b>
-      </p>
-      <span style="color: blue; font-size:larger; font-weight: bold;">${generateRandomOTP()}</span>
-    `,
+    subject: content.subject,
+    html: content.html,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.log(error);
       res.send({ staus: "error", error: "email not sent" });
     } else {
-      console.log(info);
       res.send({ staus: "ok" });
     }
   });
