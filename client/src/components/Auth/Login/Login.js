@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import styles from "./Login.module.css";
 
-import macintosh from "../../assets/macintosh.jpg";
-import Login1 from "./Login1";
-import BrandName from "./BrandName";
+import macintosh from "../../../assets/macintosh.jpg";
+import WellcomeText from "../WellcomeText";
+import SideBanner from "../SideBanner";
+
+import EmailAndPassInput from "./EmailAndPassInput";
+
 const Login = (props) => {
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
@@ -14,15 +17,12 @@ const Login = (props) => {
   };
   return (
     <main className={styles.maindiv}>
-      <section className={styles["side-image"]}>
-        <img src={macintosh} className={styles.image} alt="side banner" />
-      </section>
-
+      <SideBanner src={macintosh} />
       <section className={`${styles.login} container`}>
-        <BrandName />
+        <WellcomeText />
         <h2>Log In</h2>
         <p>Enter you Email and Password to Login on Shell</p>
-        <Login1
+        <EmailAndPassInput
           setEmailInput={setEmailInput}
           setPasswordInput={setPasswordInput}
           emailAndPasswordFormSubmitHandler={emailAndPasswordFormSubmitHandler}

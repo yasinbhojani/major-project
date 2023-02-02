@@ -1,8 +1,8 @@
-import Input from "../UI/Input/Input";
-import btnstyles from "../../css/button.module.css";
+import Input from "../../UI/Input/Input";
+import btnstyles from "../../../css/button.module.css";
 import styles from "../Login/Login.module.css";
 import { useEffect, useState } from "react";
-const Signup3 = (props) => {
+const OTPVerification = (props) => {
   const [optBTN, setOtpBTN] = useState(true);
   const optChangeHandler = (event) => {
     props.setOtp(event.target.value);
@@ -14,7 +14,6 @@ const Signup3 = (props) => {
     setOtpBTN(true);
     setTimeout(() => setOtpBTN(false), 35000);
   };
-  console.log("lol");
   return (
     <>
       <form onSubmit={props.onVerificationFormSubmitHandler}>
@@ -39,4 +38,4 @@ const Signup3 = (props) => {
     </>
   );
 };
-export default Signup3;
+export default OTPVerification;

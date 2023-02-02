@@ -1,7 +1,7 @@
-import Input from "../UI/Input/Input";
-import btnstyles from "../../css/button.module.css";
+import Input from "../../UI/Input/Input";
+import btnstyles from "../../../css/button.module.css";
 
-const Signup1 = (props) => {
+const NameAndEmailInput = (props) => {
   const nameChangeHandler = (event) => props.setNameInput(event.target.value);
   const emailChangeHandler = (event) => props.setEmailInput(event.target.value);
   const nameAndEmailSubmitHandler = (event) => {
@@ -30,4 +30,4 @@ const Signup1 = (props) => {
     </>
   );
 };
-export default Signup1;
+export default NameAndEmailInput;
