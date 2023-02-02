@@ -1,17 +1,20 @@
 import Input from "../UI/Input/Input";
 import btnstyles from "../../css/button.module.css";
 import styles from "../Login/Login.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const Signup3 = (props) => {
   const [optBTN, setOtpBTN] = useState(true);
   const optChangeHandler = (event) => {
     props.setOtp(event.target.value);
   };
-  setTimeout(() => setOtpBTN(false), 5000);
+  useEffect(() => {
+    setTimeout(() => setOtpBTN(false), 35000);
+  }, []);
   const resendOTPHandler = () => {
     setOtpBTN(true);
-    setTimeout(() => setOtpBTN(false), 5000);
+    setTimeout(() => setOtpBTN(false), 35000);
   };
+  console.log("lol");
   return (
     <>
       <form onSubmit={props.onVerificationFormSubmitHandler}>
