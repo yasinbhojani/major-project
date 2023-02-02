@@ -1,6 +1,6 @@
-import Input from "../UI/Input/Input";
-import btnstyles from "../../css/button.module.css";
-const Login1 = (props) => {
+import Input from "../../UI/Input/Input";
+import btnstyles from "../../../css/button.module.css";
+const EmailAndPassInput = (props) => {
   const emailChangeHandler = (event) => props.setEmailInput(event.target.value);
   const passwordChangeHandler = (event) =>
     props.setPasswordInput(event.target.value);
@@ -28,4 +28,4 @@ const Login1 = (props) => {
     </>
   );
 };
-export default Login1;
+export default EmailAndPassInput;

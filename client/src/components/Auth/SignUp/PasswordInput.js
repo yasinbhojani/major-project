@@ -1,7 +1,7 @@
-import Input from "../UI/Input/Input";
-import btnstyles from "../../css/button.module.css";
+import Input from "../../UI/Input/Input";
+import btnstyles from "../../../css/button.module.css";
 
-const Signup2 = (props) => {
+const PasswordInput = (props) => {
   const passChangeHandler = (event) => props.setPassInput(event.target.value);
   const confPassChangeHandler = (event) => {
     if (props.passInput === event.target.value) {
@@ -36,4 +36,4 @@ const Signup2 = (props) => {
     </>
   );
 };
-export default Signup2;
+export default PasswordInput;

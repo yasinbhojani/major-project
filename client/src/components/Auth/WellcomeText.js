@@ -1,6 +1,6 @@
 import logo from "../../assets/shell-logo.png";
-import styles from "./Login.module.css";
-const BrandName = () => {
+import styles from "./Login/Login.module.css";
+const WellcomeText = () => {
   return (
     <>
       <div className={styles.head}>
@@ -12,4 +12,4 @@ const BrandName = () => {
     </>
   );
 };
-export default BrandName;
+export default WellcomeText;
