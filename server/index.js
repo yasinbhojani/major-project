@@ -14,5 +14,5 @@ app.get("/", (req, res) => {
 app.post("/api/mail", mail);
 
 app.listen(port, () => {
-  console.log(`App started on port ${port}`);
+  console.log(`Server started on port ${port}`);
 });

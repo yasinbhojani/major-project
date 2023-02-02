@@ -1,7 +1,7 @@
 const transporter = require("../configs/nodemailer.config");
 const { otpMessage, welcomeMessage } = require("../utils/messages.util");
 
-const mail = async (req, res) => {
+const mail = (req, res) => {
   const { name, email, type } = req.body;
 
   let content = {};
