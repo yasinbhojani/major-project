@@ -1,0 +1,63 @@
+.NavBarBody {
+  width: 300px;
+  height: 100vh;
+  border-right: 1px solid #d4d4d4;
+}
+.NavBar {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+.NavBarLogo img {
+  width: 40px;
+  margin: 10px;
+}
+.NavBar .NavBtn img {
+  width: 25px;
+  margin: 10px;
+  margin-left: 20px;
+}
+.NavBar .NavBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0px 10px;
+  width: 155px;
+  font-weight: bold;
+  font-size: large;
+  border-radius: 50px;
+  background: transparent;
+  border: none;
+}
+.NavBar .NavBtn:hover {
+  background-color: #dbdeff;
+}
+.NavBarLogo {
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border: none;
+  background: transparent;
+  margin: 10px auto;
+}
+.newPearl {
+  margin: 10px;
+  width: 155px;
+  padding: 10px;
+  border-radius: 50px;
+  font-weight: bold;
+  border: none;
+  background-color: #7076fe;
+  color: white;
+}
+.newPearl:hover {
+  background-color: #565fff;
+}
+.navBarLink {
+  text-decoration: none;
+  margin-top: 10px;
+}
