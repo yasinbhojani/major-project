@@ -26,6 +26,6 @@ code {
     monospace;
 }
 .active {
-  background-color: #dbdeff;
+  background-color: #dbdeff !important;
   border-radius: 50px;
 }
