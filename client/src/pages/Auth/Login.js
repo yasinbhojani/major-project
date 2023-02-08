@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import styles from "./Login.module.css";
+import styles from "../../components/Auth/Login/Login.module.css"
 
-import macintosh from "../../../assets/macintosh.jpg";
-import WellcomeText from "../WellcomeText";
-import SideBanner from "../SideBanner";
+import macintosh from "../../assets/macintosh.jpg"
+import WellcomeText from "../../components/Auth/WellcomeText";
+import SideBanner from "../../components/Auth/SideBanner";
 
-import EmailAndPassInput from "./EmailAndPassInput";
+import EmailAndPassInput from "../../components/Auth/Login/EmailAndPassInput";
+import { Link } from "react-router-dom";
 
 const Login = (props) => {
   const [emailInput, setEmailInput] = useState("");
@@ -30,7 +31,7 @@ const Login = (props) => {
         <footer className={styles.footer}>
           <p>
             Dont have an account?{" "}
-            <a href="https://github.com/yasinbhojani/major-project">Sign Up</a>
+            <Link to="/auth/signup">Sign Up</Link>
           </p>
           <p>
             <a href="https://github.com/yasinbhojani/major-project">

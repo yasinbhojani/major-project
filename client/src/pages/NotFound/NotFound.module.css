@@ -1,0 +1,25 @@
+.section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.section img {
+  width: 40vw;
+}
+
+.section a {
+  color: white;
+  text-decoration: none;
+  margin: 10px 0;
+  background-color: var(--purpleblue);
+  padding: 5px 15px;
+  border-radius: .6rem;
+  transition: 0.2s background-color ease;
+}
+
+.section a:hover {
+  background-color: #5a62fa;
+}

@@ -4,7 +4,9 @@ import styles from "./Input.module.css";
 const Input = (props) => {
   return (
     <div className={styles["input-group"]}>
-      <label htmlFor={props.id}>{props.label}</label>
+      <label htmlFor={props.id}>
+        {props.label} <span>{props.errorMessage}</span>
+      </label>
       <input
         type={props.type}
         id={props.id}
@@ -12,6 +14,8 @@ const Input = (props) => {
         onChange={props.onChange}
         value={props.value}
         ref={props.ref}
+        onBlur={props.onBlur}
+        required
       />
     </div>
   );

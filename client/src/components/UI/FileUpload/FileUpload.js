@@ -11,7 +11,7 @@ const FileUpload = () => {
     }
   };
   const uploadButtonClickHandler = () => {
-    const imageRef = ref(storage, image.name);
+    const imageRef = ref(storage, `/images/${image.name}`);
     uploadBytes(imageRef, image).then(() => {
       getDownloadURL(imageRef).then((imgUrl) => {
         setUrl(imgUrl);

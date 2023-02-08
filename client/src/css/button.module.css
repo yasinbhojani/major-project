@@ -19,3 +19,9 @@
 .btn.login {
   margin-top: 50px;
 }
+
+.btn:disabled {
+  background-color: rgb(211, 211, 211);
+  color: black;
+  cursor: not-allowed;
+}

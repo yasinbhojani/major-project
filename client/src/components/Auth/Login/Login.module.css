@@ -71,3 +71,22 @@
 .btnLink:disabled {
   color: rgb(148, 148, 148);
 }
+
+/* Back button styles */
+
+.back {
+  position: absolute;
+  top: 0;
+  border-radius: 50%;
+  padding: 5px;
+  transition: 0.2s background-color ease;
+}
+
+.back:hover {
+  background-color: rgb(211, 211, 211);
+}
+
+.back img {
+  width: 40px;
+  cursor: pointer;
+}

@@ -1,17 +1,39 @@
 import Input from "../../UI/Input/Input";
 import btnstyles from "../../../css/button.module.css";
+import { useEffect, useRef, useState } from "react";
 
 const PasswordInput = (props) => {
+  const [passwordIsMatched, setPasswordIsMatched] = useState(false);
+  const [isTouched, setIsTouched] = useState(false);
+  const timeoutId = useRef();
+
   const passChangeHandler = (event) => props.setPassInput(event.target.value);
-  const confPassChangeHandler = (event) => {
-    if (props.passInput === event.target.value) {
-      props.setConfPassInput(props.passInput);
-    }
+
+  const setTouched = () => {
+    setIsTouched(true);
   };
+
+  const confPassChangeHandler = (event) => {
+    clearTimeout(timeoutId.current);
+    timeoutId.current = setTimeout(() => {
+      setTouched();
+      props.setConfPassInput(props.passInput);
+      if (props.passInput === event.target.value) {
+        setPasswordIsMatched(true);
+      } else {
+        setPasswordIsMatched(false);
+      }
+    }, 500);
+  };
+
   const passwordFormSubmitHandler = (event) => {
     event.preventDefault();
     props.setCurrentPage(3);
   };
+
+  let passwordErrorMessage =
+    !passwordIsMatched && isTouched ? "Password mismatch" : "";
+
   return (
     <>
       <form onSubmit={passwordFormSubmitHandler}>
@@ -28,8 +50,14 @@ const PasswordInput = (props) => {
           label="Confirm Password"
           placeholder="Re-Enter your Password"
           onChange={confPassChangeHandler}
+          onBlur={setTouched}
+          errorMessage={passwordErrorMessage}
         />
-        <button type="submit" className={`${btnstyles.btn} ${btnstyles.login}`}>
+        <button
+          type="submit"
+          className={`${btnstyles.btn} ${btnstyles.login}`}
+          disabled={!passwordIsMatched}
+        >
           NEXT
         </button>
       </form>

@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import styles from "../Login/Login.module.css";
+import { Link } from "react-router-dom";
 
-import minipc from "../../../assets/minipc.png";
-import WellcomeText from "../WellcomeText";
-import SideBanner from "../SideBanner";
+import NameAndEmailInput from "../../components/Auth/SignUp/NameAndEmailInput";
+import PasswordInput from "../../components/Auth/SignUp/PasswordInput";
+import OTPVerification from "../../components/Auth/SignUp/OTPVerification";
 
-import NameAndEmailInput from "./NameAndEmailInput";
-import PasswordInput from "./PasswordInput";
-import OTPVerification from "./OTPVerification";
+import minipc from "../../assets/minipc.png";
+import WellcomeText from "../../components/Auth/WellcomeText";
+import SideBanner from "../../components/Auth/SideBanner";
+import backarrow from "../../assets/arrow_back.svg";
+
+import styles from "../../components/Auth/Login/Login.module.css";
 
 const SignUp = (props) => {
   const [nameInput, setNameInput] = useState("");
@@ -33,6 +36,16 @@ const SignUp = (props) => {
     <main className={styles.maindiv}>
       <SideBanner src={minipc} />
       <section className={`${styles.login} container`}>
+        {currentPage !== 1 && (
+          <p
+            onClick={() => {
+              setCurrentPage((prevpage) => prevpage - 1);
+            }}
+            className={styles.back}
+          >
+            <img src={backarrow} />
+          </p>
+        )}
         <WellcomeText />
         <h2>Sign Up</h2>
         <p>Create Your Free Account Now !</p>
@@ -41,14 +54,17 @@ const SignUp = (props) => {
             setCurrentPage={setCurrentPage}
             setNameInput={setNameInput}
             setEmailInput={setEmailInput}
+            nameInput={nameInput}
+            emailInput={emailInput}
           />
         )}
         {currentPage === 2 && (
           <PasswordInput
-            passInput={passInput}
             setPassInput={setPassInput}
             setConfPassInput={setConfPassInput}
             setCurrentPage={setCurrentPage}
+            passInput={passInput}
+            confPassInput={confPassInput}
           />
         )}
         {currentPage === 3 && (
@@ -59,8 +75,7 @@ const SignUp = (props) => {
         )}
         <footer className={styles.footer}>
           <p>
-            Already have an account?
-            <a href="https://github.com/yasinbhojani/major-project">Log In</a>
+            Already have an account? <Link to="/auth/login">Log In</Link>
           </p>
           <p>{currentPage} of 3</p>
         </footer>
