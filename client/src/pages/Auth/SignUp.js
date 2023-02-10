@@ -23,13 +23,22 @@ const SignUp = (props) => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const onVerificationFormSubmitHandler = (event) => {
+  const onVerificationFormSubmitHandler = async (event) => {
     event.preventDefault();
+
     console.log("Name : " + nameInput);
     console.log("Email : " + emailInput);
     console.log("Password : " + passInput);
     console.log("Confirm Password : " + confPassInput);
     console.log("OTP : " + otp);
+
+    fetch('http://localhost:8080/api/register', {
+      body: JSON.stringify({
+        username: nameInput,
+        email: emailInput,
+        password: passInput,
+      })
+    })
   };
 
   return (
