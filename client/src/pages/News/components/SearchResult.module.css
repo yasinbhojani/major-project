@@ -1,0 +1,20 @@
+.NewsCard {
+  border-bottom: 1px solid #d4d4d4;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+}
+.NewsBanner {
+  height: 150px;
+}
+.NewsBanner img {
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
+}
+.NewsContent {
+  margin: 0px 10px;
+}

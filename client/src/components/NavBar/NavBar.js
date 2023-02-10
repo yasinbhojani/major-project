@@ -6,6 +6,7 @@ import home from "./icon/home.png";
 import news from "./icon/news.png";
 import chats from "./icon/chat.png";
 import profile from "./icon/profile.png";
+import Button from "../UI/Button/Button";
 
 const NavBar = (props) => {
   return (
@@ -20,7 +21,7 @@ const NavBar = (props) => {
         <NavButtons path="/news" iconSource={news} page="News" />
         <NavButtons path="/chats" iconSource={chats} page="Chats" />
         <NavButtons path="/profile" iconSource={profile} page="Profile" />
-        <button className={styles.newPearl}>New Pearl</button>
+        <Button text="New Pearl" />
       </nav>
     </>
   );

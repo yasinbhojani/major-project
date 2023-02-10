@@ -1,6 +1,6 @@
 import Input from "../../UI/Input/Input";
 import btnstyles from "../../../css/button.module.css";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const PasswordInput = (props) => {
   const [passwordIsMatched, setPasswordIsMatched] = useState(false);
