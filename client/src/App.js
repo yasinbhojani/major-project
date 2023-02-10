@@ -12,7 +12,6 @@ import NotFound from "./pages/NotFound/NotFound";
 import AuthRoot from "./pages/Auth/AuthRoot";
 import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
-// import FileUpload from "./components/UI/FileUpload/FileUpload";
 
 const App = () => {
   const router = createBrowserRouter([

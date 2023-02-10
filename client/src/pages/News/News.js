@@ -1,7 +1,7 @@
 import styles from "./News.module.css";
 import Button from "../../components/UI/Button/Button";
-import Treanding from "./components/Treanding";
-import SearchResult from "./components/SearchResult";
+import Treanding from "../../components/News/Treanding";
+import SearchResult from "../../components/News/SearchResult";
 import { useEffect, useState } from "react";
 const News = (props) => {
   const [url, setUrl] = useState();

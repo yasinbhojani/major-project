@@ -19,7 +19,7 @@ const Treanding = (props) => {
   return (
     <>
       <div className={styles.Treanding}>
-        <h3>Treanding Topic 📈</h3>
+        <h3>Trending Topics 📈</h3>
       </div>
       <div className={styles.SearchTerms}>
         <p onClick={getValues}># India</p>
