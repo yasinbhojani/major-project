@@ -9,20 +9,21 @@ router.post("/register", async (req, res) => {
 
   const user_id = email.split("@")[0];
   const joined_date = new Date().toISOString().replace(/T.*/, "");
-  let query;
 
-  await bcrypt.hash(password, 10, function (err, hash) {
+  bcrypt.hash(password, 10, function (err, hash) {
     if (err) console.log(err);
-    console.log(hash);
-    query = `INSERT INTO users (user_id, username, email, password_hash, joined_date) values ("${user_id}", "${username}", "${email}", "${hash}", "${joined_date}")`;
+
+    const query = `INSERT INTO users (user_id, username, email, password_hash, joined_date) values ("${user_id}", "${username}", "${email}", "${hash}", "${joined_date}")`;
+
+    connection.query(query, (err, data) => {
+      if (err) {
+        return res.json({ ok: false, err: err });
+      }
+      return res.json({ status: "ok", ok: true });
+    });
+
   });
 
-  connection.query(query, (err, data) => {
-    if (err) {
-      return res.json({ ok: false, err: err });
-    }
-    return res.json({ status: "ok", ok: true });
-  });
 });
 
 // router.get("/", (req, res) => {
