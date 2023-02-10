@@ -52,7 +52,7 @@ const SignUp = (props) => {
             }}
             className={styles.back}
           >
-            <img src={backarrow} />
+            <img src={backarrow} alt="" />
           </p>
         )}
         <WellcomeText />

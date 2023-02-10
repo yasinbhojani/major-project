@@ -1,0 +1,28 @@
+.NewsPage {
+  width: 600px;
+  max-width: 600px;
+  border: 1px solid #d4d4d4;
+}
+.searchBox {
+  border-bottom: 1px solid #d4d4d4;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.searchInput {
+  padding: 0 20px;
+  height: 45px;
+  border-radius: 50px;
+  border: 2px solid #00000066;
+  font-size: 1rem;
+  width: 60%;
+}
+.searchInput:focus {
+  outline: none;
+  border: 2px solid var(--purpleblue);
+  filter: drop-shadow(0px 4px 4px #7076fe55);
+}
+.searchBtn {
+  padding: 15px 35px;
+}
