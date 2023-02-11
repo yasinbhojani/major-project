@@ -4,7 +4,7 @@ const generateRandomOTP = () => {
     random = Math.floor(Math.random() * 1000000);
     console.log(random);
   }
-  return random;
+  return random.toString();
 };
 
 module.exports = generateRandomOTP;
