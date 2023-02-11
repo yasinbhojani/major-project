@@ -28,6 +28,7 @@ const PasswordInput = (props) => {
 
   const passwordFormSubmitHandler = (event) => {
     event.preventDefault();
+    props.onVerifyRequestHandler();
     props.setCurrentPage(3);
   };
 

@@ -19,9 +19,32 @@ const SignUp = (props) => {
   const [passInput, setPassInput] = useState("");
   const [confPassInput, setConfPassInput] = useState("");
 
-  const [otp, setOtp] = useState("");
+  const [enteredOTP, setEnteredOTP] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
+
+  const register = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/register", {
+        body: JSON.stringify({
+          username: nameInput,
+          email: emailInput,
+          password: passInput,
+          otp: enteredOTP,
+        }),
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(response.message);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const onVerificationFormSubmitHandler = async (event) => {
     event.preventDefault();
@@ -30,15 +53,34 @@ const SignUp = (props) => {
     console.log("Email : " + emailInput);
     console.log("Password : " + passInput);
     console.log("Confirm Password : " + confPassInput);
-    console.log("OTP : " + otp);
+    console.log("OTP : " + enteredOTP);
 
-    fetch('http://localhost:8080/api/register', {
+    // fetch('http://localhost:8080/api/auth/otp');
+
+    register();
+  };
+
+  const onVerifyRequestHandler = async () => {
+    console.log("Name:" + nameInput);
+    console.log("Email:" + emailInput);
+    fetch("http://localhost:8080/api/auth/verify", {
+      method: "POST",
       body: JSON.stringify({
-        username: nameInput,
+        name: nameInput,
         email: emailInput,
-        password: passInput,
-      })
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
+      .then((response) => {
+        if (response.ok) {
+          console.log("mail sent");
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
@@ -74,11 +116,12 @@ const SignUp = (props) => {
             setCurrentPage={setCurrentPage}
             passInput={passInput}
             confPassInput={confPassInput}
+            onVerifyRequestHandler={onVerifyRequestHandler}
           />
         )}
         {currentPage === 3 && (
           <OTPVerification
-            setOtp={setOtp}
+            setOtp={setEnteredOTP}
             onVerificationFormSubmitHandler={onVerificationFormSubmitHandler}
           />
         )}
