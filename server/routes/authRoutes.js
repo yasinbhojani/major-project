@@ -7,57 +7,70 @@ const generateRandomOTP = require("../utils/otp.util");
 
 let OTP = "";
 
-router.post("/verify", async (req, res) => {
-  const { name, email } = req.body;
-  console.log("Verify Backend");
-  console.log(req.body);
+//! Route to Check If email exists
+router.post("/checkemail", async (req, res) => {
+  const { email } = req.body;
 
-  OTP = generateRandomOTP();
-  const response = mail({ name, email, type: "otp", otp: OTP });
-  
-  console.log("mail response")
-  console.log(response);
-  res.json({ ok: true });
-});
-
-router.post("/register", async (req, res) => {
-  const { username, email, password, otp } = req.body;
-  console.log(req.body + "register");
-
-  if (otp !== OTP) {
-    res.json({ ok: false, message: "Invalid OTP" });
-  }
-
+  // checking if email exists by querying
   connection.query(
-    "SELECT COUNT(*) as qty FROM users WHERE email = ?",
+    "SELECT count(*) as qty FROM users WHERE email = ?",
     [email],
     (err, data) => {
       if (err) {
-        res.json({ ok: false, message: "an error occured" });
-      }
-      if (data[0].qty > 0) {
-        return res
-          .status(400)
-          .json({ ok: false, message: "Email already exists" });
-      } else {
-        const user_id = email.split("@")[0];
-        const joined_date = new Date().toISOString().replace(/T.*/, "");
-
-        bcrypt.hash(password, 10, function (err, hash) {
-          if (err) res.json({ ok: false, message: "an error occured" });
-
-          const query = `INSERT INTO users (user_id, username, email, password_hash, joined_date) values ("${user_id}", "${username}", "${email}", "${hash}", "${joined_date}")`;
-
-          connection.query(query, (err, data) => {
-            if (err) {
-              return res.json({ ok: false, message: err });
-            }
-            return res.json({ status: "ok", ok: true });
-          });
+        return res.json({
+          ok: false,
+          message: "An Error occured, Please try again",
         });
+      }
+
+      if (data[0].qty > 0) {
+        return res.json({ ok: false, message: "Email Already Exists" });
+      } else {
+        return res.json({ ok: true });
       }
     }
   );
+});
+
+//! Route to send the OTP
+router.post("/verify", async (req, res) => {
+  const { name, email } = req.body;
+
+  const firstName = name.split(" ")[0];
+
+  OTP = generateRandomOTP();
+  mail({ name: firstName, email, type: "otp", otp: OTP });
+
+  res.json({ ok: true });
+});
+
+//! Route to verify the OTP
+router.post("/register", async (req, res) => {
+  // destructring user data and entered otp
+  const { username, email, password, otp } = req.body;
+
+  // checking if entered OTP is similar to generated OTP
+  if (otp !== OTP) {
+    return res.json({ ok: false, message: "Invalid OTP" });
+  }
+
+  // Generating user_id and joined_date
+  const user_id = email.split("@")[0];
+  const joined_date = new Date().toISOString().replace(/T.*/, "");
+
+  // Hashing the password (Do not store the passwords directly)
+  bcrypt.hash(password, 10, function (err, hash) {
+    if (err) res.json({ ok: false, message: "an error occured" });
+
+    const query = `INSERT INTO users (user_id, username, email, password_hash, joined_date) values ("${user_id}", "${username}", "${email}", "${hash}", "${joined_date}")`;
+
+    connection.query(query, (err, data) => {
+      if (err) {
+        return res.json({ ok: false, message: err });
+      }
+      return res.json({ status: "ok", ok: true });
+    });
+  });
 });
 
 module.exports = router;
