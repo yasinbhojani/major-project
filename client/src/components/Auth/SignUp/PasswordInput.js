@@ -6,8 +6,22 @@ const PasswordInput = (props) => {
   const [passwordIsMatched, setPasswordIsMatched] = useState(false);
   const [isTouched, setIsTouched] = useState(false);
   const timeoutId = useRef();
+  // Minimum eight characters, at least one letter and one number:
+  const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/gm;
 
-  const passChangeHandler = (event) => props.setPassInput(event.target.value);
+  const passChangeHandler = (event) => {
+    const isValid = regex.test(event.target.value.trim());
+    if (!isValid) {
+      props.setIsError(true);
+      props.setMessage(
+        "Passoword must atleast contain, eight characters, one letter and one number"
+      );
+    } else {
+      props.setIsError(false);
+      props.setMessage("");
+    }
+    props.setPassInput(event.target.value);
+  };
 
   const setTouched = () => {
     setIsTouched(true);

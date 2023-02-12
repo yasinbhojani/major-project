@@ -13,8 +13,8 @@ const Login = (props) => {
   const [passwordInput, setPasswordInput] = useState("");
   const emailAndPasswordFormSubmitHandler = (event) => {
     event.preventDefault();
-    console.log("Email : " + emailInput);
-    console.log("Password : " + passwordInput);
+    // console.log("Email : " + emailInput);
+    // console.log("Password : " + passwordInput);
   };
   return (
     <main className={styles.maindiv}>

@@ -1,5 +1,5 @@
-import styles from "./Treanding.module.css";
-const Treanding = (props) => {
+import styles from "./Trending.module.css";
+const Trending = (props) => {
   const getValues = (e) => {
     fetch(
       `https://newsapi.org/v2/everything?q=${e.target.innerText
@@ -18,7 +18,7 @@ const Treanding = (props) => {
   };
   return (
     <>
-      <div className={styles.Treanding}>
+      <div className={styles.Trending}>
         <h3>Trending Topics 📈</h3>
       </div>
       <div className={styles.SearchTerms}>
@@ -34,4 +34,4 @@ const Treanding = (props) => {
     </>
   );
 };
-export default Treanding;
+export default Trending;

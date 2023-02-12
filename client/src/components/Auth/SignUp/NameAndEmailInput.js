@@ -11,7 +11,7 @@ const NameAndEmailInput = (props) => {
   useEffect(() => {
     setNameIsValid(true);
     setEmailIsValid(true);
-  }, [])
+  }, []);
 
   const NameErrorMessage =
     !nameIsValid && nameIsTouched ? "Name too short" : "";
@@ -41,8 +41,34 @@ const NameAndEmailInput = (props) => {
     }
   };
 
-  const nameAndEmailSubmitHandler = (event) => {
+  const nameAndEmailSubmitHandler = async (event) => {
     event.preventDefault();
+    props.setIsLoading(true);
+    props.setIsError(false);
+
+    try {
+      const data = await fetch("http://localhost:8080/api/auth/checkemail", {
+        body: JSON.stringify({
+          email: props.emailInput,
+        }),
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const response = await data.json();
+      if (response.ok === false) {
+        throw new Error(response.message);
+      }
+    } catch (e) {
+      props.setIsError(true);
+      props.setMessage(e.message);
+      props.setIsLoading(false);
+      return;
+    }
+
+    props.setIsLoading(false);
     props.setCurrentPage(2);
   };
 
@@ -58,7 +84,7 @@ const NameAndEmailInput = (props) => {
           errorMessage={NameErrorMessage}
           value={props.nameInput}
           onBlur={() => {
-            setNameIsTouched(true)
+            setNameIsTouched(true);
           }}
         />
         <Input
@@ -70,7 +96,7 @@ const NameAndEmailInput = (props) => {
           errorMessage={EmailErrorMessage}
           value={props.emailInput}
           onBlur={() => {
-            setEmailIsTouched(true)
+            setEmailIsTouched(true);
           }}
         />
         <button
