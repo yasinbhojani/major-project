@@ -78,7 +78,6 @@ const SignUp = (props) => {
       }
 
       setMessage("Registration Successful You will be redirected shortly");
-
       setTimeout(() => {
         navigate("/");
       }, 5000);
@@ -141,7 +140,7 @@ const SignUp = (props) => {
           {!isLoading && isError ? (
             <p style={{ color: "red" }}>{message}</p>
           ) : (
-            <p>{message}</p>
+            <p style={{ fontWeight: "bold" }}>{message}</p>
           )}
         </section>
         <footer className={styles.footer}>

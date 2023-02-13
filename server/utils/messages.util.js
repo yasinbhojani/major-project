@@ -6,9 +6,6 @@ const otpMessage = (name, otp) => {
     <h2>Welcome to Shell!</h2>
     <p>Before we get started, Confirm your email with the given OTP,</p>
 
-    <p>
-      <b>OTP:</b>
-    </p>
     <span style="color: blue; font-size:larger; font-weight: bold;">${otp}</span>
   `;
 
