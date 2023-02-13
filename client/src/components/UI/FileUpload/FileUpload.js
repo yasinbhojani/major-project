@@ -18,7 +18,7 @@ const FileUpload = () => {
       });
     });
   };
-  console.log("Image Url : " + url);
+  // console.log("Image Url : " + url);
   return (
     <div>
       <input

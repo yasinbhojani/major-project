@@ -1,12 +1,12 @@
 const transporter = require("../configs/nodemailer.config");
 const { otpMessage, welcomeMessage } = require("../utils/messages.util");
 
-const mail = (req, res) => {
-  const { name, email, type } = req.body;
+const mail = (config) => {
+  const { name, email, type, otp } = config;
 
   let content = {};
   if (type === "otp") {
-    content = otpMessage(name);
+    content = otpMessage(name, otp);
   } else if (type === "welcome") {
     content = welcomeMessage(name);
   }
@@ -20,9 +20,9 @@ const mail = (req, res) => {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      res.send({ staus: "error", error: "email not sent" });
+      return { ok: false, message: "email not sent" };
     } else {
-      res.send({ staus: "ok" });
+      return { ok: true };
     }
   });
 };

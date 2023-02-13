@@ -1,13 +1,13 @@
 import styles from "./News.module.css";
 import Button from "../../components/UI/Button/Button";
-import Treanding from "../../components/News/Treanding";
+import Trending from "../../components/News/Trending";
 import SearchResult from "../../components/News/SearchResult";
 import { useEffect, useState } from "react";
 const News = (props) => {
   const [url, setUrl] = useState();
   const [news, setNews] = useState([]);
   const [searchTerm, setSearchTerm] = useState();
-  const [page, setPage] = useState(<Treanding setNews={setNews} />);
+  const [page, setPage] = useState(<Trending setNews={setNews} />);
   const inputChangeHandler = (e) => {
     const joined_date = new Date().toISOString().replace(/T.*/, "");
     setSearchTerm(e.target.value);

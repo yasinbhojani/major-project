@@ -1,15 +1,15 @@
 const generateRandomOTP = require("../utils/otp.util");
 
-const otpMessage = (name) => {
+const otpMessage = (name, otp) => {
   const html = `
-    <p>Hey ${name},</p>
-    <p>Welcome to Shell!</p>
-    <p>Before we get started, Authenticate your email with the given OTP,</p>
+    <h2>Hey ${name},</h2>
+    <h2>Welcome to Shell!</h2>
+    <p>Before we get started, Confirm your email with the given OTP,</p>
 
     <p>
       <b>OTP:</b>
     </p>
-    <span style="color: blue; font-size:larger; font-weight: bold;">${generateRandomOTP()}</span>
+    <span style="color: blue; font-size:larger; font-weight: bold;">${otp}</span>
   `;
 
   const subject = "Please verify your Email address";
