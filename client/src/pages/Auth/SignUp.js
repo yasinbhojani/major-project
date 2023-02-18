@@ -30,7 +30,7 @@ const SignUp = (props) => {
 
   const onVerifyRequestHandler = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/auth/verify", {
+      const response = await fetch("http://localhost:8080/api/auth/otp/send", {
         method: "POST",
         body: JSON.stringify({
           name: nameInput,
@@ -60,7 +60,7 @@ const SignUp = (props) => {
     try {
       const data = await fetch("http://localhost:8080/api/auth/register", {
         body: JSON.stringify({
-          username: nameInput,
+          name: nameInput,
           email: emailInput,
           password: passInput,
           otp: enteredOTP,
@@ -78,7 +78,6 @@ const SignUp = (props) => {
       }
 
       setMessage("Registration Successful You will be redirected shortly");
-
       setTimeout(() => {
         navigate("/");
       }, 5000);
@@ -141,7 +140,7 @@ const SignUp = (props) => {
           {!isLoading && isError ? (
             <p style={{ color: "red" }}>{message}</p>
           ) : (
-            <p>{message}</p>
+            <p style={{ fontWeight: "bold" }}>{message}</p>
           )}
         </section>
         <footer className={styles.footer}>

@@ -45,6 +45,7 @@ const NameAndEmailInput = (props) => {
     event.preventDefault();
     props.setIsLoading(true);
     props.setIsError(false);
+    props.setMessage("");
 
     try {
       const data = await fetch("http://localhost:8080/api/auth/checkemail", {

@@ -1,75 +1,74 @@
+// imports
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
 const connection = require("../configs/db.config");
-const mail = require("../services/mail");
-const generateRandomOTP = require("../utils/otp.util");
+const bcrypt = require("bcryptjs");
 
-let OTP = "";
+// middlewares
+const { emailExists } = require("../middlewares/emailExists");
+const { sendOTP, verifyOTP } = require("../middlewares/otpVerification");
+const { hashPassword } = require("../middlewares/hashPassword");
 
-//! Route to Check If email exists
-router.post("/checkemail", async (req, res) => {
-  const { email } = req.body;
+//! Route for Login
+router.post("/login", (req, res) => {
+  // verify if email and passowrd exist in the database
+  const { email, password } = req.body;
 
-  // checking if email exists by querying
   connection.query(
-    "SELECT count(*) as qty FROM users WHERE email = ?",
+    "SELECT * FROM users WHERE email = ?",
     [email],
     (err, data) => {
       if (err) {
-        return res.json({
-          ok: false,
-          message: "An Error occured, Please try again",
-        });
+        return res.json({ ok: false, message: "An error occured" });
       }
 
-      if (data[0].qty > 0) {
-        return res.json({ ok: false, message: "Email Already Exists" });
-      } else {
-        return res.json({ ok: true });
+      if (data.length === 0) {
+        return res.json({ ok: false, message: "Email doesn't exist" });
       }
+
+      bcrypt.compare(password, data[0].password_hash, (err, result) => {
+        if (err) return res.json({ ok: false, message: "An error occured" });
+
+        if (!result)
+          return res.json({ ok: false, message: "Incorrect Password" });
+
+        return res.json({
+          ok: true,
+          message: "Login Successful",
+          payload: {
+            user_id: data[0].user_id,
+            email: data[0].email,
+          },
+        });
+      });
     }
   );
 });
 
+//! Route to Check If email exists
+router.post("/checkemail", emailExists);
+
 //! Route to send the OTP
-router.post("/verify", async (req, res) => {
-  const { name, email } = req.body;
+router.post("/otp/send", sendOTP);
 
-  const firstName = name.split(" ")[0];
-
-  OTP = generateRandomOTP();
-  mail({ name: firstName, email, type: "otp", otp: OTP });
-
-  res.json({ ok: true });
-});
-
-//! Route to verify the OTP
-router.post("/register", async (req, res) => {
+//! Route to verify the OTP and register user
+router.post("/register", [verifyOTP, hashPassword], async (req, res) => {
   // destructring user data and entered otp
-  const { username, email, password, otp } = req.body;
-
-  // checking if entered OTP is similar to generated OTP
-  if (otp !== OTP) {
-    return res.json({ ok: false, message: "Invalid OTP" });
-  }
+  const { name, email } = req.body;
+  const { password_hash } = req;
 
   // Generating user_id and joined_date
   const user_id = email.split("@")[0];
-  const joined_date = new Date().toISOString().replace(/T.*/, "");
+  // const joined_date = new Date().toISOString().replace(/T.*/, "");
 
-  // Hashing the password (Do not store the passwords directly)
-  bcrypt.hash(password, 10, function (err, hash) {
-    if (err) res.json({ ok: false, message: "an error occured" });
+  const query = `INSERT INTO users (user_id, username, email, password_hash, joined_date) values ("${user_id}", "${name}", "${email}", "${password_hash}", now())`;
 
-    const query = `INSERT INTO users (user_id, username, email, password_hash, joined_date) values ("${user_id}", "${username}", "${email}", "${hash}", "${joined_date}")`;
-
-    connection.query(query, (err, data) => {
-      if (err) {
-        return res.json({ ok: false, message: err });
-      }
-      return res.json({ status: "ok", ok: true });
-    });
+  connection.query(query, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.json({ ok: false, message: "an error occured in database" });
+    }
+    return res.json({ status: "ok", ok: true });
   });
 });
 
