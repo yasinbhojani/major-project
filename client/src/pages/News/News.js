@@ -9,9 +9,10 @@ const News = (props) => {
   const [searchTerm, setSearchTerm] = useState();
   const [page, setPage] = useState(<Trending setNews={setNews} />);
   const inputChangeHandler = (e) => {
+    const joined_date = new Date().toISOString().replace(/T.*/, "");
     setSearchTerm(e.target.value);
     setUrl(
-      `https://newsapi.org/v2/everything?q=${e.target.value}&from=2023-01-10&sortBy=publishedAt&apiKey=fbb5f3957a4a4a9ba8950b6e78849172`
+      `https://newsapi.org/v2/everything?q=${e.target.value}&from=${joined_date}&sortBy=publishedAt&apiKey=fbb5f3957a4a4a9ba8950b6e78849172`
     );
   };
   const featchNews = (e) => {
