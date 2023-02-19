@@ -2,41 +2,40 @@ import styles from "./News.module.css";
 import Button from "../../components/UI/Button/Button";
 import Trending from "../../components/News/Trending";
 import SearchResult from "../../components/News/SearchResult";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 const News = (props) => {
   const [url, setUrl] = useState();
-  const [news, setNews] = useState([]);
   const [searchTerm, setSearchTerm] = useState();
-  const [page, setPage] = useState(<Trending setNews={setNews} />);
   const inputChangeHandler = (e) => {
-    const joined_date = new Date().toISOString().replace(/T.*/, "");
+    const current_date = new Date().toISOString().replace(/T.*/, "");
     setSearchTerm(e.target.value);
     setUrl(
-      `https://newsapi.org/v2/top-headlines?q=${e.target.value}&from=${joined_date}&sortBy=publishedAt&apiKey=fbb5f3957a4a4a9ba8950b6e78849172`
+      `https://newsapi.org/v2/top-headlines?q=${e.target.value}&from=${current_date}&sortBy=publishedAt&apiKey=fbb5f3957a4a4a9ba8950b6e78849172`
     );
   };
-  const featchNews = (e) => {
-    e.preventDefault();
-    fetch(url)
+  const featchNews = (trendingUrl) => {
+    fetch(url === undefined ? trendingUrl : url)
       .then((data) => {
         return data.json();
       })
       .then((news) => {
-        setNews(news.articles);
-        setSearchTerm("");
+        if (news.articles.length !== 0) {
+          setSearchTerm("");
+          setPage(<SearchResult articles={news.articles} />);
+        } else {
+          setPage(<SearchResult articles={"No News"} />);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  useEffect(() => {
-    if (news.length !== 0) {
-      setPage(<SearchResult articles={news} />);
-    }
-  }, [news]);
+  const [page, setPage] = useState(
+    <Trending setUrl={setUrl} featchNews={featchNews} />
+  );
   return (
     <div className={styles.NewsPage}>
-      <form onSubmit={featchNews}>
+      <div>
         <div className={styles.searchBox}>
           <input
             type="text"
@@ -46,9 +45,13 @@ const News = (props) => {
             value={searchTerm}
             required
           />
-          <Button text="Search" type="submit" className={styles.searchBtn} />
+          <Button
+            text="Search"
+            onClick={featchNews}
+            className={styles.searchBtn}
+          />
         </div>
-      </form>
+      </div>
       {page}
     </div>
   );
