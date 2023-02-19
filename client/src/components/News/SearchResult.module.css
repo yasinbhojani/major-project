@@ -18,3 +18,7 @@
 .NewsContent {
   margin: 0px 10px;
 }
+.noNewsError {
+  text-align: center;
+  padding: 15px;
+}

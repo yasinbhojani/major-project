@@ -1,21 +1,22 @@
 import styles from "./Trending.module.css";
+const trendingTerms = [
+  "India",
+  "Tesla",
+  "Apple",
+  "Twitter",
+  "Space",
+  "NASA",
+  "YouTube",
+  "Meta",
+];
 const Trending = (props) => {
   const getValues = (e) => {
-    const joined_date = new Date().toISOString().replace(/T.*/, "");
-    fetch(
+    const current_date = new Date().toISOString().replace(/T.*/, "");
+    props.featchNews(
       `https://newsapi.org/v2/top-headlines?q=${e.target.innerText
         .slice(1)
-        .trim()}&from=${joined_date}&sortBy=publishedAt&apiKey=fbb5f3957a4a4a9ba8950b6e78849172`
-    )
-      .then((data) => {
-        return data.json();
-      })
-      .then((news) => {
-        props.setNews(news.articles);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .trim()}&from=${current_date}&sortBy=publishedAt&apiKey=fbb5f3957a4a4a9ba8950b6e78849172`
+    );
   };
   return (
     <>
@@ -23,14 +24,9 @@ const Trending = (props) => {
         <h3>Trending Topics 📈</h3>
       </div>
       <div className={styles.SearchTerms}>
-        <p onClick={getValues}># India</p>
-        <p onClick={getValues}># Tesla</p>
-        <p onClick={getValues}># Apple</p>
-        <p onClick={getValues}># Twitter</p>
-        <p onClick={getValues}># Space</p>
-        <p onClick={getValues}># NASA</p>
-        <p onClick={getValues}># Youtube</p>
-        <p onClick={getValues}># Meta</p>
+        {trendingTerms.map((term) => {
+          return <p onClick={getValues}># {term}</p>;
+        })}
       </div>
     </>
   );
