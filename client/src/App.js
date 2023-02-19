@@ -1,6 +1,7 @@
 import "./App.css";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useEffect } from "react";
+import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";
 
 import Home from "./pages/Home/Home";
 import News from "./pages/News/News";

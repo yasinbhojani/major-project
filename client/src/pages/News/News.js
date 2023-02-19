@@ -12,7 +12,7 @@ const News = (props) => {
     const joined_date = new Date().toISOString().replace(/T.*/, "");
     setSearchTerm(e.target.value);
     setUrl(
-      `https://newsapi.org/v2/everything?q=${e.target.value}&from=${joined_date}&sortBy=publishedAt&apiKey=fbb5f3957a4a4a9ba8950b6e78849172`
+      `https://newsapi.org/v2/top-headlines?q=${e.target.value}&from=${joined_date}&sortBy=publishedAt&apiKey=fbb5f3957a4a4a9ba8950b6e78849172`
     );
   };
   const featchNews = (e) => {

@@ -38,8 +38,9 @@ const LoginForm = (props) => {
         throw new Error(response.message);
       }
 
-      localStorage.setItem("user_id", response.payload.user_id);
-      localStorage.setItem("email", response.payload.email);
+      localStorage.setItem("username", response.payload.username);
+      localStorage.setItem("is_admin", response.payload.is_admin);
+      localStorage.setItem("accessToken", response.payload.accessToken);
 
       setMessage("Login Successful, You will be redirected shortly");
       setTimeout(() => {

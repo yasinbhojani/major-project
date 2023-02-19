@@ -3,7 +3,7 @@ const Trending = (props) => {
   const getValues = (e) => {
     const joined_date = new Date().toISOString().replace(/T.*/, "");
     fetch(
-      `https://newsapi.org/v2/everything?q=${e.target.innerText
+      `https://newsapi.org/v2/top-headlines?q=${e.target.innerText
         .slice(1)
         .trim()}&from=${joined_date}&sortBy=publishedAt&apiKey=fbb5f3957a4a4a9ba8950b6e78849172`
     )

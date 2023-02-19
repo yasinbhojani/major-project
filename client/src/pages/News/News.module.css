@@ -9,6 +9,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding: 20px 0;
 }
 .searchInput {
   padding: 0 20px;
@@ -25,4 +26,5 @@
 }
 .searchBtn {
   padding: 15px 35px;
+  margin: 0px 20px !important;
 }
