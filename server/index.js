@@ -10,6 +10,10 @@ const port = process.env.PORT || 8080;
 app.use(express.json());
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.json({ message: "Server is Running" });
+});
+
 app.use("/api/auth", require("./routes/authRoutes"));
 
 app.listen(port, () => {
