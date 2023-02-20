@@ -1,0 +1,50 @@
+.profileDetailsNameAndEdit {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border-top: 1px solid #d4d4d4;
+  padding: 25px;
+}
+.profileDetailsNameAndEdit .avatar_url img {
+  width: 90px;
+  border-radius: 50%;
+  border: 3px solid #5b7083;
+}
+
+.userNameDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin: auto 25px;
+}
+.userNameDetails h1 {
+  margin: 0px 8px;
+  font-size: 25px;
+  font-weight: bold;
+}
+.userNameDetails .userNameAndVerified {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.userNameDetails p {
+  margin: 0px 8px;
+  font-size: 18px;
+  color: #5b7083;
+}
+
+.profileEditButton {
+  margin-left: 30px;
+  padding: 8px 17px;
+  font-weight: 500;
+  border-radius: 50px;
+  border: 1px solid #5b7083;
+  color: #333f49;
+  background-color: transparent;
+}
+.profileEditButton:hover {
+  background-color: #f8f8f8;
+}

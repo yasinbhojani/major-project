@@ -1,0 +1,23 @@
+.UpdateProfile {
+  width: 600px;
+  max-width: 600px;
+  border: 1px solid #d4d4d4;
+}
+.UpdateProfile img {
+  width: 90px;
+  border-radius: 50%;
+  border: 3px solid #5b7083;
+}
+.profileDetailsNameAndEdit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+  width: 70%;
+}
+.profileDetailsNameAndEdit .avatar_url img {
+  width: 90px;
+  border-radius: 50%;
+  border: 3px solid #5b7083;
+}

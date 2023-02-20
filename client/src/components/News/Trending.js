@@ -25,7 +25,11 @@ const Trending = (props) => {
       </div>
       <div className={styles.SearchTerms}>
         {trendingTerms.map((term) => {
-          return <p onClick={getValues}># {term}</p>;
+          return (
+            <p onClick={getValues} key={Math.ceil(Math.random() * 1000)}>
+              # {term}
+            </p>
+          );
         })}
       </div>
     </>
