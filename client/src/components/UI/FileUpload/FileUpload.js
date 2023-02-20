@@ -10,6 +10,8 @@ const FileUpload = (props) => {
       setImage(event.target.files[0]);
     }
   };
+  // File Upload Require state updating function <FileUpload setUrl={ #Your state updation function# }>
+  //Url will be stored in state which you passed to fileupload
   const uploadButtonClickHandler = () => {
     const imageRef = ref(storage, `/images/${image.name}`);
     uploadBytes(imageRef, image).then(() => {
