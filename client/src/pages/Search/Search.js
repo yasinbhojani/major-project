@@ -5,7 +5,6 @@ import SearchResult from "../../components/Search/SearchResult";
 const Search = (props) => {
   const [searchedUser, setSearchedUser] = useState();
   const [result, setResult] = useState();
-  const searchUserHandler = (e) => setSearchedUser(e.target.value);
   const searchUser = () => {
     fetch(
       `http://localhost:8080/profile/searchProfile/${searchedUser.trim()}`,
@@ -26,9 +25,12 @@ const Search = (props) => {
           setResult("no usres");
         }
       });
-    setSearchedUser("");
+    // setSearchedUser("");
   };
-
+  const searchUserHandler = (e) => {
+    setSearchedUser(e.target.value);
+    searchUser();
+  };
   return (
     <>
       <div className={styles.SearchPage}>

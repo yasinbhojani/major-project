@@ -11,10 +11,9 @@
 .profileDetailsNameAndEdit {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   padding: 25px;
-  width: 70%;
 }
 .profileDetailsNameAndEdit .avatar_url img {
   width: 90px;

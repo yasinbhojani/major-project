@@ -4,23 +4,25 @@ const router = express.Router();
 const connection = require("../configs/db.config");
 
 // Logic To retrive Users Data From Databses
-router.get("/:userId", (req, res) => {
+router.get("/openProfile/:userId", (req, res) => {
   const { userId } = req.params;
-  connection.query(
-    `SELECT * FROM users WHERE user_id = "${userId}"`,
-    (err, data) => {
-      if (data.length !== 0) {
-        res.json({
-          ok: true,
-          ...data[0],
-        });
-      } else {
-        res.json({
-          ok: false,
-        });
+  if (userId !== undefined) {
+    connection.query(
+      `SELECT * FROM users WHERE user_id = "${userId}"`,
+      (err, data) => {
+        if (data.length !== 0) {
+          res.json({
+            ok: true,
+            ...data[0],
+          });
+        } else {
+          res.json({
+            ok: false,
+          });
+        }
       }
-    }
-  );
+    );
+  }
 });
 
 // Logic for Searching of user
