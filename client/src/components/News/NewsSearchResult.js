@@ -1,6 +1,6 @@
-import styles from "./SearchResult.module.css";
-import shellNewsImg from "./images/ShellNews.png";
-const SearchResult = (props) => {
+import styles from "./NewsSearchResult.module.css";
+import shellNewsImg from "../../assets/News/ShellNews.png";
+const NewsSearchResult = (props) => {
   return (
     <>
       {props.articles === "No News" ? (
@@ -37,4 +37,4 @@ const SearchResult = (props) => {
     </>
   );
 };
-export default SearchResult;
+export default NewsSearchResult;

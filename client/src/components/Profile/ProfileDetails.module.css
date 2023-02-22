@@ -1,0 +1,24 @@
+.profileDetailsBioAndAddress {
+  padding: 0px 25px;
+}
+.profileDetailsBioAndAddress .bio p {
+  font-size: 20px;
+}
+.profileDetailsBioAndAddress .follow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 60%;
+}
+.profileDetailsBioAndAddress .follow span p {
+  display: inline;
+  font-weight: bolder;
+}
+
+.profileDetailsBioAndAddress .date {
+  padding: 20px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 55%;
+}

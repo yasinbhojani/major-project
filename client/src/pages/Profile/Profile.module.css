@@ -1,0 +1,9 @@
+.Profile {
+  width: 600px;
+  max-width: 600px;
+  border: 1px solid #d4d4d4;
+}
+.backButtonIcon img {
+  width: 20px;
+  margin: 20px;
+}

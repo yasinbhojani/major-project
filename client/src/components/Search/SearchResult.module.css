@@ -1,0 +1,25 @@
+.searchResult {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 30px;
+  cursor: pointer;
+}
+.searchResult img {
+  width: 90px;
+  border-radius: 50%;
+  border: 2px solid #5b7083;
+}
+.searchResult .nameAndUserName h3 {
+  margin: 0px;
+  font-size: 25px;
+}
+.searchResult .nameAndUserName p {
+  margin: 0px;
+  font-size: 18px;
+}
+.noUsreFound {
+  text-align: center;
+  padding: 15px;
+}

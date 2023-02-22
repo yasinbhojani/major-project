@@ -1,0 +1,17 @@
+.ProfileUpdateForm {
+  border-top: 1px solid #d4d4d4;
+  padding: 20px;
+}
+.ProfileUpdateForm p {
+  margin-top: 10px;
+}
+.ProfileUpdateForm h5 {
+  font-weight: 600;
+}
+.footerButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 50%;
+}

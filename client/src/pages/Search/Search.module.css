@@ -1,4 +1,4 @@
-.NewsPage {
+.SearchPage {
   width: 600px;
   max-width: 600px;
   border: 1px solid #d4d4d4;
@@ -25,5 +25,6 @@
   filter: drop-shadow(0px 4px 4px #7076fe55);
 }
 .searchBtn {
+  padding: 15px 35px;
   margin: 0px 20px !important;
 }
