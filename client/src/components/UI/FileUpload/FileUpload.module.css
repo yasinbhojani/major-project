@@ -18,3 +18,7 @@
 .uploadBtn:hover {
   background-color: #7c83fc;
 }
+.uploadedImage {
+  width: 200px !important;
+  border-radius: 0px !important;
+}

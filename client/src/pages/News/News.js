@@ -1,7 +1,7 @@
 import styles from "./News.module.css";
 import Button from "../../components/UI/Button/Button";
 import Trending from "../../components/News/Trending";
-import SearchResult from "../../components/News/SearchResult";
+import NewsSearchResult from "../../components/News/NewsSearchResult";
 import { useState } from "react";
 const News = (props) => {
   const [url, setUrl] = useState();
@@ -21,9 +21,9 @@ const News = (props) => {
       .then((news) => {
         if (news.articles.length !== 0) {
           setSearchTerm("");
-          setPage(<SearchResult articles={news.articles} />);
+          setPage(<NewsSearchResult articles={news.articles} />);
         } else {
-          setPage(<SearchResult articles={"No News"} />);
+          setPage(<NewsSearchResult articles={"No News"} />);
         }
       })
       .catch((err) => {
