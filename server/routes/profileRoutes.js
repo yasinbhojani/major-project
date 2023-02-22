@@ -34,11 +34,12 @@ router.get("/searchProfile/:query", (req, res) => {
       if (data.length !== 0) {
         res.json({
           ok: true,
-          ...data[0],
+          profiles: data,
         });
       } else {
         res.json({
           ok: false,
+          profiles: ["no usres"],
         });
       }
     }
@@ -62,7 +63,7 @@ router.put("/update/:user_id", (req, res) => {
     );
   }
   // Profile Photo Url Update
-  if (imgUrl !== undefined) {
+  if (imgUrl !== "") {
     connection.query(
       `update users set avatar_url = "${imgUrl}" where user_id = "${user_id}"`
     );

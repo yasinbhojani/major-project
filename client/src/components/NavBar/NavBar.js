@@ -59,9 +59,12 @@ const NavBar = (props) => {
           />
         )}
         <Dropdown text="More" icon={more}>
+          <DropdownOption
+            icon={logout}
+            text="About Us"
+            onClick={() => navigate("/aboutus")}
+          />
           <DropdownOption icon={logout} text="Logout" onClick={logoutHandler} />
-          <DropdownOption icon={logout} text="Placeholder" />
-          <DropdownOption icon={logout} text="Placeholder" />
         </Dropdown>
         <Button text="New Pearl" />
       </nav>
