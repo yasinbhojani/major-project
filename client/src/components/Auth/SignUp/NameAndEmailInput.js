@@ -34,7 +34,7 @@ const NameAndEmailInput = (props) => {
   const emailChangeHandler = (event) => {
     setEmailIsTouched(true);
     props.setEmailInput(event.target.value);
-    if (event.target.value.includes("gmail.com")) {
+    if (event.target.value.includes(".com")) {
       setEmailIsValid(true);
     } else {
       setEmailIsValid(false);
