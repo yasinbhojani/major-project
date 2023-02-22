@@ -3,9 +3,12 @@ import Button from "../../components/UI/Button/Button";
 import { useState } from "react";
 import SearchResult from "../../components/Search/SearchResult";
 const Search = (props) => {
-  const [searchedUser, setSearchedUser] = useState();
+  const [searchedUser, setSearchedUser] = useState("");
   const [result, setResult] = useState();
   const searchUser = () => {
+    if (searchedUser.trim().length === 0) {
+      return;
+    }
     fetch(
       `http://localhost:8080/profile/searchProfile/${searchedUser.trim()}`,
       {
