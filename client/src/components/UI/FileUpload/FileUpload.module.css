@@ -25,4 +25,5 @@
 .uploadedImage {
   width: 200px !important;
   border-radius: 0px !important;
+  height: auto !important;
 }

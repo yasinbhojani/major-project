@@ -10,6 +10,8 @@ const FileUpload = (props) => {
   const fileInputChangeHandler = (event) => {
     if (event.target.files[0]) {
       setImage(event.target.files[0]);
+      setActiveUpload(false);
+      setStatus("Upload");
     }
   };
   // File Upload Require state updating function <FileUpload setUrl={ #Your state updation function# }>
@@ -43,7 +45,9 @@ const FileUpload = (props) => {
   };
   return (
     <>
-      <img src={uploadedImage} alt="" className={styles.uploadedImage} />
+      {uploadedImage && (
+        <img src={uploadedImage} alt="" className={styles.uploadedImage} />
+      )}
       <div>
         <input
           type="file"
