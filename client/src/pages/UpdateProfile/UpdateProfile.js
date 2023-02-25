@@ -26,7 +26,7 @@ const UpdateProfile = (props) => {
     if (localStorage.getItem("accessToken")) {
       decodedToken = jwt_decode(localStorage.getItem("accessToken"));
       if (user_id === decodedToken.user_id) {
-        fetch(`http://localhost:8080/profile/openProfile/${user_id}`, {
+        fetch(`http://localhost:8080/api/profile/openProfile/${user_id}`, {
           method: "get",
           headers: {
             "Content-Type": "application/json",

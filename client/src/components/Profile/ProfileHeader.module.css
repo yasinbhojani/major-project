@@ -8,8 +8,10 @@
 }
 .profileDetailsNameAndEdit .avatar_url img {
   width: 90px;
+  height: 90px;
   border-radius: 50%;
   border: 3px solid #5b7083;
+  object-fit: cover;
 }
 
 .userNameDetails {

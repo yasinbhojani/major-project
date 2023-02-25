@@ -6,11 +6,12 @@ const Search = (props) => {
   const [searchedUser, setSearchedUser] = useState("");
   const [result, setResult] = useState();
   const searchUser = () => {
-    if (searchedUser.trim().length === 0) {
+    if (searchedUser.trim() === "") {
+      setResult([]);
       return;
     }
     fetch(
-      `http://localhost:8080/profile/searchProfile/${searchedUser.trim()}`,
+      `http://localhost:8080/api/profile/searchProfile/${searchedUser.trim()}`,
       {
         method: "get",
         headers: {
@@ -23,12 +24,11 @@ const Search = (props) => {
       })
       .then((details) => {
         if (details.ok) {
-          setResult(details);
+          setResult(details.profiles);
         } else {
-          setResult("no usres");
+          setResult(details.profiles);
         }
       });
-    // setSearchedUser("");
   };
   const searchUserHandler = (e) => {
     setSearchedUser(e.target.value);
@@ -36,7 +36,7 @@ const Search = (props) => {
   };
   return (
     <>
-      <div className={styles.SearchPage}>
+      <form className={styles.SearchPage} onSubmit={(e) => e.preventDefault()}>
         <div className={styles.searchBox}>
           <input
             type="text"
@@ -52,8 +52,8 @@ const Search = (props) => {
             onClick={searchUser}
           />
         </div>
-        {result && <SearchResult profile={result} />}
-      </div>
+        {result && <SearchResult profiles={result} />}
+      </form>
     </>
   );
 };

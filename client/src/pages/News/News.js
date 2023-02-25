@@ -25,9 +25,6 @@ const News = (props) => {
         } else {
           setPage(<NewsSearchResult articles={"No News"} />);
         }
-      })
-      .catch((err) => {
-        console.log(err);
       });
   };
   const [page, setPage] = useState(
@@ -36,7 +33,7 @@ const News = (props) => {
   return (
     <div className={styles.NewsPage}>
       <div>
-        <div className={styles.searchBox}>
+        <form className={styles.searchBox} onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
             placeholder="# Search Topic"
@@ -50,7 +47,7 @@ const News = (props) => {
             onClick={featchNews}
             className={styles.searchBtn}
           />
-        </div>
+        </form>
       </div>
       {page}
     </div>

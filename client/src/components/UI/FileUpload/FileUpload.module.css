@@ -18,7 +18,12 @@
 .uploadBtn:hover {
   background-color: #7c83fc;
 }
+.uploadBtn:disabled {
+  background-color: #d4d4d4;
+  cursor: not-allowed;
+}
 .uploadedImage {
   width: 200px !important;
   border-radius: 0px !important;
+  height: auto !important;
 }

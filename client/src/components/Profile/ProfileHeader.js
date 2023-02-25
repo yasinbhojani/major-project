@@ -12,7 +12,6 @@ const ProfileHeader = (props) => {
   }
 
   const updateProfileHandler = () => {
-    console.log("lol");
     redirect(`/profile/update/${userObject.user_id}`);
   };
 

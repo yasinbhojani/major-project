@@ -10,3 +10,7 @@
 .defaultBtn:hover {
   background-color: #565fff;
 }
+.defaultBtn:disabled {
+  background-color: #d4d4d4;
+  cursor: not-allowed;
+}
