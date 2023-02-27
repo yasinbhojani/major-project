@@ -18,13 +18,7 @@ const mail = (config) => {
     html: content.html,
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      return { ok: false, message: "email not sent" };
-    } else {
-      return { ok: true };
-    }
-  });
+  return transporter.sendMail(mailOptions);
 };
 
 module.exports = mail;

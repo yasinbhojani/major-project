@@ -3,14 +3,26 @@ const generateRandomOTP = require("../utils/otp.util");
 
 let OTP = "";
 
-const sendOTP = (req, res, next) => {
+const sendOTP = async (req, res, next) => {
   const { name, email } = req.body;
   const firstName = name.split(" ")[0];
 
   OTP = generateRandomOTP();
-  mail({ name: firstName, email, type: "otp", otp: OTP });
 
-  res.json({ ok: true, message: `OTP sent to ${email}` });
+  mail({
+    name: firstName,
+    email,
+    type: "otp",
+    otp: OTP,
+  })
+    .then((result) => {
+      console.log("mail sent");
+      res.status(200).json({ ok: true, message: `OTP sent to ${email}` });
+    })
+    .catch((err) => {
+      console.log("error");
+      res.status(401).json({ ok: false, message: response.message });
+    });
 };
 
 const verifyOTP = (req, res, next) => {

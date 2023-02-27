@@ -30,7 +30,7 @@ const SignUp = (props) => {
 
   const onVerifyRequestHandler = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/auth/otp/send", {
+      const data = await fetch("http://localhost:8080/api/auth/otp/send", {
         method: "POST",
         body: JSON.stringify({
           name: nameInput,
@@ -41,10 +41,17 @@ const SignUp = (props) => {
         },
       });
 
+      const response = await data.json();
+
       if (!response.ok) {
         throw new Error(response.message);
       }
+
+      setMessage(response.message);
+      console.log("FE sent");
+
     } catch (e) {
+      console.log("FE error");
       setIsError(true);
       setMessage(e.message);
     } finally {
