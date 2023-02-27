@@ -11,12 +11,31 @@
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  border: 2px solid #5b7083;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+
   object-fit: cover;
 }
+.searchResult .nameAvatar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.searchResult .nameAvatar .nameAndUserName {
+  margin: 0 25px;
+}
+.searchResult .nameAvatar .nameAndUserName h3 img {
+  width: 27px;
+  height: 27px;
+  box-shadow: none;
+  margin: 0 10px;
+}
+
+
 .searchResult .nameAndUserName h3 {
   margin: 0px;
   font-size: 25px;
+  display: flex;
+  align-items: center;
 }
 .searchResult .nameAndUserName p {
   margin: 0px;

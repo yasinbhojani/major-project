@@ -51,10 +51,12 @@ const UpdateProfile = (props) => {
         </div>
         <div className={styles.userNameDetails}>
           <div className={styles.userNameAndVerified}>
-            <h1>{userDetails.username}</h1>
-            {userDetails.followers > 10 && (
-              <img src={verified} alt="" width="27px" />
-            )}
+            <h1>
+              {userDetails.username}
+              {userDetails.followers > 10 && (
+                <img src={verified} alt="" />
+              )}
+            </h1>
           </div>
           <div>
             <p>@{userDetails.user_id}</p>

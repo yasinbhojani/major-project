@@ -10,8 +10,8 @@
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  border: 3px solid #5b7083;
   object-fit: cover;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
 }
 
 .userNameDetails {

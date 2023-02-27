@@ -2,6 +2,9 @@ import Button from "../UI/Button/Button";
 import styles from "./SearchResult.module.css";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import verified from "../../assets/Profile/verified.svg"
+
+
 const SearchResult = (props) => {
   const profiles = props.profiles;
   const redirect = useNavigate();
@@ -26,10 +29,17 @@ const SearchResult = (props) => {
               onClick={() => redirect(`/profile/${user.user_id}`)}
               key={user.user_id}
             >
-              <img src={user.avatar_url} alt="" />
-              <div className={styles.nameAndUserName}>
-                <h3>{user.username}</h3>
-                <p>@{user.user_id}</p>
+              <div className={styles.nameAvatar}>
+                <img src={user.avatar_url} alt="" />
+                <div className={styles.nameAndUserName}>
+                  <h3>
+                    {user.username}
+                    {user.followers > 10 && (
+                      <img src={verified} alt="" />
+                    )}
+                  </h3>
+                  <p>@{user.user_id}</p>
+                </div>
               </div>
               {user.user_id === decodedToken.user_id ? (
                 <Button
