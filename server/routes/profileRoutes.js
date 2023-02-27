@@ -39,7 +39,7 @@ router.get("/searchProfile/:query", (req, res) => {
       } else {
         res.json({
           ok: false,
-          profiles: ["no usres"],
+          profiles: ["no users"],
         });
       }
     }
