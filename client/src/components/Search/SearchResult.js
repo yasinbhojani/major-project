@@ -14,8 +14,8 @@ const SearchResult = (props) => {
   };
   return (
     <>
-      {profiles[0] === "no usres" ? (
-        <div className={styles.noUsreFound}>
+      {profiles[0] === "no users" ? (
+        <div className={styles.noUserFound}>
           <h3>Sorry, We Didn't Found Any Users {": ("}</h3>
         </div>
       ) : (

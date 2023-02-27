@@ -2,6 +2,7 @@ import styles from "./News.module.css";
 import Button from "../../components/UI/Button/Button";
 import Trending from "../../components/News/Trending";
 import NewsSearchResult from "../../components/News/NewsSearchResult";
+import backButton from "../../assets/Profile/backButton.svg";
 import { useState } from "react";
 const News = (props) => {
   const [url, setUrl] = useState();
@@ -19,12 +20,9 @@ const News = (props) => {
         return data.json();
       })
       .then((news) => {
-        if (news.articles.length !== 0) {
-          setSearchTerm("");
-          setPage(<NewsSearchResult articles={news.articles} />);
-        } else {
-          setPage(<NewsSearchResult articles={"No News"} />);
-        }
+        setSearchTerm("");
+        setPage(<NewsSearchResult articles={news.articles} />);
+        setUrl();
       });
   };
   const [page, setPage] = useState(
@@ -32,23 +30,37 @@ const News = (props) => {
   );
   return (
     <div className={styles.NewsPage}>
-      <div>
-        <form className={styles.searchBox} onSubmit={(e) => e.preventDefault()}>
-          <input
-            type="text"
-            placeholder="# Search Topic"
-            className={styles.searchInput}
-            onChange={inputChangeHandler}
-            value={searchTerm}
-            required
-          />
-          <Button
-            text="Search"
-            onClick={featchNews}
-            className={styles.searchBtn}
-          />
-        </form>
-      </div>
+      {page.props.featchNews ? (
+        <div>
+          <form
+            className={styles.searchBox}
+            onSubmit={(e) => e.preventDefault()}
+          >
+            <input
+              type="text"
+              placeholder="# Search Topic"
+              className={styles.searchInput}
+              onChange={inputChangeHandler}
+              value={searchTerm}
+              required
+            />
+            <Button
+              text="Search"
+              onClick={featchNews}
+              className={styles.searchBtn}
+            />
+          </form>
+        </div>
+      ) : (
+        <div
+          className={styles.backButton}
+          onClick={() => {
+            setPage(<Trending setUrl={setUrl} featchNews={featchNews} />);
+          }}
+        >
+          <img src={backButton} alt="" />
+        </div>
+      )}
       {page}
     </div>
   );
