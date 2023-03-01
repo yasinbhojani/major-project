@@ -9,6 +9,8 @@ import chats from "./icon/message.svg";
 import notification from "./icon/notification.svg";
 import profile from "./icon/profile.svg";
 import more from "./icon/more.svg";
+import settings from "./icon/settings.svg";
+import Info from "./icon/Info.svg";
 import logout from "./icon/signout.svg";
 
 import jwt_decode from "jwt-decode";
@@ -60,7 +62,12 @@ const NavBar = (props) => {
         )}
         <Dropdown text="More" icon={more}>
           <DropdownOption
-            icon={logout}
+            icon={settings}
+            text="Settings"
+            onClick={() => navigate("/settings")}
+          />
+          <DropdownOption
+            icon={Info}
             text="About Us"
             onClick={() => navigate("/aboutus")}
           />
