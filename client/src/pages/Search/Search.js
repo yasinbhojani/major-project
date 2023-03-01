@@ -42,6 +42,7 @@ const Search = (props) => {
     return () => {
       clearTimeout(setTimeoutRef.current);
     };
+    // eslint-disable-next-line
   }, [searchedUser]);
 
   const searchUserHandler = (e) => {

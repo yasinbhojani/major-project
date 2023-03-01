@@ -10,7 +10,7 @@ import notification from "./icon/notification.svg";
 import profile from "./icon/profile.svg";
 import more from "./icon/more.svg";
 import settings from "./icon/settings.svg";
-import Info from "./icon/Info.svg";
+import info from "./icon/info.svg";
 import logout from "./icon/signout.svg";
 
 import jwt_decode from "jwt-decode";
@@ -67,7 +67,7 @@ const NavBar = (props) => {
             onClick={() => navigate("/settings")}
           />
           <DropdownOption
-            icon={Info}
+            icon={info}
             text="About Us"
             onClick={() => navigate("/aboutus")}
           />

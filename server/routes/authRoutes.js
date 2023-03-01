@@ -72,20 +72,33 @@ router.post("/register", [verifyOTP, hashPassword], async (req, res) => {
 
   const query = `INSERT INTO users (user_id, username, email, password_hash, joined_date) values ("${user_id}", "${name}", "${email}", "${password_hash}", now())`;
 
-  connection.query(query, async (err, data) => {
+  connection.query(query, (err, data) => {
     if (err) {
       console.log(err);
       return res.json({ ok: false, message: "an error occured in database" });
     }
 
     const firstName = name.split(" ")[0];
+    mail({ name: firstName, email, type: "welcome" });
 
-    const response = await mail({ name: firstName, email, type: "welcome" });
-    if (response.ok) {
-      res.status(200).json({ ok: true, message: `OTP sent to ${email}` });
-    } else {
-      res.status(401).json({ ok: false, message: response.message });
-    }
+    const query = `SELECT * FROM users WHERE user_id = "${user_id}"`;
+    connection.query(query, (err, data) => {
+      if (err) {
+        return res.json({ ok: false, message: "An error occured" });
+      }
+
+      const accessToken = generateAccessToken(data[0]);
+
+      return res.json({
+        ok: true,
+        message: "Signup Succesful",
+        payload: {
+          username: data[0].username,
+          is_admin: data[0].is_admin,
+          accessToken,
+        },
+      });
+    });
   });
 });
 

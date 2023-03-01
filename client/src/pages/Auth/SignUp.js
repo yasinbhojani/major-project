@@ -48,10 +48,7 @@ const SignUp = (props) => {
       }
 
       setMessage(response.message);
-      console.log("FE sent");
-
     } catch (e) {
-      console.log("FE error");
       setIsError(true);
       setMessage(e.message);
     } finally {
@@ -83,6 +80,10 @@ const SignUp = (props) => {
       if (response.ok === false) {
         throw new Error(response.message);
       }
+
+      localStorage.setItem("username", response.payload.username);
+      localStorage.setItem("is_admin", response.payload.is_admin);
+      localStorage.setItem("accessToken", response.payload.accessToken);
 
       setMessage("Registration Successful You will be redirected shortly");
       setTimeout(() => {

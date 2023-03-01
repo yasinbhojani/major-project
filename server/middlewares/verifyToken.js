@@ -18,3 +18,5 @@ const verify = (req, res, next) => {
     res.status(401).json({ ok: false, message: "You are not authenticated" });
   }
 };
+
+module.exports = verify;
