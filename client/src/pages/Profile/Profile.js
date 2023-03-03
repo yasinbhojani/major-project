@@ -1,12 +1,11 @@
 import styles from "./Profile.module.css";
-import backButton from "../../assets/Profile/backButton.svg";
 import { useEffect, useState } from "react";
 import ProfileHeader from "../../components/Profile/ProfileHeader";
 import ProfileDetails from "../../components/Profile/ProfileDetails";
 import { useParams, useNavigate } from "react-router-dom";
+import BackButton from "../../components/UI/Button/BackButton";
 
 const Profile = (props) => {
-  const navigate = useNavigate();
   const { user_id } = useParams();
   const redirect = useNavigate();
   const [userObject, setUserObject] = useState({
@@ -44,9 +43,7 @@ const Profile = (props) => {
 
   return (
     <div className={styles.Profile}>
-      <div className={styles.backButtonIcon} onClick={() => navigate(-1)}>
-        <img src={backButton} alt="" />
-      </div>
+      <BackButton />
       <ProfileHeader userObject={userObject} user_id={user_id} />
       <ProfileDetails userObject={userObject} />
     </div>

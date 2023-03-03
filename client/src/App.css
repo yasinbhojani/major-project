@@ -1,3 +1,17 @@
 ::selection {
   background-color: #c9ceff;
 }
+/* Scroll-Bar */
+::-webkit-scrollbar {
+  width: 15px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #dbdeff;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #7076fe;
+}

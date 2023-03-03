@@ -1,0 +1,16 @@
+.backButtonIcon img {
+  width: 40px !important;
+  height: 40px !important;
+  margin: 10px !important;
+  padding: 10px !important;
+  cursor: pointer !important;
+  border-radius: 50% !important;
+  transition: 0.2s all !important;
+  box-shadow: none !important;
+  border: none !important;
+  object-fit: unset !important;
+}
+
+.backButtonIcon img:hover {
+  background-color: #dbdeff;
+}
