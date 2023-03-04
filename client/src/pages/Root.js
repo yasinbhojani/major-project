@@ -23,13 +23,7 @@ const Root = () => {
       }}
     >
       <NavBar />
-      <div
-        style={{
-          marginLeft: "250px",
-        }}
-      >
-        <Outlet />
-      </div>
+      <Outlet />
     </section>
   );
 };
