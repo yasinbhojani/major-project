@@ -51,3 +51,9 @@
   width: 25px;
   box-shadow: none;
 }
+.isOnline {
+  color: #00aa09;
+  margin: 0px;
+  padding: 0px;
+  font-size: 50px;
+}
