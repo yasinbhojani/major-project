@@ -18,6 +18,8 @@ import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
 import UpdateProfile from "./pages/UpdateProfile/UpdateProfile";
 
+import PrivateChats from "./components/Chats/PrivateChats";
+
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -34,6 +36,12 @@ const App = () => {
         { path: "/profile/update/:user_id", element: <UpdateProfile /> },
         { path: "/aboutus", element: <AboutUs /> },
         { path: "/settings", element: <Settings /> },
+
+        // Some Extra Chats Routes
+        {
+          path: "/chats/private/:senderID/:reciverID",
+          element: <PrivateChats />,
+        },
       ],
     },
     {
