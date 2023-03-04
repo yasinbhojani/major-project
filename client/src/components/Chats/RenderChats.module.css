@@ -1,0 +1,58 @@
+.chats {
+  height: 81vh;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.senderChat,
+.reciverChat {
+  margin: 0px;
+  padding: 10px;
+}
+.senderChat div {
+  float: right;
+}
+.reciverChat div {
+  float: left;
+}
+.senderChat div .mess,
+.reciverChat div .mess {
+  margin: 0px;
+  padding: 5px 15px;
+  border-radius: 20px;
+  background-color: #dbdeff;
+  font-size: 18px;
+  max-width: 300px;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+.reciverChat div .time {
+  text-align: left;
+}
+.senderChat div .time {
+  text-align: right;
+}
+.senderChat div .time,
+.reciverChat div .time {
+  font-size: 13px;
+  margin: 0px 5px;
+}
+.reciverChat div .mess {
+  background-color: #7076fe;
+  color: white;
+}
+/* Scroll-Bar */
+.chats::-webkit-scrollbar {
+  width: 5px;
+}
+/* Handle */
+.chats::-webkit-scrollbar-thumb {
+  background: #dbdeff;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.chats::-webkit-scrollbar-thumb:hover {
+  background: #7076fe;
+}

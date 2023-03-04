@@ -1,0 +1,57 @@
+.Search {
+  width: 600px;
+  max-width: 600px;
+  border: 1px solid #d4d4d4;
+}
+.Search form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.Search input {
+  padding: 0 20px;
+  height: 43px;
+  border-radius: 50px;
+  border: 2px solid #00000066;
+  font-size: 1rem;
+  width: 94%;
+  margin: 10px;
+}
+.Search input:focus {
+  outline: none;
+  border: 2px solid var(--purpleblue);
+  filter: drop-shadow(0px 4px 4px #7076fe55);
+}
+.searchUsers {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border-top: 1px solid #d4d4d4;
+}
+.searchUsers:hover {
+  background-color: #dbdeff;
+}
+.searchUsers img {
+  width: 48px;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+  object-fit: cover;
+  margin: 10px;
+}
+.searchUsers h6 {
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0px 5px;
+}
+.searchUsers .verified {
+  width: 25px;
+  height: 25px;
+  box-shadow: none;
+  margin: 0 5px;
+}
+.searchBtn {
+  margin: 0px 5px;
+  padding: 5px auto;
+}
