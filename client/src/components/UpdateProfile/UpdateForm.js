@@ -82,7 +82,7 @@ const UpdateForm = (props) => {
         />
         <p>Describe yourself to others or write something describing you</p>
         <h5>Update Profile Photo</h5>
-        <FileUpload setUrl={setimgUrl} folder="profile" />
+        <FileUpload setUrl={setimgUrl} folder="profile" type="image" />
         <hr />
         <h3>Personal Details</h3>
         <Input

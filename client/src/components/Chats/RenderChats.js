@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./RenderChats.module.css";
 import { io } from "socket.io-client";
 import jwt_decode from "jwt-decode";
-// import NotificationSound from "../../assets/Chats/Notification.mp3";
+import NotificationSound from "../../assets/Chats/Notification.mp3";
 const socket = io.connect("http://localhost:8080");
 const RenderChats = (props) => {
   const [chats, setChats] = useState([]);
@@ -11,6 +11,7 @@ const RenderChats = (props) => {
   if (localStorage.getItem("accessToken")) {
     decodedToken = jwt_decode(localStorage.getItem("accessToken"));
   }
+  // Use Effects Which Retrives Old Chats from DB
   useEffect(() => {
     const retriveData = () => {
       fetch(
@@ -34,12 +35,12 @@ const RenderChats = (props) => {
     retriveData();
   }, [props.sender, props.reciver]);
   // Recivig New Message from Backend
-  socket.on("ReceiveMessage", (data) => {
+  socket.off("ReceiveMessage").on("ReceiveMessage", (data) => {
     setChats([...chats, data]);
+    // Playing Notification Sound
     if (data.sender !== decodedToken.user_id) {
-      // const audio = new Audio(NotificationSound);
-      // audio.play();
-      console.log("Notification");
+      const audio = new Audio(NotificationSound);
+      audio.play();
     }
   });
   useEffect(() => {
@@ -49,6 +50,13 @@ const RenderChats = (props) => {
     <div className={styles.chats}>
       {chats.length !== 0 &&
         chats.map((message) => {
+          // Repetative Link Validations
+          let Link = message.message.substring(
+            message.message.indexOf("https://"),
+            message.message.includes(" ", message.message.indexOf("https://"))
+              ? message.message.indexOf(" ", "https://")
+              : message.message.length
+          );
           return (
             <div
               key={message.sent_date || Math.random()}
@@ -60,7 +68,37 @@ const RenderChats = (props) => {
               }
             >
               <div>
-                <p className={styles.mess}> {message.message}</p>
+                {/* This First P is all About Links I mean for Links Validations */}
+                <>
+                  {message.message.includes("https://") ? (
+                    <p className={styles.mess}>
+                      <>
+                        {message.message.substring(
+                          0,
+                          message.message.indexOf("https://")
+                        )}
+                      </>
+                      <a href={Link} target="_blank" rel="noreferrer">
+                        {Link}
+                      </a>
+                      <>
+                        {message.message.substring(
+                          message.message.includes(
+                            " ",
+                            message.message.indexOf("https://")
+                          )
+                            ? message.message.indexOf(" ", "https://")
+                            : message.message.length,
+                          message.message.length
+                        )}
+                      </>
+                    </p>
+                  ) : (
+                    // This Is For Those Message which dsent have any links
+                    <p className={styles.mess}>{message.message}</p>
+                  )}
+                </>
+                {/* This Div Is For Data Output */}
                 <p className={styles.time}>
                   {new Date(message.sent_date).toLocaleTimeString("en-US", {
                     hour: "2-digit",
@@ -79,6 +117,7 @@ const RenderChats = (props) => {
             </div>
           );
         })}
+      {/* Scroll Div */}
       <div ref={messageEndRef} />
     </div>
   );

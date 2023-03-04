@@ -42,6 +42,12 @@
   background-color: #7076fe;
   color: white;
 }
+.reciverChat div .mess a {
+  color: white;
+}
+.reciverChat div .mess a:hover {
+  color: #d3d6ff;
+}
 /* Scroll-Bar */
 .chats::-webkit-scrollbar {
   width: 5px;
