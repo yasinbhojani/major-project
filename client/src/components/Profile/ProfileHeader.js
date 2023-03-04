@@ -19,7 +19,9 @@ const ProfileHeader = (props) => {
     <>
       <div className={styles.profileDetailsNameAndEdit}>
         <div className={styles.avatar_url}>
-          <img src={userObject.avatar_url} alt="" />
+          <a href={userObject.avatar_url} target="_blank" rel="noreferrer">
+            <img src={userObject.avatar_url} alt="" />
+          </a>
         </div>
         <div className={styles.userNameDetails}>
           <div className={styles.userNameAndVerified}>

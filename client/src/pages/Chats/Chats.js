@@ -65,11 +65,16 @@ const Chats = (props) => {
         />
         <Button text="Search" className={styles.searchBtn} type="submit" />
       </form>
-      {result && (
+      {result && result[0] === "no users" && (
+        <div className={styles.noUserFound} key="noUsers">
+          <h3>Sorry, We Didn't Found Any Users {": ("}</h3>
+        </div>
+      )}
+      {result && result[0] !== "no users" && (
         <div>
           {result.map((user) => {
             if (user.user_id === decodedToken.user_id) {
-              return <p key="none" style={{ display: "none" }}></p>;
+              return <p key="currentUsers" style={{ display: "none" }}></p>;
             }
             return (
               <div
