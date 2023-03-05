@@ -26,12 +26,15 @@ const UpdateProfile = (props) => {
     if (localStorage.getItem("accessToken")) {
       decodedToken = jwt_decode(localStorage.getItem("accessToken"));
       if (user_id === decodedToken.user_id) {
-        fetch(`http://localhost:8080/api/profile/openProfile/${user_id}`, {
-          method: "get",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
+        fetch(
+          `${process.env.REACT_APP_API_ENDPOINT}/api/profile/openProfile/${user_id}`,
+          {
+            method: "get",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
           .then((data) => {
             return data.json();
           })
@@ -53,9 +56,7 @@ const UpdateProfile = (props) => {
           <div className={styles.userNameAndVerified}>
             <h1>
               {userDetails.username}
-              {userDetails.followers > 10 && (
-                <img src={verified} alt="" />
-              )}
+              {userDetails.followers > 10 && <img src={verified} alt="" />}
             </h1>
           </div>
           <div>

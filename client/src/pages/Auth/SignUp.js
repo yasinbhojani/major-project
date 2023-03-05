@@ -30,7 +30,7 @@ const SignUp = (props) => {
 
   const onVerifyRequestHandler = async () => {
     try {
-      const data = await fetch("http://localhost:8080/api/auth/otp/send", {
+      const data = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/auth/otp/send`, {
         method: "POST",
         body: JSON.stringify({
           name: nameInput,
@@ -62,7 +62,7 @@ const SignUp = (props) => {
     setIsError(false);
     setIsLoading(true);
     try {
-      const data = await fetch("http://localhost:8080/api/auth/register", {
+      const data = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/auth/register`, {
         body: JSON.stringify({
           name: nameInput,
           email: emailInput,

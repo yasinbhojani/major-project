@@ -15,7 +15,7 @@ const RenderChats = (props) => {
   useEffect(() => {
     const retriveData = () => {
       fetch(
-        `http://localhost:8080/api/chats/${props.sender}/${props.reciver}`,
+        `${process.env.REACT_APP_API_ENDPOINT}/api/chats/${props.sender}/${props.reciver}`,
         {
           method: "get",
           headers: {

@@ -48,7 +48,7 @@ const NameAndEmailInput = (props) => {
     props.setMessage("");
 
     try {
-      const data = await fetch("http://localhost:8080/api/auth/checkemail", {
+      const data = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/auth/checkemail`, {
         body: JSON.stringify({
           email: props.emailInput,
         }),

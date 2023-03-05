@@ -24,7 +24,7 @@ const Profile = (props) => {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/profile/openProfile/${user_id}`, {
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/profile/openProfile/${user_id}`, {
       method: "get",
       headers: {
         "Content-Type": "application/json",

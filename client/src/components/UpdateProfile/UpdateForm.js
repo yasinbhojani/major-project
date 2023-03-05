@@ -39,7 +39,7 @@ const UpdateForm = (props) => {
   const updateProfileHandler = () => {
     //Sending Request to api
     fetch(
-      `http://localhost:8080/api/profile/update/${props.userDetails.user_id}`,
+      `${process.env.REACT_APP_API_ENDPOINT}/api/profile/update/${props.userDetails.user_id}`,
       {
         method: "put",
         headers: {

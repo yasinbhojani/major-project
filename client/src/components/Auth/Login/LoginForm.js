@@ -21,7 +21,7 @@ const LoginForm = (props) => {
     setIsLoading(true);
 
     try {
-      const data = await fetch("http://localhost:8080/api/auth/login", {
+      const data = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -24,7 +24,7 @@ const PrivateChats = (props) => {
   useEffect(() => {
     const reciver = () => {
       fetch(
-        `http://localhost:8080/api/profile/searchProfile/${chatDetails.reciverID.trim()}`,
+        `${process.env.REACT_APP_API_ENDPOINT}/api/profile/searchProfile/${chatDetails.reciverID.trim()}`,
         {
           method: "get",
           headers: {

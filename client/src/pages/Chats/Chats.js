@@ -21,7 +21,7 @@ const Chats = (props) => {
     }
 
     fetch(
-      `http://localhost:8080/api/profile/searchProfile/${searchedUser.trim()}`,
+      `${process.env.REACT_APP_API_ENDPOINT}/api/profile/searchProfile/${searchedUser.trim()}`,
       {
         method: "get",
         headers: {
