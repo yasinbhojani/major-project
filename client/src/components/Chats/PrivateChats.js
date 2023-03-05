@@ -68,6 +68,11 @@ const PrivateChats = (props) => {
   const newMessageSend = (e) => {
     e.preventDefault();
     if (newMessage.trim() !== "") {
+      if(newMessage.includes('"')) {
+        let regex = /"/g;
+        setNewMessage(newMessage.replace(regex, `\\"`));
+      }
+
       socket.emit("NewMessage", {
         sender: chatDetails.senderID,
         reciver: chatDetails.reciverID,
@@ -165,7 +170,7 @@ const PrivateChats = (props) => {
           placeholder="New Message"
           onChange={newMessageChangeHandler}
           value={newMessage}
-          maxLength="250"
+          maxLength="200"
           required
         />
         <Button text="Send" />

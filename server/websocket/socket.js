@@ -17,6 +17,10 @@ const socket = (server) => {
   io.on("connection", (socket) => {
     console.log("(WebSocket) Connetion Established");
     socket.on("NewMessage", (data) => {
+      if (data.message.includes('"')) {
+        let regex = /"/g;
+        data.message = data.message.replace(regex, `\\"`);
+      }
       connection.query(
         `INSERT INTO chats values ("${data.sender}","${data.reciver}","${data.message}",now())`
       );

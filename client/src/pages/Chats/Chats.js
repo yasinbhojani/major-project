@@ -21,7 +21,9 @@ const Chats = (props) => {
     }
 
     fetch(
-      `${process.env.REACT_APP_API_ENDPOINT}/api/profile/searchProfile/${searchedUser.trim()}`,
+      `${
+        process.env.REACT_APP_API_ENDPOINT
+      }/api/profile/searchProfile/${searchedUser.trim()}`,
       {
         method: "get",
         headers: {
@@ -86,7 +88,7 @@ const Chats = (props) => {
                   );
                 }}
               >
-                <img src={user.avatar_url} alt="" />
+                <img src={user.avatar_url} alt=""  />
                 <h6>{user.username}</h6>
                 {user.followers > 10 && (
                   <img src={verified} alt="" className={styles.verified} />
