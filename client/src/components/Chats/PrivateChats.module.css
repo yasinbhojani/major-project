@@ -28,13 +28,19 @@
 .chats form button {
   margin: 0px 5px;
 }
+.headerDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d4d4d4;
+  cursor: pointer;
+}
 .reciversDetails {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  border-bottom: 1px solid #d4d4d4;
-  cursor: pointer;
 }
 .reciversDetails img {
   width: 50px;
@@ -52,8 +58,15 @@
   box-shadow: none;
 }
 .isOnline {
-  color: #00aa09;
   margin: 0px;
   padding: 0px;
-  font-size: 50px;
+  font-size: 10px;
+}
+.isOnline span {
+  color: white;
+  background-color: #74d17e;
+  font-size: 15px;
+  padding: 3px 8px;
+  border-radius: 50px;
+  margin: 0px 30px;
 }

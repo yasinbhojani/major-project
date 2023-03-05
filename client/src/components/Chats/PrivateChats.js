@@ -14,7 +14,7 @@ const PrivateChats = (props) => {
   const [reciversDetails, setReciversDetails] = useState();
   const [newMessage, setNewMessage] = useState("");
   const [status, setStatus] = useState("");
-  const [isOnline, setIsOnline] = useState();
+  const [isOnline, setIsOnline] = useState(false);
   let decodedToken = null;
   if (localStorage.getItem("accessToken")) {
     decodedToken = jwt_decode(localStorage.getItem("accessToken"));
@@ -24,7 +24,9 @@ const PrivateChats = (props) => {
   useEffect(() => {
     const reciver = () => {
       fetch(
-        `${process.env.REACT_APP_API_ENDPOINT}/api/profile/searchProfile/${chatDetails.reciverID.trim()}`,
+        `${
+          process.env.REACT_APP_API_ENDPOINT
+        }/api/profile/searchProfile/${chatDetails.reciverID.trim()}`,
         {
           method: "get",
           headers: {
@@ -65,30 +67,31 @@ const PrivateChats = (props) => {
   // This Function establish new connetion to backend
   const newMessageSend = (e) => {
     e.preventDefault();
-    socket.emit("NewMessage", {
-      sender: chatDetails.senderID,
-      reciver: chatDetails.reciverID,
-      message: newMessage,
-    });
-    setNewMessage("");
+    if (newMessage.trim() !== "") {
+      socket.emit("NewMessage", {
+        sender: chatDetails.senderID,
+        reciver: chatDetails.reciverID,
+        message: newMessage,
+      });
+      setNewMessage("");
+    }
   };
 
-  // I am Online
+  // // I am Online
   socket.emit("online", { userId: decodedToken.user_id });
   // Checking Is Other Users Online
   socket.off("onlineUsers").on("onlineUsers", (data) => {
     for (var propName in data) {
       if (data.hasOwnProperty(propName)) {
-        var propValue = data[propName];
-        if (propValue === chatDetails.reciverID) {
+        if (data[propName] === chatDetails.reciverID) {
           setIsOnline(true);
+          break;
         } else {
           setIsOnline(false);
         }
       }
     }
   });
-
   // This Functions Stores Value of new Chat in state
   const newMessageChangeHandler = (e) => {
     setNewMessage(e.target.value);
@@ -127,23 +130,29 @@ const PrivateChats = (props) => {
   return (
     <div className={styles.chats}>
       {reciversDetails !== undefined && (
-        <div className={styles.reciversDetails} onClick={openUserHandler}>
-          <BackButton className={styles.BackButton} />
-          <img src={reciversDetails.avatar_url} alt="" />
-          <div>
-            <h5>
-              {reciversDetails.username}{" "}
-              {reciversDetails.followers > 10 && (
-                <img src={verified} alt="" className={styles.verified} />
+        <div className={styles.headerDiv} onClick={openUserHandler}>
+          <div className={styles.reciversDetails}>
+            <BackButton className={styles.BackButton} />
+            <img src={reciversDetails.avatar_url} alt="" />
+            <div>
+              <h5>
+                {reciversDetails.username}{" "}
+                {reciversDetails.followers > 10 && (
+                  <img src={verified} alt="" className={styles.verified} />
+                )}
+              </h5>
+              {status === "" ? (
+                <p>@{reciversDetails.user_id}</p>
+              ) : (
+                <p> {status}</p>
               )}
-            </h5>
-            {status === "" ? (
-              <p>@{reciversDetails.user_id}</p>
-            ) : (
-              <p> {status}</p>
-            )}
+            </div>
           </div>
-          {isOnline && <h1 className={styles.isOnline}>.</h1>}
+          {isOnline && (
+            <h1 className={styles.isOnline}>
+              <span>Online</span>
+            </h1>
+          )}
         </div>
       )}
       <RenderChats
