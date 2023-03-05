@@ -3,7 +3,7 @@ import styles from "./RenderChats.module.css";
 import { io } from "socket.io-client";
 import jwt_decode from "jwt-decode";
 import NotificationSound from "../../assets/Chats/Notification.mp3";
-const socket = io.connect("http://localhost:8080");
+const socket = io.connect(process.env.REACT_APP_API_ENDPOINT);
 const RenderChats = (props) => {
   const [chats, setChats] = useState([]);
   const messageEndRef = useRef(null);

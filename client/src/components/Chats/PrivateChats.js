@@ -7,7 +7,7 @@ import BackButton from "../UI/Button/BackButton";
 import RenderChats from "./RenderChats";
 import verified from "../../assets/Profile/verified.svg";
 import { io } from "socket.io-client";
-const socket = io.connect("http://localhost:8080");
+const socket = io.connect(process.env.REACT_APP_API_ENDPOINT);
 const PrivateChats = (props) => {
   const redirect = useNavigate();
   const chatDetails = useParams();
@@ -122,8 +122,6 @@ const PrivateChats = (props) => {
   socket.off("ReceiveMessage").on("ReceiveMessage", () => {
     setStatus(""); //Clering The Typing Text
   });
-
-  console.log("lol");
 
   // HTML HERE
   return (
