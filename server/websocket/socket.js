@@ -2,6 +2,9 @@ const socketIO = require("socket.io");
 const connection = require("../configs/db.config");
 let isSocketConnected = false;
 
+//   Chats Real-Time Connetions
+const onlineUsers = {};
+
 const socket = (server) => {
   // socket.io code goes here
 
@@ -11,9 +14,6 @@ const socket = (server) => {
       methods: ["GET", "POST"],
     },
   });
-
-  //   Chats Real-Time Connetions
-  const onlineUsers = {};
   io.on("connection", (socket) => {
     console.log("(WebSocket) Connetion Established");
     socket.on("NewMessage", (data) => {

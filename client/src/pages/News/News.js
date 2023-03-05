@@ -8,11 +8,13 @@ const News = (props) => {
   const [url, setUrl] = useState();
   const [searchTerm, setSearchTerm] = useState();
   const inputChangeHandler = (e) => {
-    const current_date = new Date().toISOString().replace(/T.*/, "");
-    setSearchTerm(e.target.value);
-    setUrl(
-      `https://newsapi.org/v2/top-headlines?q=${e.target.value}&from=${current_date}&sortBy=publishedAt&apiKey=fbb5f3957a4a4a9ba8950b6e78849172`
-    );
+    if (e.target.value.trim() !== "") {
+      const current_date = new Date().toISOString().replace(/T.*/, "");
+      setSearchTerm(e.target.value);
+      setUrl(
+        `https://newsapi.org/v2/top-headlines?q=${e.target.value}&from=${current_date}&sortBy=publishedAt&apiKey=fbb5f3957a4a4a9ba8950b6e78849172`
+      );
+    }
   };
   const featchNews = (trendingUrl) => {
     fetch(url === undefined ? trendingUrl : url)
