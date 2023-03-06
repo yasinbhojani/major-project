@@ -33,7 +33,9 @@ const socket = (server) => {
       socket.broadcast.emit("TypingStoped", data);
     });
     socket.on("online", (data) => {
-      onlineUsers[socket.id] = data.userId;
+      if (data.userId !== "") {
+        onlineUsers[socket.id] = data.userId;
+      }
       socket.broadcast.emit("onlineUsers", onlineUsers);
     });
     socket.on("disconnect", () => {

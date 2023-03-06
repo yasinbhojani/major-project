@@ -36,11 +36,20 @@ const RenderChats = (props) => {
   }, [props.sender, props.reciver]);
   // Recivig New Message from Backend
   socket.off("ReceiveMessage").on("ReceiveMessage", (data) => {
-    setChats([...chats, data]);
-    // Playing Notification Sound
-    if (data.sender !== decodedToken.user_id) {
-      const audio = new Audio(NotificationSound);
-      audio.play();
+    if (data.sender === decodedToken.user_id) {
+      setChats([...chats, data]);
+    } else {
+      if (
+        data.reciver === decodedToken.user_id &&
+        data.sender === props.reciver
+      ) {
+        setChats([...chats, data]);
+        // Playing Notification Sound
+        if (data.sender !== decodedToken.user_id) {
+          const audio = new Audio(NotificationSound);
+          audio.play();
+        }
+      }
     }
   });
   useEffect(() => {

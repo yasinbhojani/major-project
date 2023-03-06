@@ -59,7 +59,7 @@ const App = () => {
     },
   ]);
 
-  let decodedToken = null;
+  let decodedToken = { user_id: "" };
   if (localStorage.getItem("accessToken")) {
     decodedToken = jwt_decode(localStorage.getItem("accessToken"));
   }

@@ -68,7 +68,7 @@ const PrivateChats = (props) => {
   const newMessageSend = (e) => {
     e.preventDefault();
     if (newMessage.trim() !== "") {
-      if(newMessage.includes('"')) {
+      if (newMessage.includes('"')) {
         let regex = /"/g;
         setNewMessage(newMessage.replace(regex, `\\"`));
       }
@@ -116,14 +116,22 @@ const PrivateChats = (props) => {
   // Checking is Sender is Typing Message or not
   socket.off("Typing").on("Typing", (data) => {
     if (data.sender !== decodedToken.user_id) {
-      setStatus("Typing...");
+      if (data.sender === chatDetails.reciverID) {
+        if (data.reciver === decodedToken.user_id) {
+          setStatus("Typing...");
+        }
+      }
     }
   });
 
   // Checking if User stoped Typing
   socket.off("TypingStoped").on("TypingStoped", (data) => {
     if (data.sender !== decodedToken.user_id) {
-      setStatus("");
+      if (data.sender === chatDetails.reciverID) {
+        if (data.reciver === decodedToken.user_id) {
+          setStatus("");
+        }
+      }
     }
   });
 
