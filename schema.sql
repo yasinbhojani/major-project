@@ -38,6 +38,7 @@ create table comments (
 );
 
 create table chats (
+  chat_id  varchar(40) PRIMARY KEY UNIQUE NOT NULL,
   sender_id varchar(20),
   reciver_id varchar(20),
   message varchar(255),

@@ -2,6 +2,7 @@ const socketIO = require("socket.io");
 const connection = require("../configs/db.config");
 let isSocketConnected = false;
 
+const { v4 } = require("uuid");
 //   Chats Real-Time Connetions
 const onlineUsers = {};
 
@@ -22,7 +23,9 @@ const socket = (server) => {
         data.message = data.message.replace(regex, `\\"`);
       }
       connection.query(
-        `INSERT INTO chats values ("${data.sender}","${data.reciver}","${data.message}",now())`
+        `INSERT INTO chats values ("${v4().substring(0, 5)}","${
+          data.sender
+        }","${data.reciver}","${data.message}",now())`
       );
       socket.broadcast.emit("ReceiveMessage", data);
     });

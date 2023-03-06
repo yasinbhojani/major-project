@@ -86,7 +86,7 @@ const PrivateChats = (props) => {
   socket.emit("online", { userId: decodedToken.user_id });
   // Checking Is Other Users Online
   socket.off("onlineUsers").on("onlineUsers", (data) => {
-    for (var propName in data) {
+    for (let propName in data) {
       if (data.hasOwnProperty(propName)) {
         if (data[propName] === chatDetails.reciverID) {
           setIsOnline(true);
