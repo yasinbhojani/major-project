@@ -20,10 +20,6 @@ import UpdateProfile from "./pages/UpdateProfile/UpdateProfile";
 
 import PrivateChats from "./components/Chats/PrivateChats";
 
-import jwt_decode from "jwt-decode";
-import { io } from "socket.io-client";
-const socket = io.connect(process.env.REACT_APP_API_ENDPOINT);
-
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -58,12 +54,6 @@ const App = () => {
       ],
     },
   ]);
-
-  let decodedToken = null;
-  if (localStorage.getItem("accessToken")) {
-    decodedToken = jwt_decode(localStorage.getItem("accessToken"));
-  }
-  socket.emit("online", { userId: decodedToken.user_id });
 
   return (
     <>

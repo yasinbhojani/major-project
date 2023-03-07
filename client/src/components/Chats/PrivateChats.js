@@ -68,7 +68,7 @@ const PrivateChats = (props) => {
   const newMessageSend = (e) => {
     e.preventDefault();
     if (newMessage.trim() !== "") {
-      if(newMessage.includes('"')) {
+      if (newMessage.includes('"')) {
         let regex = /"/g;
         setNewMessage(newMessage.replace(regex, `\\"`));
       }
@@ -86,7 +86,7 @@ const PrivateChats = (props) => {
   socket.emit("online", { userId: decodedToken.user_id });
   // Checking Is Other Users Online
   socket.off("onlineUsers").on("onlineUsers", (data) => {
-    for (var propName in data) {
+    for (let propName in data) {
       if (data.hasOwnProperty(propName)) {
         if (data[propName] === chatDetails.reciverID) {
           setIsOnline(true);
@@ -116,14 +116,22 @@ const PrivateChats = (props) => {
   // Checking is Sender is Typing Message or not
   socket.off("Typing").on("Typing", (data) => {
     if (data.sender !== decodedToken.user_id) {
-      setStatus("Typing...");
+      if (data.sender === chatDetails.reciverID) {
+        if (data.reciver === decodedToken.user_id) {
+          setStatus("Typing...");
+        }
+      }
     }
   });
 
   // Checking if User stoped Typing
   socket.off("TypingStoped").on("TypingStoped", (data) => {
     if (data.sender !== decodedToken.user_id) {
-      setStatus("");
+      if (data.sender === chatDetails.reciverID) {
+        if (data.reciver === decodedToken.user_id) {
+          setStatus("");
+        }
+      }
     }
   });
 
