@@ -75,8 +75,8 @@ const NavBar = (props) => {
           />
           <DropdownOption
             icon={info}
-            text="About Us"
-            onClick={() => navigate("/aboutus")}
+            text="About"
+            onClick={() => navigate("/about")}
           />
           <DropdownOption icon={logout} text="Logout" onClick={logoutHandler} />
         </Dropdown>
