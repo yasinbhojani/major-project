@@ -13,7 +13,7 @@ const Root = () => {
     const token = localStorage.getItem("accessToken");
 
     if (!token) {
-      navigate("/auth/login");
+      navigate("/about");
     }
 
     socket.emit("online", { userId: token.user_id });

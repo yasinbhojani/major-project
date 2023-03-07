@@ -55,14 +55,14 @@ const About = () => {
               redirect("/");
             }}
           />
-          <h1>About</h1>
+          <h1>Shell</h1>
         </div>
         <div className={styles.NavBtns}>
           <button className={styles.navButton}>
-            <a href="#features">Features</a>
+            <a href="#mission">Our Mission</a>
           </button>
           <button className={styles.navButton}>
-            <a href="#mission">Our Mission</a>
+            <a href="#features">Features</a>
           </button>
           <button className={styles.navButton}>Careers</button>
           <Button
@@ -81,9 +81,9 @@ const About = () => {
           connections you make!
         </p>
         <Button
-          text="Shell.com"
+          text="Join Shell Now!"
           onClick={() => {
-            redirect("/");
+            redirect("/auth/login");
           }}
           className={styles.shell}
         />

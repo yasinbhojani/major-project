@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   background-color: #dbdeff;
-  animation: nav-load 300ms ease-in-out;
+  animation: nav-load 500ms ease-in;
 }
 .about nav a {
   color: #7076fe;
@@ -57,16 +57,16 @@
   color: #7076fe;
   width: 60%;
   font-size: 60px;
-  animation: nav-load 300ms ease-in;
+  animation: nav-load 500ms ease-in;
 }
 .header p {
   font-size: 20px;
   width: 35%;
   margin-top: 30px;
-  animation: nav-load 300ms ease-in;
+  animation: nav-load 500ms ease-in;
 }
 .shell {
-  animation: nav-load 300ms ease-in;
+  animation: nav-load 500ms ease-in;
 }
 .mission {
   margin: 0px 150px;
@@ -130,9 +130,11 @@
 }
 @keyframes nav-load {
   0% {
+    opacity: 0;
     transform: translateY(-100%);
   }
   100% {
+    opacity: 1;
     transform: translateY(0%);
   }
 }
