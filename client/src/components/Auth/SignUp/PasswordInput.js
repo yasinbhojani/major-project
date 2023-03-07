@@ -2,6 +2,8 @@ import Input from "../../UI/Input/Input";
 import btnstyles from "../../../css/button.module.css";
 import { useRef, useState } from "react";
 
+import styles from "../Login/Login.module.css";
+
 const PasswordInput = (props) => {
   const [passwordIsMatched, setPasswordIsMatched] = useState(false);
   const [isTouched, setIsTouched] = useState(false);
@@ -51,7 +53,7 @@ const PasswordInput = (props) => {
 
   return (
     <>
-      <form onSubmit={passwordFormSubmitHandler}>
+      <form onSubmit={passwordFormSubmitHandler} className={styles.LoginForm}>
         <Input
           id="password"
           type="password"
