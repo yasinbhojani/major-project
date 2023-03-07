@@ -8,7 +8,7 @@ import News from "./pages/News/News";
 import Chats from "./pages/Chats/Chats";
 import Notification from "./pages/Notification/Notification";
 import Profile from "./pages/Profile/Profile";
-import AboutUs from "./pages/AboutUs/AboutUs";
+import About from "./pages/About/About";
 import Settings from "./pages/Settings/Settings";
 import Root from "./pages/Root";
 import NotFound from "./pages/NotFound/NotFound";
@@ -34,7 +34,6 @@ const App = () => {
         { path: "/notification", element: <Notification /> },
         { path: "/profile/:user_id", element: <Profile /> },
         { path: "/profile/update/:user_id", element: <UpdateProfile /> },
-        { path: "/aboutus", element: <AboutUs /> },
         { path: "/settings", element: <Settings /> },
 
         // Some Extra Chats Routes
@@ -53,6 +52,7 @@ const App = () => {
         { path: "signup", element: <SignUp /> },
       ],
     },
+    { path: "/about", element: <About /> },
   ]);
 
   return (

@@ -9,6 +9,7 @@
   position: fixed;
   left: 0;
   background-color: white;
+  animation: nav-load 300ms ease-in;
 }
 .NavBar .NavBarLogo img {
   width: 40px;
@@ -49,4 +50,12 @@
   border: none;
   background: transparent;
   margin: 10px auto;
+}
+@keyframes nav-load {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
