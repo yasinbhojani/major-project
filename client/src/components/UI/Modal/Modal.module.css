@@ -17,6 +17,8 @@
   padding: 10px;
   width: 40%;
   min-width: 400px;
+  max-height: 90vh;
+  overflow: auto;
 }
 
 .overlay .closediv {
@@ -32,5 +34,5 @@
 }
 
 .overlay .closediv img:hover {
-  background-color: #00000044;
+  background-color: #dbdeff;
 }

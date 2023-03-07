@@ -1,42 +1,39 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 
-import ModalContext from "../../../context/modal-context";
 import styles from "./Modal.module.css";
 import close from "../../../assets/close.svg";
 
 const Modal = (props) => {
-  const modalCtx = useContext(ModalContext);
-  const { modalIsVisible } = modalCtx;
-
   const modalCloseHandler = () => {
-    modalCtx.setModalIsVisible(false);
+    props.onClose();
   };
 
   useEffect(() => {
-    modalIsVisible && (document.body.style.overflow = "hidden");
+    document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [modalIsVisible]);
+  }, []);
 
   return (
-    modalIsVisible &&
-    ReactDOM.createPortal(
-      <div className={styles.backdrop}>
-        <div className={styles.overlay}>
-          <div className={styles.closediv}>
-            <img
-              src={close}
-              onClick={modalCloseHandler}
-              alt="close button"
-            ></img>
+    <>
+      {ReactDOM.createPortal(
+        <div className={styles.backdrop}>
+          <div className={styles.overlay}>
+            <div className={styles.closediv}>
+              <img
+                src={close}
+                onClick={modalCloseHandler}
+                alt="close button"
+              ></img>
+            </div>
+            <div className={styles.content}>{props.children}</div>
           </div>
-          {props.children}
-        </div>
-      </div>,
-      document.getElementById("modal")
-    )
+        </div>,
+        document.getElementById("modal")
+      )}
+    </>
   );
 };
 

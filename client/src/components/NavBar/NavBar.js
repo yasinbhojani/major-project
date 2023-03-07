@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import logo from "../../assets/shell-logo.png";
 import NavButtons from "./NavButtons";
@@ -17,9 +19,10 @@ import jwt_decode from "jwt-decode";
 import Dropdown from "../UI/Dropdown/Dropdown";
 import DropdownOption from "../UI/Dropdown/DropdownOption";
 import Button from "../UI/Button/Button";
-import { useNavigate } from "react-router-dom";
+import NewPearl from "../Pearls/NewPearls/NewPearl";
 
 const NavBar = (props) => {
+  const [modalIsVisible, setModalIsVisible] = useState(false);
   const navigate = useNavigate();
   let decodedToken;
 
@@ -34,6 +37,10 @@ const NavBar = (props) => {
       localStorage.removeItem("is_admin");
       navigate("/auth/login");
     }
+  };
+
+  const newPearlHandler = () => {
+    setModalIsVisible(true);
   };
 
   return (
@@ -73,8 +80,15 @@ const NavBar = (props) => {
           />
           <DropdownOption icon={logout} text="Logout" onClick={logoutHandler} />
         </Dropdown>
-        <Button text="New Pearl" />
+        <Button text="New Pearl" onClick={newPearlHandler} />
       </nav>
+      {modalIsVisible && (
+        <NewPearl
+          onClose={() => {
+            setModalIsVisible(false);
+          }}
+        />
+      )}
     </>
   );
 };
