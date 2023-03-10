@@ -2,6 +2,7 @@ import styles from "./Search.module.css";
 import Button from "../../components/UI/Button/Button";
 import { useEffect, useRef, useState } from "react";
 import SearchResult from "../../components/Search/SearchResult";
+import SearchDefaultIcon from "../../assets/Search/Search.svg";
 const Search = (props) => {
   const [searchedUser, setSearchedUser] = useState("");
   const [result, setResult] = useState();
@@ -14,7 +15,9 @@ const Search = (props) => {
     }
 
     fetch(
-      `${process.env.REACT_APP_API_ENDPOINT}/api/profile/searchProfile/${searchedUser.trim()}`,
+      `${
+        process.env.REACT_APP_API_ENDPOINT
+      }/api/profile/searchProfile/${searchedUser.trim()}`,
       {
         method: "get",
         headers: {
@@ -69,6 +72,10 @@ const Search = (props) => {
         </div>
         {result && <SearchResult profiles={result} />}
       </form>
+      <div className={styles.noConversation}>
+        <img src={SearchDefaultIcon} alt="" />
+        <h2>Search Users</h2>
+      </div>
     </>
   );
 };

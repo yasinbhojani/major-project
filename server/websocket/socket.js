@@ -22,10 +22,23 @@ const socket = (server) => {
         let regex = /"/g;
         data.message = data.message.replace(regex, `\\"`);
       }
+      let chat_id = v4().substring(0, 5);
       connection.query(
-        `INSERT INTO chats values ("${v4().substring(0, 5)}","${
-          data.sender
-        }","${data.reciver}","${data.message}",now())`
+        `INSERT INTO chats values ("${chat_id}","${data.sender}","${data.reciver}","${data.message}",now())`
+      );
+      connection.query(
+        `SELECT * FROM conversation WHERE user1="${data.sender}" AND user2="${data.reciver}" OR user1="${data.reciver}" AND user2="${data.sender}";`,
+        (err, result) => {
+          if (result.length === 0) {
+            connection.query(
+              `INSERT INTO conversation (user1,user2,last_message,sent_date) values ("${data.sender}","${data.reciver}","${data.message}",now());`
+            );
+          } else {
+            connection.query(
+              ` UPDATE conversation SET last_message="${data.message}"  WHERE user1="${data.sender}" AND user2="${data.reciver}" OR user1="${data.reciver}" AND user2="${data.sender}";`
+            );
+          }
+        }
       );
       socket.broadcast.emit("ReceiveMessage", data);
     });

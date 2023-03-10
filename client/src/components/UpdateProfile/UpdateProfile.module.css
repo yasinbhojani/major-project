@@ -36,3 +36,12 @@
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
 }
+.backButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #d4d4d4;
+}
+.backButton h4 {
+  margin: 0px;
+}

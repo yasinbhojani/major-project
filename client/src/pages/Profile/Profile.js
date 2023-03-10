@@ -24,12 +24,15 @@ const Profile = (props) => {
   });
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/profile/openProfile/${user_id}`, {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      `${process.env.REACT_APP_API_ENDPOINT}/api/profile/openProfile/${user_id}`,
+      {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((data) => {
         return data.json();
       })

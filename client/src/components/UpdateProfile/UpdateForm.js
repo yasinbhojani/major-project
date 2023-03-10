@@ -57,10 +57,15 @@ const UpdateForm = (props) => {
     redirect(`/profile/${props.userDetails.user_id}`);
   };
   // Redirectring to Profile Page
-  const cancelHandler = () => redirect(`/profile/${props.userDetails.user_id}`);
+  const cancelHandler = () => redirect(-1);
   return (
     <>
-      <div className={styles.ProfileUpdateForm}>
+      <form
+        className={styles.ProfileUpdateForm}
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <h3>Basic Information</h3>
         <Input
           id="name"
@@ -107,7 +112,7 @@ const UpdateForm = (props) => {
           />
           <Button text="Cancel" onClick={cancelHandler} />
         </div>
-      </div>
+      </form>
     </>
   );
 };

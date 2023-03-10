@@ -2,8 +2,7 @@ import Button from "../UI/Button/Button";
 import styles from "./SearchResult.module.css";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-import verified from "../../assets/Profile/verified.svg"
-
+import verified from "../../assets/Profile/verified.svg";
 
 const SearchResult = (props) => {
   const profiles = props.profiles;
@@ -34,9 +33,7 @@ const SearchResult = (props) => {
                 <div className={styles.nameAndUserName}>
                   <h3>
                     {user.username}
-                    {user.followers > 10 && (
-                      <img src={verified} alt="" />
-                    )}
+                    {user.followers > 10 && <img src={verified} alt="" />}
                   </h3>
                   <p>@{user.user_id}</p>
                 </div>
@@ -44,7 +41,10 @@ const SearchResult = (props) => {
               {user.user_id === decodedToken.user_id ? (
                 <Button
                   text="Edit Profile"
-                  onClick={() => redirect(`/profile/update/${user.user_id}`)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    redirect(`/profile/update/${user.user_id}`);
+                  }}
                   className={styles.myProfile}
                 />
               ) : (
