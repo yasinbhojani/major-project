@@ -19,7 +19,7 @@ create table posts (
   post_id varchar(40) NOT NULL UNIQUE,
   author_id varchar(20) NOT NULL,
   post_content varchar(200) NOT NULL,
-  media_url varchar(255),
+  media_url varchar(300),
   likes int DEFAULT 0,
   comments int DEFAULT 0,
   created_date datetime NOT NULL,

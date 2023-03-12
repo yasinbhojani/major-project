@@ -10,6 +10,7 @@ const NewPearl = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [pearlDraft, setPearlDraft] = useState("");
+  const [submitIsDisabled, setSubmitIsDisabled] = useState(true);
 
   useEffect(() => {
     let token;
@@ -40,6 +41,14 @@ const NewPearl = (props) => {
   }, []);
 
   const pearlChangeHandler = (e) => {
+    if (e.target.value.trim().length === 0) {
+      setSubmitIsDisabled(true);
+    }
+    if (e.target.value.trim().length > 280) {
+      setSubmitIsDisabled(true);
+    } else {
+      setSubmitIsDisabled(false);
+    }
     setPearlDraft(e.target.value);
   };
 
@@ -58,9 +67,7 @@ const NewPearl = (props) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.ok) {
-          console.log(data);
-        } else {
+        if (!data.ok) {
           throw new Error(data.message);
         }
       })
@@ -69,23 +76,34 @@ const NewPearl = (props) => {
     props.onClose();
   };
 
-  const submitIsDisabled = pearlDraft.length === 0;
-
   let content = (
     <form className={styles.form} onSubmit={postSubmitHandler}>
-      <div className={styles.profile}>
-        <img src={userData.avatar_url} alt="profile avatar" />
-        <div>
-          <p className={styles.username}>{userData.username}</p>
-          <p className={styles.user_id}>@{userData.user_id}</p>
+      <div className={styles.header}>
+        <div className={styles.profile}>
+          <img src={userData.avatar_url} alt="profile avatar" />
+          <div>
+            <p className={styles.username}>{userData.username}</p>
+            <p className={styles.user_id}>@{userData.user_id}</p>
+          </div>
+        </div>
+        <div
+          className={
+            pearlDraft.length > 280
+              ? `${styles.counter} ${styles.red}`
+              : styles.counter
+          }
+        >
+          {pearlDraft.length}/280
         </div>
       </div>
       <textarea
         className={styles.textarea}
         placeholder="Share your thoughts"
         onChange={pearlChangeHandler}
+        value={pearlDraft}
       ></textarea>
       <div className={styles.btncontainer}>
+        <div></div>
         <Button
           text="Post"
           type="submit"

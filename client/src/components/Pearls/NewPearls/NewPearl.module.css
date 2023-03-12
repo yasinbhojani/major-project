@@ -9,6 +9,22 @@
   font-size: 1.2rem;
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .counter {
+  margin: 15px;
+  color: gray;
+}
+
+.header .counter.red {
+  color: red;
+}
+
 .profile {
   padding: 10px;
   display: flex;
@@ -47,9 +63,9 @@
 
 .btncontainer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .btn {
-  margin: 10px;
+  margin: 10px;  
 }
