@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 
 import { Outlet, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar/NavBar";
+import jwt_decode from "jwt-decode";
 
 import { io } from "socket.io-client";
 const socket = io.connect(process.env.REACT_APP_API_ENDPOINT);
@@ -10,12 +11,13 @@ const Root = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
+    let token = localStorage.getItem("accessToken");
 
     if (!token) {
       navigate("/about");
     }
 
+    token = jwt_decode(token);
     socket.emit("online", { userId: token.user_id });
   }, [navigate]);
 
