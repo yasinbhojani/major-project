@@ -50,3 +50,18 @@
 .profileEditButton:hover {
   background-color: #f8f8f8;
 }
+.spinner {
+  width: 56px;
+  height: 56px;
+  margin: 10px auto;
+  border-radius: 50%;
+  border: 9px solid;
+  border-color: #dbdeff;
+  border-right-color: #7076fe;
+  animation: spinner-d3wgkg 0.8s infinite linear;
+}
+@keyframes spinner-d3wgkg {
+  to {
+    transform: rotate(1turn);
+  }
+}

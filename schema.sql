@@ -46,3 +46,13 @@ create table chats (
   FOREIGN KEY(sender_id) REFERENCES users(user_id),
   FOREIGN KEY(reciver_id) REFERENCES users(user_id)
 );
+
+create table conversation (
+  conversation_id int auto_increment not null primary key,
+	user1 varchar(40),
+  user2 varchar(40),
+  last_message varchar(200),
+  sent_date datetime,
+  FOREIGN KEY(user1) REFERENCES users(user_id),
+  FOREIGN KEY(user2) REFERENCES users(user_id)
+);

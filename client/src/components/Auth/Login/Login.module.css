@@ -6,6 +6,7 @@
 /* Image */
 .maindiv .side-image {
   margin: 0;
+  animation: img-load 300ms ease-in;
 }
 
 .image {
@@ -24,6 +25,7 @@
 .maindiv .login .head {
   display: flex;
   align-items: center;
+  animation: data-load 300ms ease-in;
 }
 .head h1 {
   font-size: 50px;
@@ -42,10 +44,12 @@
 .login h2 {
   font-size: 35px;
   margin-top: 30px;
+  animation: data-load 300ms ease-in;
 }
 
 .login p {
   margin-top: 15px;
+  animation: data-load 300ms ease-in;
 }
 
 /* Footer Links */
@@ -80,13 +84,36 @@
   border-radius: 50%;
   padding: 5px;
   transition: 0.2s background-color ease;
+  animation: none !important;
+  animation: img-load 300ms ease-in;
 }
 
 .back:hover {
-  background-color: rgb(211, 211, 211);
+  background-color: #dbdeff;
 }
 
 .back img {
   width: 40px;
   cursor: pointer;
+}
+.LoginForm {
+  animation: data-load 300ms ease-in;
+}
+@keyframes data-load {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+@keyframes img-load {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

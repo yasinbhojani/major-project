@@ -20,7 +20,11 @@ const ProfileHeader = (props) => {
       <div className={styles.profileDetailsNameAndEdit}>
         <div className={styles.avatar_url}>
           <a href={userObject.avatar_url} target="_blank" rel="noreferrer">
-            <img src={userObject.avatar_url} alt="" />
+            {userObject.avatar_url === "" ? (
+              <div className={styles.spinner}></div>
+            ) : (
+              <img src={userObject.avatar_url} alt="" />
+            )}
           </a>
         </div>
         <div className={styles.userNameDetails}>

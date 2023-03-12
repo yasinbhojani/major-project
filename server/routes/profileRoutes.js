@@ -51,13 +51,13 @@ router.put("/update/:user_id", (req, res) => {
   const { name, bio, imgUrl, phoneNo, location } = req.body;
   const { user_id } = req.params;
   // Name Updattion
-  if (name !== undefined) {
+  if (name !== undefined && name.trim() !== "") {
     connection.query(
       `update users set username = "${name}" where user_id = "${user_id}"`
     );
   }
   // Bio Updattion
-  if (bio !== undefined) {
+  if (bio !== undefined && bio.trim() !== "") {
     connection.query(
       `update users set bio = "${bio}" where user_id = "${user_id}"`
     );
@@ -69,13 +69,13 @@ router.put("/update/:user_id", (req, res) => {
     );
   }
   // phone no Updattion
-  if (phoneNo !== undefined) {
+  if (phoneNo !== undefined && phoneNo.trim() !== "") {
     connection.query(
       `update users set mobile = "${phoneNo}" where user_id = "${user_id}"`
     );
   }
   // location updation
-  if (location !== undefined) {
+  if (location !== undefined && location.trim() !== "") {
     connection.query(
       `update users set location = "${location}" where user_id = "${user_id}"`
     );
