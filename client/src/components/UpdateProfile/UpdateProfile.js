@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import verified from "../../assets/Profile/verified.svg";
 import UpdateForm from "../../components/UpdateProfile/UpdateForm";
+import BackButton from "../../components/UI/Button/BackButton";
 const UpdateProfile = (props) => {
   const redirect = useNavigate();
   const { user_id } = useParams();
@@ -48,6 +49,10 @@ const UpdateProfile = (props) => {
   }, [redirect, user_id]);
   return (
     <div className={styles.UpdateProfile}>
+      <div className={styles.backButton}>
+        <BackButton />
+        <h4>Update Profile</h4>
+      </div>
       <div className={styles.profileDetailsNameAndEdit}>
         <div className={styles.avatar_url}>
           <img src={userDetails.avatar_url} alt="" />

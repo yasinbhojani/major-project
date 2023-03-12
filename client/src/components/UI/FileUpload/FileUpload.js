@@ -2,7 +2,7 @@ import styles from "./FileUpload.module.css";
 import { useState } from "react";
 import { storage } from "./firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-// Sample Component     
+// Sample Component
 // <FileUpload setUrl={setimgUrl} folder="profile" type="image" />
 const FileUpload = (props) => {
   const [image, setImage] = useState(null);
@@ -101,6 +101,7 @@ const FileUpload = (props) => {
           className={styles.uploadBtn}
           onClick={uploadButtonClickHandler}
           disabled={activeUpload}
+          type="button"
         >
           {status}
         </button>

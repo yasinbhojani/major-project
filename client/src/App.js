@@ -16,7 +16,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import AuthRoot from "./pages/Auth/AuthRoot";
 import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
-import UpdateProfile from "./pages/UpdateProfile/UpdateProfile";
+import UpdateProfile from "./components/UpdateProfile/UpdateProfile";
 
 import PrivateChats from "./components/Chats/PrivateChats";
 

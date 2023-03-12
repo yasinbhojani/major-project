@@ -4,6 +4,8 @@ import Input from "../../UI/Input/Input";
 import btnstyles from "../../../css/button.module.css";
 import { useNavigate } from "react-router-dom";
 
+import styles from "./Login.module.css";
+
 const LoginForm = (props) => {
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
@@ -21,16 +23,19 @@ const LoginForm = (props) => {
     setIsLoading(true);
 
     try {
-      const data = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: emailInput,
-          password: passwordInput,
-        }),
-      });
+      const data = await fetch(
+        `${process.env.REACT_APP_API_ENDPOINT}/api/auth/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: emailInput,
+            password: passwordInput,
+          }),
+        }
+      );
 
       const response = await data.json();
 
@@ -59,7 +64,7 @@ const LoginForm = (props) => {
 
   return (
     <>
-      <form onSubmit={LoginFormSubmitHandler}>
+      <form onSubmit={LoginFormSubmitHandler} className={styles.LoginForm}>
         <Input
           id="email"
           value={emailInput}

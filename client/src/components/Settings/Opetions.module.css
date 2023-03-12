@@ -1,0 +1,50 @@
+.opetions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px auto;
+  cursor: pointer;
+}
+.opetions img {
+  width: 10px;
+  margin: 0px 20px;
+}
+.opetions .icon {
+  width: 30px;
+  padding: 20px 0px;
+  margin: 0px 20px;
+}
+.opetions .opetionInfo {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+.opetions:hover,
+.backButton img:hover {
+  background-color: #dbdeff;
+}
+.opetions .opetionInfo h1 {
+  font-size: 20px;
+  margin: 0px;
+}
+.opetions .opetionInfo p {
+  margin: 0px;
+  font-size: 13px;
+}
+.backButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #d4d4d4;
+}
+.backButton h5 {
+  margin: 0px;
+}
+.backButton img {
+  width: 40px;
+  height: 40px;
+  margin: 8px;
+  padding: 8px;
+  border-radius: 50%;
+}

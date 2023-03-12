@@ -29,6 +29,7 @@
   justify-content: flex-start;
   align-items: center;
   border-top: 1px solid #d4d4d4;
+  background-color: white;
 }
 .searchUsers:hover {
   background-color: #dbdeff;
@@ -42,9 +43,8 @@
   margin: 10px;
 }
 .searchUsers h6 {
-  font-weight: 600;
-  font-size: 18px;
-  margin: 0px 5px;
+  margin: 0px;
+  font-weight: bold;
 }
 .searchUsers .verified {
   width: 25px;
@@ -60,4 +60,63 @@
   text-align: center;
   border-top: 1px solid #d4d4d4;
   padding: 15px;
+}
+.loading {
+  border-top: 1px solid #d4d4d4;
+}
+.spinner {
+  width: 56px;
+  height: 56px;
+  margin: 10px auto;
+  border-radius: 50%;
+  border: 9px solid;
+  border-color: #dbdeff;
+  border-right-color: #7076fe;
+  animation: spinner-d3wgkg 0.8s infinite linear;
+}
+.noConversation {
+  user-select: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: -1;
+}
+.noConversation img {
+  width: 50%;
+}
+.noConversation h2 {
+  color: #7076fe;
+  margin: auto;
+  margin-top: 20px;
+  padding: 5px 8px;
+  border-radius: 10px;
+  background-color: #dbdeff;
+  width: 50%;
+}
+.nameAndLastMessage {
+  width: 70%;
+}
+.nameAndLastMessage p {
+  margin: 0px;
+}
+.isOnline {
+  margin: 0px;
+  padding: 0px;
+  font-size: 10px;
+}
+.isOnline span {
+  color: white;
+  background-color: #74d17e;
+  font-size: 15px;
+  padding: 3px 8px;
+  border-radius: 50px;
+  margin: 0px 30px;
+}
+
+@keyframes spinner-d3wgkg {
+  to {
+    transform: rotate(1turn);
+  }
 }

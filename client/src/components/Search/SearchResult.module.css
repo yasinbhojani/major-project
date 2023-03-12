@@ -6,6 +6,7 @@
   padding: 30px;
   cursor: pointer;
   border-bottom: 1px solid #d4d4d4;
+  background-color: white;
 }
 .searchResult img {
   width: 90px;
@@ -41,6 +42,7 @@
   font-size: 18px;
 }
 .noUserFound {
+  background-color: white;
   text-align: center;
   padding: 15px;
 }

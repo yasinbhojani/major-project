@@ -2,6 +2,8 @@ import Input from "../../UI/Input/Input";
 import btnstyles from "../../../css/button.module.css";
 import { useEffect, useState } from "react";
 
+import styles from "../Login/Login.module.css";
+
 const NameAndEmailInput = (props) => {
   const [nameIsValid, setNameIsValid] = useState(false);
   const [emailIsValid, setEmailIsValid] = useState(false);
@@ -48,15 +50,18 @@ const NameAndEmailInput = (props) => {
     props.setMessage("");
 
     try {
-      const data = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/auth/checkemail`, {
-        body: JSON.stringify({
-          email: props.emailInput,
-        }),
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const data = await fetch(
+        `${process.env.REACT_APP_API_ENDPOINT}/api/auth/checkemail`,
+        {
+          body: JSON.stringify({
+            email: props.emailInput,
+          }),
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const response = await data.json();
       if (response.ok === false) {
@@ -75,7 +80,7 @@ const NameAndEmailInput = (props) => {
 
   return (
     <>
-      <form onSubmit={nameAndEmailSubmitHandler}>
+      <form onSubmit={nameAndEmailSubmitHandler} className={styles.LoginForm}>
         <Input
           id="name"
           type="name"

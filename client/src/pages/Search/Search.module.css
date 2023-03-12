@@ -28,3 +28,24 @@
   padding: 15px 35px;
   margin: 0px 20px !important;
 }
+.noConversation {
+  user-select: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: -1;
+}
+.noConversation img {
+  width: 50%;
+}
+.noConversation h2 {
+  color: #7076fe;
+  margin: auto;
+  margin-top: 20px;
+  padding: 5px 8px;
+  border-radius: 10px;
+  background-color: #dbdeff;
+  width: 50%;
+}

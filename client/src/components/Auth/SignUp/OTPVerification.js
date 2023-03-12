@@ -27,7 +27,10 @@ const OTPVerification = (props) => {
 
   return (
     <>
-      <form onSubmit={props.onVerificationFormSubmitHandler}>
+      <form
+        onSubmit={props.onVerificationFormSubmitHandler}
+        className={styles.LoginForm}
+      >
         <Input
           id="otp"
           type="password"
