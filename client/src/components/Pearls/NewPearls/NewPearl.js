@@ -60,6 +60,7 @@ const NewPearl = (props) => {
       method: "POST",
       body: JSON.stringify({
         pearlContent: pearlDraft.trim(),
+        mediaURL: mediaURL,
       }),
       headers: {
         "Content-Type": "application/json",

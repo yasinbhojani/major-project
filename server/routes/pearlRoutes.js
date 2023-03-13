@@ -8,9 +8,10 @@ const connection = require("../configs/db.config");
 router.post("/post", [verify], (req, res) => {
   const { user_id } = req.user;
   const content = req.body.pearlContent;
+  const mediaurl = req.body.mediaURL;
 
   connection.query(
-    `INSERT INTO posts (post_id, author_id, post_content, created_date) values ("${uuid()}", "${user_id}", "${content}", now())`,
+    `INSERT INTO posts (post_id, author_id, post_content, media_url, created_date) values ("${uuid()}", "${user_id}", "${content}", "${mediaurl}", now())`,
     (err, data) => {
       if (err) {
         console.log(err);
