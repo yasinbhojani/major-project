@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Modal from "../../UI/Modal/Modal";
 import jwt_decode from "jwt-decode";
 import Button from "../../UI/Button/Button";
-
 import styles from "./NewPearl.module.css";
+import PearlFileUpload from "../../UI/PearlFileUpload/PearlFileUpload";
 
 const NewPearl = (props) => {
   const [userData, setUserData] = useState({});
@@ -11,6 +11,7 @@ const NewPearl = (props) => {
   const [isError, setIsError] = useState(false);
   const [pearlDraft, setPearlDraft] = useState("");
   const [submitIsDisabled, setSubmitIsDisabled] = useState(true);
+  const [mediaURL, setMediaURL] = useState("");
 
   useEffect(() => {
     let token;
@@ -58,7 +59,7 @@ const NewPearl = (props) => {
     fetch(process.env.REACT_APP_API_ENDPOINT + "/api/pearl/post", {
       method: "POST",
       body: JSON.stringify({
-        pearlContent: pearlDraft,
+        pearlContent: pearlDraft.trim(),
       }),
       headers: {
         "Content-Type": "application/json",
@@ -88,12 +89,12 @@ const NewPearl = (props) => {
         </div>
         <div
           className={
-            pearlDraft.length > 280
+            pearlDraft.trim().length > 280
               ? `${styles.counter} ${styles.red}`
               : styles.counter
           }
         >
-          {pearlDraft.length}/280
+          {pearlDraft.trim().length}/280
         </div>
       </div>
       <textarea
@@ -102,8 +103,12 @@ const NewPearl = (props) => {
         onChange={pearlChangeHandler}
         value={pearlDraft}
       ></textarea>
+      {mediaURL && <img className={styles.media} src={mediaURL} alt="media" />}
+      <hr />
       <div className={styles.btncontainer}>
-        <div></div>
+        <div>
+          <PearlFileUpload setMediaURL={setMediaURL} />
+        </div>
         <Button
           text="Post"
           type="submit"
@@ -126,7 +131,11 @@ const NewPearl = (props) => {
     );
   }
 
-  return <Modal onClose={props.onClose}>{content}</Modal>;
+  return (
+    <Modal onClose={props.onClose} title="New Pearl">
+      {content}
+    </Modal>
+  );
 };
 
 export default NewPearl;

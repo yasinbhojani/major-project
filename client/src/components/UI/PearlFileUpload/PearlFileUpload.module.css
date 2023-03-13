@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.label {
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 10px;
+  transition: 0.2s all ease-in-out;
+}
+
+.label:hover {
+  background-color: #7076fe33;
+}
+
+.label img {
+  width: 28px;
+}
+
+.input {
+  opacity: 0;
+  position: absolute;
+  z-index: -100;
+}

@@ -21,9 +21,25 @@
   overflow: auto;
 }
 
+.overlay::-webkit-scrollbar {
+  width: 8px;
+}
+
+.overlay hr {
+  border: 1px solid #d4d4d4;
+  margin: 10px;
+}
+
 .overlay .closediv {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+}
+
+.overlay .closediv h3 {
+  font-size: 1.5rem;
+  margin: 0;
+  margin-left: 10px;
 }
 
 .overlay .closediv img {

@@ -28,6 +28,7 @@ const Modal = (props) => {
                 alt="close button"
               ></img>
             </div>
+            <hr />
             <div className={styles.content}>{props.children}</div>
           </div>
         </div>,

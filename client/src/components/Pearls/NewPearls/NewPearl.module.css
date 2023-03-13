@@ -9,6 +9,19 @@
   font-size: 1.2rem;
 }
 
+.textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.media {
+  width: 100%;
+  max-width: 100%;
+  max-height: 350px;
+  border-radius: 15px;
+  margin: 0 auto;
+  object-fit: cover;
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -17,7 +30,7 @@
 }
 
 .header .counter {
-  margin: 15px;
+  margin: 10px;
   color: gray;
 }
 
@@ -64,6 +77,7 @@
 .btncontainer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .btn {
