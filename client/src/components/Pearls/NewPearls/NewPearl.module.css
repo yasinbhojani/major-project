@@ -3,8 +3,8 @@
   padding: 10px;
   border: none;
   outline: none;
-  min-height: 30vh;
-  max-height: 30vh;
+  min-height: 25vh;
+  max-height: 25vh;
   overflow: scroll;
   font-size: 1.2rem;
 }
