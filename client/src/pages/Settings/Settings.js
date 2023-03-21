@@ -1,19 +1,19 @@
 import styles from "./Settings.module.css";
-import Opetions from "../../components/Settings/Opetions";
+import Options from "../../components/Settings/Options";
 const Settings = (props) => {
   return (
     <div className={styles.Settings}>
-      <div className={styles.backBtn}>
+      <div className={styles.heading}>
         <h3>Settings</h3>
       </div>
-      <div className={styles.settingNav}>
+      {/* <div className={styles.settingNav}>
         <h5>Your Account</h5>
         <p>
           See information about your account, or learn about your account
-          deactivation options
+          deletion options
         </p>
-      </div>
-      <Opetions />
+      </div> */}
+      <Options />
     </div>
   );
 };

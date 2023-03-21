@@ -41,6 +41,9 @@ const PrivateChats = (props) => {
           if (details.ok) {
             setReciversDetails(details.profiles[0]);
           }
+        })
+        .catch((err) => {
+          alert("An error occured, please try again later: " + err.message);
         });
     };
     if (

@@ -35,17 +35,6 @@ const FileUpload = (props) => {
           });
         });
       }
-      if (props.folder === "posts") {
-        const imageRef = ref(storage, `/posts/${image.name}`);
-        uploadBytes(imageRef, image).then(() => {
-          getDownloadURL(imageRef).then((imgUrl) => {
-            setUploadedImage(imgUrl);
-            props.setUrl(imgUrl);
-            setActiveUpload(true);
-            setStatus("Uploaded");
-          });
-        });
-      }
     }
     // This Code is Responsible to upload Video And Plz Ignor Name I can't do anything about it i am lezzy : )
     if (props.type === "video") {

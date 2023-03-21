@@ -41,6 +41,9 @@ const Profile = (props) => {
           redirect("/");
         }
         setUserObject(details);
+      })
+      .catch((err) => {
+        alert("An error occured, please try again later: " + err.message);
       });
   }, [user_id, redirect]);
 

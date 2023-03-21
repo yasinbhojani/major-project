@@ -12,17 +12,25 @@
 }
 .senderChat div {
   float: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
+
 .reciverChat div {
   float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
+
 .senderChat div .mess,
 .reciverChat div .mess {
   margin: 0px;
   padding: 5px 15px;
   border-radius: 20px;
   background-color: #dbdeff;
-  font-size: 18px;
+  font-size: 16px;
   max-width: 300px;
   overflow: hidden;
   word-wrap: break-word;
@@ -61,4 +69,9 @@
 /* Handle on hover */
 .chats::-webkit-scrollbar-thumb:hover {
   background: #7076fe;
+}
+
+.time {
+  font-size: 10px !important;
+  opacity: 0.7;
 }
