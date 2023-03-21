@@ -105,7 +105,7 @@ const About = () => {
           of life.
         </p>
       </div>
-      <h2 className={styles.mainFocusHeding}>Main Focus</h2>
+      <h2 className={styles.mainFocusHeading}>Main Focus</h2>
       <div className={styles.mainFocus}>
         {focus.map((card) => {
           return (
@@ -117,7 +117,7 @@ const About = () => {
         })}
       </div>
       <div id="features" />
-      <h2 className={styles.mainFocusHeding}>Features</h2>
+      <h2 className={styles.mainFocusHeading}>Features</h2>
       <div className={styles.features}>
         {features.map((para) => {
           return (

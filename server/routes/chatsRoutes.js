@@ -7,7 +7,7 @@ router.get("/conversation/:user_id", (req, res) => {
   const { user_id } = req.params;
   let arrayOfConversation = [];
   connection.query(
-    `SELECT * FROM conversation WHERE user1="${user_id}" OR user2="${user_id} ORDER BY sent_date DESC";`,
+    `SELECT * FROM conversation WHERE user1="${user_id}" OR user2="${user_id}";`,
     (err, data) => {
       for (let user in data) {
         if (data[user].user1 === user_id) {

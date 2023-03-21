@@ -47,12 +47,12 @@ create table chats (
   FOREIGN KEY(reciver_id) REFERENCES users(user_id)
 );
 
-create table conversation (
-  conversation_id int auto_increment not null primary key,
-	user1 varchar(40),
-  user2 varchar(40),
-  last_message varchar(200),
+create table notifications (
+	notification_id varchar(10) not null primary key,
+  notification_from varchar(40),
+	notification_for varchar(40),
+  content varchar(255),
   sent_date datetime,
-  FOREIGN KEY(user1) REFERENCES users(user_id),
-  FOREIGN KEY(user2) REFERENCES users(user_id)
+	FOREIGN KEY(notification_from) REFERENCES users(user_id),
+	FOREIGN KEY(notification_for) REFERENCES users(user_id)
 );

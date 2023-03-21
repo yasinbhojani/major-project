@@ -46,6 +46,7 @@ const LoginForm = (props) => {
       localStorage.setItem("username", response.payload.username);
       localStorage.setItem("is_admin", response.payload.is_admin);
       localStorage.setItem("accessToken", response.payload.accessToken);
+      localStorage.setItem("notifications", true);
 
       setMessage("Login Successful, You will be redirected shortly");
       setTimeout(() => {

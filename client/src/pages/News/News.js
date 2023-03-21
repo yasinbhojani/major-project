@@ -25,6 +25,9 @@ const News = (props) => {
         setSearchTerm("");
         setPage(<NewsSearchResult articles={news.articles} />);
         setUrl();
+      })
+      .catch((err) => {
+        alert("An error occured, please try again later: " + err.message);
       });
   };
   const [page, setPage] = useState(

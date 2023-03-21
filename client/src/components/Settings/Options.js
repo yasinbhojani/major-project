@@ -6,16 +6,16 @@ import Delet from "../../assets/Settings/Delet.svg";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./Opetions.module.css";
+import styles from "./Options.module.css";
 import jwt_decode from "jwt-decode";
 
-import ChangePassword from "./ChangePassword";
-import NotificationOnOff from "./NotificationOnOff";
-import DeactivateAcc from "./DeactivateAcc";
+import ChangePassword from "./ChangePassword/ChangePassword";
+import NotificationOnOff from "./Notification/NotificationOnOff";
+import DeleteAcc from "./DeleteAcc/DeleteAcc";
 
 import backButton from "../../assets/Profile/backButton.svg";
 
-const Opetions = (props) => {
+const Options = (props) => {
   const redirect = useNavigate();
   let decodedToken = null;
   if (localStorage.getItem("accessToken")) {
@@ -26,12 +26,12 @@ const Opetions = (props) => {
     setPage(<ChangePassword />);
   };
   const notificationOnOffHandler = () => {
-    setCurrentPage("Turn On / Off Notifications");
+    setCurrentPage("Notifications");
     setPage(<NotificationOnOff />);
   };
   const deactivateAccHandler = () => {
-    setCurrentPage("Deactivate Account");
-    setPage(<DeactivateAcc />);
+    setCurrentPage("Delete Account");
+    setPage(<DeleteAcc />);
   };
   let opetions = (
     <>
@@ -68,8 +68,8 @@ const Opetions = (props) => {
       <div className={styles.opetions} onClick={deactivateAccHandler}>
         <img src={Delet} alt="" className={styles.icon} />
         <div className={styles.opetionInfo}>
-          <h1>Deactivate your account</h1>
-          <p>Find out how you can deactivate your account</p>
+          <h1>Delete your account</h1>
+          <p>Find out how you can delete your account</p>
         </div>
         <img src={Open} alt="" />
       </div>
@@ -93,4 +93,4 @@ const Opetions = (props) => {
     </>
   );
 };
-export default Opetions;
+export default Options;
