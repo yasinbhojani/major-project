@@ -74,7 +74,6 @@ router.post("/register", [verifyOTP, hashPassword], async (req, res) => {
 
   connection.query(query, (err, data) => {
     if (err) {
-      console.log(err);
       return res.json({ ok: false, message: "an error occured in database" });
     }
 

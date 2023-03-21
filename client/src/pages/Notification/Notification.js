@@ -1,18 +1,12 @@
-<<<<<<< HEAD
-// import styles from "./Notification.module.css"
-import { useEffect } from "react";
-
-const Notification = () => {
-  useEffect(() => {
-    document.title = "Notifications / Shell";
-  }, []);
-
-=======
 import styles from "./Notification.module.css";
 import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const Notification = () => {
+  useEffect(() => {
+    document.title = "Notifications / Shell";
+  }, []);
+
   const redirect = useNavigate();
   const [notifications, setNotification] = useState([]);
   let decodedToken = null;
@@ -40,7 +34,6 @@ const Notification = () => {
         alert("An error occured, please try again later: " + err.message);
       });
   }, [decodedToken.user_id]);
->>>>>>> cbd003cfd3b2d7b75b7c469e6ef35dfe5b8fc3c9
   return (
     <div className={styles.notification}>
       <div className={styles.heading}>

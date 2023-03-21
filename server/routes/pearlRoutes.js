@@ -6,7 +6,6 @@ const { v4: uuid } = require("uuid");
 const connection = require("../configs/db.config");
 
 router.get("/post", (req, res) => {
-  console.log(req.headers);
   const { page_no } = req.query;
   // const user = req.user;
   const limit = 20 * (page_no - 1);
@@ -26,7 +25,6 @@ router.get("/post", (req, res) => {
         if (err) {
           return res.json({ ok: false, message: "An Error Occured" });
         } else {
-          console.log(data);
           return res.json({ ok: true, records: totalData, data: data });
         }
       }
@@ -43,7 +41,6 @@ router.post("/post", [verify], (req, res) => {
     `INSERT INTO posts (post_id, author_id, post_content, media_url, created_date) values ("${uuid()}", "${user_id}", "${content}", "${mediaurl}", now())`,
     (err, data) => {
       if (err) {
-        console.log(err);
         return res.json({
           ok: false,
           message: "An error occured while posting",

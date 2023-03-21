@@ -28,9 +28,7 @@ const Home = (props) => {
         setMaxLength(users.totalData);
         setPageNo(pageNo + 1);
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch((err) => {});
     // eslint-disable-next-line
   }, []);
 
@@ -46,7 +44,7 @@ const Home = (props) => {
 
   let content = (
     <div className={styles.notfound}>
-      <img src={notfound} />
+      <img src={notfound} alt="Not found vector" />
       <div>
         <h3>Posts Not Available</h3>
         <p>

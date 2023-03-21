@@ -41,13 +41,10 @@ const Profile = (props) => {
           redirect("/");
         }
         setUserObject(details);
-<<<<<<< HEAD
         document.title = `${details.username} (@${details.user_id}) / Shell`;
-=======
       })
       .catch((err) => {
         alert("An error occured, please try again later: " + err.message);
->>>>>>> cbd003cfd3b2d7b75b7c469e6ef35dfe5b8fc3c9
       });
   }, [user_id, redirect]);
 

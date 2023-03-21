@@ -16,11 +16,9 @@ const sendOTP = async (req, res, next) => {
     otp: OTP,
   })
     .then(() => {
-      console.log("mail sent");
       res.status(200).json({ ok: true, message: `OTP sent to ${email}` });
     })
     .catch((err) => {
-      console.log("error");
       res.status(401).json({ ok: false, message: "Email not sent, please try again" });
     });
 };
