@@ -3,10 +3,15 @@ import Button from "../../components/UI/Button/Button";
 import Trending from "../../components/News/Trending";
 import NewsSearchResult from "../../components/News/NewsSearchResult";
 import backButton from "../../assets/Profile/backButton.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const News = (props) => {
   const [url, setUrl] = useState();
   const [searchTerm, setSearchTerm] = useState();
+
+  useEffect(() => {
+    document.title = "News / Shell";
+  }, []);
+
   const inputChangeHandler = (e) => {
     if (e.target.value.trim() !== "") {
       const current_date = new Date().toISOString().replace(/T.*/, "");
@@ -16,6 +21,7 @@ const News = (props) => {
       );
     }
   };
+
   const featchNews = (trendingUrl) => {
     fetch(url === undefined ? trendingUrl : url)
       .then((data) => {

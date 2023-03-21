@@ -38,6 +38,10 @@ const Search = (props) => {
   };
 
   useEffect(() => {
+    document.title = "Search / Shell"
+  }, [])
+
+  useEffect(() => {
     setTimeoutRef.current = setTimeout(() => {
       searchUser();
     }, 500);

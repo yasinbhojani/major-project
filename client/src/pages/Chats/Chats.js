@@ -54,6 +54,10 @@ const Chats = (props) => {
   };
 
   useEffect(() => {
+    document.title = "Chats / Shell"
+  }, [])
+
+  useEffect(() => {
     fetch(
       `${process.env.REACT_APP_API_ENDPOINT}/api/chats/conversation/${decodedToken.user_id}`,
       {

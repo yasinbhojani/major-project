@@ -1,6 +1,11 @@
+import { useEffect } from "react";
 import styles from "./Settings.module.css";
 import Opetions from "../../components/Settings/Opetions";
 const Settings = (props) => {
+  useEffect(() => {
+    document.title = "Settings / Shell";
+  }, []);
+
   return (
     <div className={styles.Settings}>
       <div className={styles.backBtn}>

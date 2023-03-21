@@ -3,7 +3,7 @@
 }
 /* Scroll-Bar */
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 10px;
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {

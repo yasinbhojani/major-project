@@ -45,11 +45,12 @@
   align-items: center;
 }
 
-.profile img {
+.profile .avatar_url {
   width: 50px;
   height: 50px;
   object-fit: cover;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .profile div {
@@ -63,6 +64,15 @@
 .profile div .username {
   font-weight: 500;
   font-size: 1.3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.profile div .username .verified {
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
 }
 
 .profile div .user_id {
@@ -81,5 +91,5 @@
 }
 
 .btn {
-  margin: 10px;  
+  margin: 10px;
 }

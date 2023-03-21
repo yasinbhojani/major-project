@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
-import Modal from "../../UI/Modal/Modal";
-import jwt_decode from "jwt-decode";
+
 import Button from "../../UI/Button/Button";
-import styles from "./NewPearl.module.css";
+import Modal from "../../UI/Modal/Modal";
 import PearlFileUpload from "../../UI/PearlFileUpload/PearlFileUpload";
 
+import styles from "./NewPearl.module.css";
+import verified from "../../../assets/Profile/verified.svg";
+import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+
 const NewPearl = (props) => {
+  const redirect = useNavigate();
+
   const [userData, setUserData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -78,13 +84,32 @@ const NewPearl = (props) => {
     props.onClose();
   };
 
+  const redirectToProfileHandler = () => {
+    props.onClose();
+    redirect(`/profile/${userData.user_id}`);
+  };
+
   let content = (
     <form className={styles.form} onSubmit={postSubmitHandler}>
       <div className={styles.header}>
         <div className={styles.profile}>
-          <img src={userData.avatar_url} alt="profile avatar" />
+          <img
+            src={userData.avatar_url}
+            alt="profile avatar"
+            className={styles.avatar_url}
+            onClick={redirectToProfileHandler}
+          />
           <div>
-            <p className={styles.username}>{userData.username}</p>
+            <p className={styles.username}>
+              {userData.username}
+              {userData.followers > 20 && (
+                <img
+                  src={verified}
+                  className={styles.verified}
+                  alt="verify check"
+                />
+              )}
+            </p>
             <p className={styles.user_id}>@{userData.user_id}</p>
           </div>
         </div>
@@ -105,7 +130,6 @@ const NewPearl = (props) => {
         value={pearlDraft}
       ></textarea>
       {mediaURL && <img className={styles.media} src={mediaURL} alt="media" />}
-      <hr />
       <div className={styles.btncontainer}>
         <div>
           <PearlFileUpload setMediaURL={setMediaURL} />

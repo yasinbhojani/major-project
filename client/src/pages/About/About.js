@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styles from "./About.module.css";
 import logo from "../../assets/About/logo.png";
 import Button from "../../components/UI/Button/Button";
@@ -43,6 +44,10 @@ const features = [
   },
 ];
 const About = () => {
+  useEffect(() => {
+    document.title = "About / Shell";
+  }, []);
+
   let redirect = useNavigate();
   return (
     <div className={styles.about}>

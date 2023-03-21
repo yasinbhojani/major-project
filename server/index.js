@@ -2,19 +2,16 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
+const port = process.env.PORT || 8080;
 const app = express();
+
 const http = require("http");
 const socket = require("./websocket/socket");
-// const { Server } = require("socket.io");
 const server = http.createServer(app);
 socket(server);
-const port = process.env.PORT || 8080;
-
-const connection = require("./configs/db.config");
-
-const mail = require("./services/mail");
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.get("/", (req, res) => {

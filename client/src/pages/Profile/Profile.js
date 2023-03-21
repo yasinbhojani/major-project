@@ -41,6 +41,7 @@ const Profile = (props) => {
           redirect("/");
         }
         setUserObject(details);
+        document.title = `${details.username} (@${details.user_id}) / Shell`;
       });
   }, [user_id, redirect]);
 

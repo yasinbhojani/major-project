@@ -5,6 +5,35 @@ const { v4: uuid } = require("uuid");
 
 const connection = require("../configs/db.config");
 
+router.get("/post", (req, res) => {
+  console.log(req.headers);
+  const { page_no } = req.query;
+  // const user = req.user;
+  const limit = 20 * (page_no - 1);
+
+  // this query will be subject to modifications in a future update as to getting posts for a particular user.
+  connection.query("SELECT COUNT(*) as total_posts FROM posts", (err, data) => {
+    if (err) {
+      return res.json({ ok: false, message: "An Error Occured" });
+    }
+
+    const totalData = data[0].total_posts;
+
+    connection.query(
+      "select users.username, users.avatar_url, users.followers, posts.post_id, posts.author_id, posts.post_content, posts.media_url, posts.likes, posts.comments, posts.created_date from users inner join posts on users.user_id = posts.author_id order by posts.created_date desc LIMIT ?, 20",
+      [limit],
+      (err, data) => {
+        if (err) {
+          return res.json({ ok: false, message: "An Error Occured" });
+        } else {
+          console.log(data);
+          return res.json({ ok: true, records: totalData, data: data });
+        }
+      }
+    );
+  });
+});
+
 router.post("/post", [verify], (req, res) => {
   const { user_id } = req.user;
   const content = req.body.pearlContent;
