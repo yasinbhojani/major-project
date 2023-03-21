@@ -34,6 +34,9 @@ const Search = (props) => {
         } else {
           setResult(details.profiles);
         }
+      })
+      .catch((err) => {
+        alert("An error occured, please try again later: " + err.message);
       });
   };
 
@@ -78,7 +81,6 @@ const Search = (props) => {
       </form>
       <div className={styles.noConversation}>
         <img src={SearchDefaultIcon} alt="" />
-        <h2>Search Users</h2>
       </div>
     </>
   );

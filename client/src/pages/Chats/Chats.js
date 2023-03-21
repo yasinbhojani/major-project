@@ -17,8 +17,8 @@ const Chats = (props) => {
   const [conversation, setConversation] = useState([]);
   const [searchedUser, setSearchedUser] = useState("");
   const setTimeoutRef = useRef(null);
-
-  const [onlineUsers, setOnlineUsers] = useState([]);
+  const [reload, setReload] = useState(true);
+  // const [onlineUsers, setOnlineUsers] = useState([]);
 
   const searchUsers = () => {
     if (searchedUser.trim() === "") {
@@ -46,6 +46,9 @@ const Chats = (props) => {
         } else {
           setResult(details.profiles);
         }
+      })
+      .catch((err) => {
+        alert("An error occured, please try again later: " + err.message);
       });
   };
 
@@ -87,22 +90,16 @@ const Chats = (props) => {
             })
             .then((userDetails) => {
               arrayOfUsers.push({ ...userDetails, ...details[users] });
+            })
+            .catch((err) => {
+              alert("An error occured, please try again later: " + err.message);
             });
         }
         setConversation(arrayOfUsers);
+      })
+      .catch((err) => {
+        alert("An error occured, please try again later: " + err.message);
       });
-
-    // Checking Is Other Users Online
-    socket.off("onlineUsers").on("onlineUsers", (data) => {
-      for (let propName in data) {
-        if (data.hasOwnProperty(propName)) {
-          setOnlineUsers([...onlineUsers, data[propName]]);
-        } else {
-          let index = onlineUsers.indexOf(data[propName]);
-          setOnlineUsers(onlineUsers.splice(index, index));
-        }
-      }
-    });
 
     setTimeoutRef.current = setTimeout(() => {
       searchUsers();
@@ -115,6 +112,13 @@ const Chats = (props) => {
 
   // // I am Online
   socket.emit("online", { userId: decodedToken.user_id });
+
+  socket.off("ReceiveMessage").on("ReceiveMessage", (data) => {
+    console.log(data);
+    if (data.reciver === decodedToken.user_id) {
+      setReload(!reload);
+    }
+  });
   return (
     <div className={styles.Search}>
       <form onSubmit={(e) => e.preventDefault()}>
@@ -153,14 +157,8 @@ const Chats = (props) => {
                     <img src={verified} alt="" className={styles.verified} />
                   )}
                 </p>
-                <p>{user.message}</p>
+                <p className={styles.mess}>{user.message}</p>
               </div>
-              {/* Checking Is Online or Not */}
-              {onlineUsers.includes(user.user_id) && (
-                <h1 className={styles.isOnline}>
-                  <span>Online</span>
-                </h1>
-              )}
             </div>
           );
         })}
@@ -198,7 +196,6 @@ const Chats = (props) => {
       {result && conversation.length === 0 && (
         <div className={styles.noConversation}>
           <img src={noconversation} alt="" />
-          <h2>New Conversation</h2>
         </div>
       )}
     </div>

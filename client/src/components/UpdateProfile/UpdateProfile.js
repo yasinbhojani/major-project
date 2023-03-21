@@ -41,6 +41,9 @@ const UpdateProfile = (props) => {
           })
           .then((details) => {
             setUserDetails(details);
+          })
+          .catch((err) => {
+            alert("An error occured, please try again later: " + err.message);
           });
       } else {
         redirect("/");

@@ -30,6 +30,9 @@ const RenderChats = (props) => {
           if (details.length !== 0) {
             setChats(details);
           }
+        })
+        .catch((err) => {
+          alert("An error occured, please try again later: " + err.message);
         });
     };
     retriveData();

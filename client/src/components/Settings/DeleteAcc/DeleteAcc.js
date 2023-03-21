@@ -1,4 +1,4 @@
-const DeactivateAcc = (props) => {
+const DeleteAcc = (props) => {
   return (
     <>
       <h1>Account Deactivate</h1>
@@ -6,4 +6,4 @@ const DeactivateAcc = (props) => {
     </>
   );
 };
-export default DeactivateAcc;
+export default DeleteAcc;

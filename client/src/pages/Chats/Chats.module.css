@@ -2,12 +2,14 @@
   width: 600px;
   max-width: 600px;
   border: 1px solid #d4d4d4;
+  min-height: 100vh;
 }
 .Search form {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  border-bottom: 1px solid #d4d4d4;
 }
 .Search input {
   padding: 0 20px;
@@ -28,8 +30,11 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  border-top: 1px solid #d4d4d4;
+  /* border-top: 1px solid #d4d4d4; */
+  border-bottom: 1px solid #d4d4d4;
   background-color: white;
+  cursor: pointer;
+  transition: 0.2s all ease-in-out;
 }
 .searchUsers:hover {
   background-color: #dbdeff;
@@ -86,33 +91,15 @@
 .noConversation img {
   width: 50%;
 }
-.noConversation h2 {
-  color: #7076fe;
-  margin: auto;
-  margin-top: 20px;
-  padding: 5px 8px;
-  border-radius: 10px;
-  background-color: #dbdeff;
-  width: 50%;
-}
 .nameAndLastMessage {
   width: 70%;
+  overflow: hidden;
 }
 .nameAndLastMessage p {
   margin: 0px;
 }
-.isOnline {
-  margin: 0px;
-  padding: 0px;
-  font-size: 10px;
-}
-.isOnline span {
-  color: white;
-  background-color: #74d17e;
-  font-size: 15px;
-  padding: 3px 8px;
-  border-radius: 50px;
-  margin: 0px 30px;
+.nameAndLastMessage .mess {
+  opacity: 0.8;
 }
 
 @keyframes spinner-d3wgkg {

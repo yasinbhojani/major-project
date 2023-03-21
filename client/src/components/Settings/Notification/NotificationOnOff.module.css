@@ -1,0 +1,14 @@
+.Notification .form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+.Notification p {
+  margin: 0px;
+  font-size: 13px;
+}
+.NotificationInfo {
+  width: 85%;
+}

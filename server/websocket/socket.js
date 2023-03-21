@@ -30,8 +30,14 @@ const socket = (server) => {
         `SELECT * FROM conversation WHERE user1="${data.sender}" AND user2="${data.reciver}" OR user1="${data.reciver}" AND user2="${data.sender}";`,
         (err, result) => {
           if (result.length === 0) {
+            let conversation_id = v4().substring(0, 5);
+            let notification_id = v4().substring(0, 5);
             connection.query(
-              `INSERT INTO conversation (user1,user2,last_message,sent_date) values ("${data.sender}","${data.reciver}","${data.message}",now());`
+              `INSERT INTO conversation values ("${conversation_id}","${data.sender}","${data.reciver}","${data.message}",now());`,
+              (error, resultdata) => {
+                connection.query(`
+                  INSERT INTO notifications values ("${notification_id}","${data.sender}","${data.reciver}","@${data.sender} Messaged You For The First Time",now())`);
+              }
             );
           } else {
             connection.query(

@@ -3,15 +3,15 @@
   max-width: 600px;
   border: 1px solid #d4d4d4;
 }
-.Settings .backBtn {
+.Settings .heading {
   padding: 10px;
   border-bottom: 1px solid #d4d4d4;
 }
-.Settings .backBtn h3 {
+.Settings .heading h3 {
   margin: 0px;
 }
-.settingNav {
+/* .settingNav {
   padding: 10px;
   padding-bottom: 0px;
   border-bottom: 1px solid #d4d4d4;
-}
+} */
