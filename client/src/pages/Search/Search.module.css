@@ -31,7 +31,7 @@
 .noConversation {
   user-select: none;
   position: absolute;
-  top: 50%;
+  top: 56%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -39,4 +39,12 @@
 }
 .noConversation img {
   width: 50%;
+}
+.noConversation div {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.noConversation div p {
+  opacity: 0.7;
 }
