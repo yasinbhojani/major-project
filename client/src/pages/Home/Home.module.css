@@ -5,27 +5,3 @@
   border-left: 1px solid #d4d4d4;
   border-right: 1px solid #d4d4d4;
 }
-
-.end_msg {
-  text-align: center;
-  margin: 30px 0;
-}
-
-.notfound {
-  max-width: 500px;
-  margin: 50px auto;
-}
-
-.notfound img {
-  max-width: 100%;
-  margin-top: 100px;
-}
-
-.notfound div {
-  text-align: center;
-  margin: 50px 0;
-}
-
-.notfound div p{
-  opacity: 0.7;
-}

@@ -1,5 +1,6 @@
 .profileDetailsBioAndAddress {
   padding: 0px 25px;
+  border-bottom: 1px solid #d4d4d4;
 }
 .profileDetailsBioAndAddress .bio p {
   font-size: 20px;

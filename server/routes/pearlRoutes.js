@@ -7,6 +7,7 @@ const connection = require("../configs/db.config");
 
 router.get("/post", (req, res) => {
   const { page_no } = req.query;
+  const { user_id } = req.query;
   // const user = req.user;
   const limit = 20 * (page_no - 1);
 
@@ -18,17 +19,19 @@ router.get("/post", (req, res) => {
 
     const totalData = data[0].total_posts;
 
-    connection.query(
-      "select users.username, users.avatar_url, users.followers, posts.post_id, posts.author_id, posts.post_content, posts.media_url, posts.likes, posts.comments, posts.created_date from users inner join posts on users.user_id = posts.author_id order by posts.created_date desc LIMIT ?, 20",
-      [limit],
-      (err, data) => {
-        if (err) {
-          return res.json({ ok: false, message: "An Error Occured" });
-        } else {
-          return res.json({ ok: true, records: totalData, data: data });
-        }
+    let query = `select users.username, users.avatar_url, users.followers, posts.post_id, posts.author_id, posts.post_content, posts.media_url, posts.likes, posts.comments, posts.created_date from users inner join posts on users.user_id = posts.author_id order by posts.created_date desc LIMIT ${limit}, 20`;
+
+    if (user_id) {
+      query = `select users.username, users.avatar_url, users.followers, posts.post_id, posts.author_id, posts.post_content, posts.media_url, posts.likes, posts.comments, posts.created_date from users inner join posts on users.user_id = posts.author_id where users.user_id = "${user_id}" order by posts.created_date desc LIMIT ${limit}, 20`;
+    }
+
+    connection.query(query, (err, data) => {
+      if (err) {
+        return res.json({ ok: false, message: "An Error Occured" });
+      } else {
+        return res.json({ ok: true, records: totalData, data: data });
       }
-    );
+    });
   });
 });
 

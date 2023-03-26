@@ -8,34 +8,32 @@ const ProfileDetails = (props) => {
     year: "numeric",
   });
   return (
-    <>
-      <div className={styles.profileDetailsBioAndAddress}>
-        <div className={styles.bio}>
-          <p>{userObject.bio}</p>
-        </div>
-        <div className={styles.follow}>
-          <span>
-            <p>{userObject.following}</p> Following
-          </span>
-          <span>
-            <p>{userObject.followers}</p> Followers
-          </span>
-          <span>
-            <p>0</p> Pearls
-          </span>
-        </div>
-        <div className={styles.date}>
-          <span>
-            <img src={calendar} alt="" /> Joined {date}
-          </span>
-          {userObject.location !== null && (
-            <span>
-              <img src={location} alt="" /> {userObject.location}
-            </span>
-          )}
-        </div>
+    <div className={styles.profileDetailsBioAndAddress}>
+      <div className={styles.bio}>
+        <p>{userObject.bio}</p>
       </div>
-    </>
+      <div className={styles.follow}>
+        <span>
+          <p>{userObject.following}</p> Following
+        </span>
+        <span>
+          <p>{userObject.followers}</p> Followers
+        </span>
+        <span>
+          <p>0</p> Pearls
+        </span>
+      </div>
+      <div className={styles.date}>
+        <span>
+          <img src={calendar} alt="" /> Joined {date}
+        </span>
+        {userObject.location !== null && (
+          <span>
+            <img src={location} alt="" /> {userObject.location}
+          </span>
+        )}
+      </div>
+    </div>
   );
 };
 export default ProfileDetails;

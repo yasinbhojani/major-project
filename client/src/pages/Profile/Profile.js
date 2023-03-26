@@ -4,6 +4,7 @@ import ProfileHeader from "../../components/Profile/ProfileHeader";
 import ProfileDetails from "../../components/Profile/ProfileDetails";
 import { useParams, useNavigate } from "react-router-dom";
 import BackButton from "../../components/UI/Button/BackButton";
+import PearlsInfiniteContainer from "../../components/Pearls/PearlsInfiniteContainer/PearlsInfiniteContainer";
 
 const Profile = (props) => {
   const { user_id } = useParams();
@@ -53,6 +54,7 @@ const Profile = (props) => {
       <BackButton />
       <ProfileHeader userObject={userObject} user_id={user_id} />
       <ProfileDetails userObject={userObject} />
+      <PearlsInfiniteContainer user_id={user_id} />
     </div>
   );
 };
