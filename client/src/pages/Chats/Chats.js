@@ -1,31 +1,40 @@
-import { useEffect, useRef, useState } from "react";
 import styles from "./Chats.module.css";
-import jwt_decode from "jwt-decode";
-import verified from "../../assets/Profile/verified.svg";
-import { useNavigate } from "react-router-dom";
-import Button from "../../components/UI/Button/Button";
-import noconversation from "../../assets/Chats/conversation.svg";
 import { io } from "socket.io-client";
+
+import jwt_decode from "jwt-decode";
+
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import verified from "../../assets/Profile/verified.svg";
+import noconversation from "../../assets/Chats/conversation.svg";
+
+import Button from "../../components/UI/Button/Button";
+
 const socket = io.connect(process.env.REACT_APP_API_ENDPOINT);
+
 const Chats = (props) => {
+  console.log("Chats");
   const redirect = useNavigate();
+
   let decodedToken = null;
   if (localStorage.getItem("accessToken")) {
     decodedToken = jwt_decode(localStorage.getItem("accessToken"));
   }
+
   const [result, setResult] = useState();
   const [conversation, setConversation] = useState([]);
   const [searchedUser, setSearchedUser] = useState("");
   const setTimeoutRef = useRef(null);
-  const [reload, setReload] = useState(true);
-  // const [onlineUsers, setOnlineUsers] = useState([]);
 
+  // If someone search for users to chat with this functions will retuen search result
   const searchUsers = () => {
+    // Validation to check empty imput
     if (searchedUser.trim() === "") {
       setResult([]);
       return;
     }
-
+    // retriving searched data
     fetch(
       `${
         process.env.REACT_APP_API_ENDPOINT
@@ -57,9 +66,10 @@ const Chats = (props) => {
   };
 
   useEffect(() => {
-    document.title = "Chats / Shell"
-  }, [])
+    document.title = "Chats / Shell";
+  }, []);
 
+  // This UseEffect will retrive old conversetions from database
   useEffect(() => {
     fetch(
       `${process.env.REACT_APP_API_ENDPOINT}/api/chats/conversation/${decodedToken.user_id}`,
@@ -113,12 +123,7 @@ const Chats = (props) => {
   // // I am Online
   socket.emit("online", { userId: decodedToken.user_id });
 
-  socket.off("ReceiveMessage").on("ReceiveMessage", (data) => {
-    console.log(data);
-    if (data.reciver === decodedToken.user_id) {
-      setReload(!reload);
-    }
-  });
+  // HTML here
   return (
     <div className={styles.Search}>
       <form onSubmit={(e) => e.preventDefault()}>
@@ -196,6 +201,14 @@ const Chats = (props) => {
       {result && conversation.length === 0 && (
         <div className={styles.noConversation}>
           <img src={noconversation} alt="" />
+          <div>
+            <h3>Conversation Not Available</h3>
+            <p>
+              There are no conversation available at the moment.
+              <br />
+              Send new messages to friends.
+            </p>
+          </div>
         </div>
       )}
     </div>

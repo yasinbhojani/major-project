@@ -18,7 +18,9 @@ const NotificationOnOff = (props) => {
             <input
               type="checkbox"
               id="checkbox"
-              defaultChecked={localStorage.getItem("notifications") === "false"}
+              defaultChecked={
+                localStorage.getItem("notifications") === "true" ? true : false
+              }
               onChange={() => {
                 localStorage.getItem("notifications") === "false"
                   ? localStorage.setItem("notifications", "true")

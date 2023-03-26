@@ -90,7 +90,7 @@ const SignUp = (props) => {
       localStorage.setItem("username", response.payload.username);
       localStorage.setItem("is_admin", response.payload.is_admin);
       localStorage.setItem("accessToken", response.payload.accessToken);
-      localStorage.setItem("notifications", true);
+      localStorage.setItem("notifications", "true");
 
       setMessage("Registration Successful You will be redirected shortly");
       setTimeout(() => {
