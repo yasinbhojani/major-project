@@ -11,12 +11,22 @@
 .notification .heading h3 {
   margin: 0px;
 }
-.notificationContent,
-.notificationClick {
+.notificationContent {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+}
+.notificationClick {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.notificationClick .time {
+  opacity: 0.8;
+  font-size: 0.9rem;
 }
 .notificationContent {
   cursor: pointer;
@@ -24,14 +34,57 @@
   border-bottom: 1px solid #d4d4d4;
 }
 .notificationContent img {
-  width: 60px;
-  height: 60px;
+  width: 45px;
+  height: 45px;
   object-fit: cover;
   border-radius: 50%;
+  /* margin-bottom: 10px; */
 }
 .notificationContent p {
+  /* margin: 0px; */
   margin: 0px 10px;
 }
 .notificationContent p b {
-  font-size: 18px;
+  opacity: 1;
+}
+.noNotifications {
+  user-select: none;
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: -1;
+}
+.noNotifications img {
+  width: 50%;
+}
+
+.noNotifications div {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.noNotifications div p {
+  opacity: 0.7;
+}
+
+.hidden {
+  max-width: 500px;
+  margin: 50px auto;
+  user-select: none;
+}
+
+.hidden img {
+  max-width: 100%;
+  margin-top: 100px;
+}
+
+.hidden div {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.hidden div p {
+  opacity: 0.7;
 }

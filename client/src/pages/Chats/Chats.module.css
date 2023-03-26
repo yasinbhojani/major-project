@@ -67,7 +67,10 @@
   padding: 15px;
 }
 .loading {
-  border-top: 1px solid #d4d4d4;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .spinner {
   width: 56px;
@@ -90,6 +93,15 @@
 }
 .noConversation img {
   width: 50%;
+}
+
+.noConversation div {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.noConversation div p {
+  opacity: 0.7;
 }
 .nameAndLastMessage {
   width: 70%;

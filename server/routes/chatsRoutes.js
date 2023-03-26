@@ -27,6 +27,23 @@ router.get("/conversation/:user_id", (req, res) => {
   );
 });
 
+router.get("/deleteChats/:sender/:reciver", (req, res) => {
+  const { sender, reciver } = req.params;
+  connection.query(
+    `delete from chats where sender_id="${sender}" and reciver_id="${reciver}" or sender_id="${reciver}" and reciver_id="${sender}";`,
+    (err, data) => {
+      if (data) {
+        connection.query(
+          `UPDATE conversation SET last_message="Start New Conversation :)"  WHERE user1="${sender}" AND user2="${reciver}" OR user1="${reciver}" AND user2="${sender}";`,
+          (e, r) => {
+            res.send(r);
+          }
+        );
+      }
+    }
+  );
+});
+
 router.get("/:sender/:reciver", (req, res) => {
   const { sender, reciver } = req.params;
   connection.query(

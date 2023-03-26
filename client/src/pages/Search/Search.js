@@ -41,8 +41,8 @@ const Search = (props) => {
   };
 
   useEffect(() => {
-    document.title = "Search / Shell"
-  }, [])
+    document.title = "Search / Shell";
+  }, []);
 
   useEffect(() => {
     setTimeoutRef.current = setTimeout(() => {
@@ -81,6 +81,14 @@ const Search = (props) => {
       </form>
       <div className={styles.noConversation}>
         <img src={SearchDefaultIcon} alt="" />
+        <div>
+          <h3>Search For Users</h3>
+          <p>
+            Search for your friends & follow them or chat with them.
+            <br />
+            Also see their activity or posts.
+          </p>
+        </div>
       </div>
     </>
   );

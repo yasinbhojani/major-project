@@ -1,17 +1,25 @@
-import { useEffect, useRef, useState } from "react";
 import styles from "./RenderChats.module.css";
 import { io } from "socket.io-client";
+
 import jwt_decode from "jwt-decode";
+
 import NotificationSound from "../../assets/Chats/Notification.mp3";
+
+import { useEffect, useRef, useState } from "react";
+
 const socket = io.connect(process.env.REACT_APP_API_ENDPOINT);
+
 const RenderChats = (props) => {
+  console.log("Render Chat");
   const [chats, setChats] = useState([]);
   const messageEndRef = useRef(null);
+
   let decodedToken = null;
   if (localStorage.getItem("accessToken")) {
     decodedToken = jwt_decode(localStorage.getItem("accessToken"));
   }
-  // Use Effects Which Retrives Old Chats from DB
+
+  // This UseEffect Will Retrive Old Chats from SQl DataBase
   useEffect(() => {
     const retriveData = () => {
       fetch(
@@ -37,7 +45,10 @@ const RenderChats = (props) => {
     };
     retriveData();
   }, [props.sender, props.reciver]);
+
   // Recivig New Message from Backend
+  // If socket gets ping(ReciveMessage) it checks and validate all the data and then only renders
+  // so that no one can recives others chat through sockets
   socket.off("ReceiveMessage").on("ReceiveMessage", (data) => {
     if (data.sender === decodedToken.user_id) {
       setChats([...chats, data]);
@@ -55,9 +66,13 @@ const RenderChats = (props) => {
       }
     }
   });
+
+  // Once Old chats loaded this useEffect Will Scroll down to the last chats
   useEffect(() => {
     messageEndRef.current?.scrollIntoView();
   });
+
+  // HTML here
   return (
     <div className={styles.chats}>
       {chats.length !== 0 &&
@@ -90,6 +105,29 @@ const RenderChats = (props) => {
                           message.message.indexOf("https://")
                         )}
                       </>
+                      {Link.indexOf("https://www.youtube.com/watch?v=") !==
+                        -1 && (
+                        <a href={Link} target="_blank" rel="noreferrer">
+                          <img
+                            src={`https://img.youtube.com/vi/${Link.split(
+                              "v="
+                            )[1].substring(0, 11)}/maxresdefault.jpg`}
+                            alt=""
+                            className={styles.ytImg}
+                          />
+                        </a>
+                      )}
+                      {Link.indexOf("https://youtu.be/") !== -1 && (
+                        <a href={Link} target="_blank" rel="noreferrer">
+                          <img
+                            src={`https://img.youtube.com/vi/${Link.split(
+                              "be/"
+                            )[1].substring(0, 11)}/maxresdefault.jpg`}
+                            alt=""
+                            className={styles.ytImg}
+                          />
+                        </a>
+                      )}
                       <a href={Link} target="_blank" rel="noreferrer">
                         {Link}
                       </a>
