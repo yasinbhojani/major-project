@@ -1,0 +1,27 @@
+.actioncontainer {
+  display: flex;
+  flex-direction: row;
+  margin: 5px 0;
+  color: #536471;
+}
+
+.actioncontainer .likes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.actioncontainer .likes p {
+  margin: 0;
+}
+
+.actioncontainer .likes img {
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 10px;
+  transition: 0.2s all ease-in-out;
+}
+
+.actioncontainer .likes img:hover {
+  background-color: #f9188033;
+}
