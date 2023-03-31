@@ -22,7 +22,7 @@ const PearlsInfiniteContainer = ({ user_id }) => {
 
     fetch(URL, {
       headers: {
-        authorization: localStorage.getItem("accessToken"),
+        authorization: "Bearer " + localStorage.getItem("accessToken"),
       },
     })
       .then((res) => res.json())
@@ -53,7 +53,7 @@ const PearlsInfiniteContainer = ({ user_id }) => {
       <div>
         <h3>Posts Not Available</h3>
         <p>
-          There are no posts avaiable at the moment.
+          There are no posts available at the moment.
           <br />
           Please try again later.
         </p>

@@ -3,6 +3,8 @@
   flex-direction: row;
   margin: 5px 0;
   color: #536471;
+  position: relative;
+  margin-left: -12px;
 }
 
 .actioncontainer .likes {

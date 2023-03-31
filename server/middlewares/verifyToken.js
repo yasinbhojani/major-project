@@ -8,14 +8,16 @@ const verify = (req, res, next) => {
 
     jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
       if (err) {
-        res.status(403).json({ ok: false, message: "Token is invalid" });
+        return res.status(403).json({ ok: false, message: "Token is invalid" });
       }
 
       req.user = user;
       next();
     });
   } else {
-    res.status(401).json({ ok: false, message: "You are not authenticated" });
+    return res
+      .status(401)
+      .json({ ok: false, message: "You are not authenticated" });
   }
 };
 
