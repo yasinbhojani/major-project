@@ -45,8 +45,6 @@ const Notification = () => {
       });
   }, [decodedToken.user_id]);
 
-  console.log(localStorage.getItem("notifications"));
-
   // HTML Here
   return (
     <div className={styles.notification}>
@@ -70,6 +68,7 @@ const Notification = () => {
               </div>
             )}
             {notifications.map((notification) => {
+              const date = new Date(notification.sent_date);
               return (
                 <div
                   key={notification.notification_id}
@@ -102,7 +101,7 @@ const Notification = () => {
                     </p>
                     <p>
                       <ReactTimeAgo
-                        date={notification.sent_date} //This date is asking for number but sent_date is in string so there is error printing in console
+                        date={date} //This date is asking for number but sent_date is in string so there is error printing in console
                         locale="en-IN"
                         timeStyle="twitter"
                         className={styles.time}
