@@ -2,14 +2,24 @@ const generateRandomOTP = require("../utils/otp.util");
 
 const otpMessage = (name, otp) => {
   const html = `
-    <h2>Hey ${name},</h2>
-    <h2>Welcome to Shell!</h2>
-    <p>Before we get started, Confirm your email with the given OTP,</p>
+    <p>Dear ${name},</p>
+    <br />
 
-    <span style="color: blue; font-size:larger; font-weight: bold;">${otp}</span>
+    <p>Thank you for choosing Shell. As a security measure, we require you to provide a One-Time Password (OTP) to complete your signup. Please use the following OTP within the next 10 minutes to complete your signup process:</p>
+    <br />
+    
+    <span style="color: blue; font-size:larger;">${otp}</span>
+    <br />
+    <br />
+    
+    <p>If you did not request an OTP from Shell, please ignore this email.</p>
+    <br />
+    
+    <p>Sincerely,</p>
+    <p>The Shell Team</p>
   `;
 
-  const subject = "Please verify your Email address";
+  const subject = "Your One-Time Password (OTP) from Shell";
 
   return { html, subject };
 };

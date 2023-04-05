@@ -75,3 +75,9 @@ create table likes (
   FOREIGN KEY(user_id) REFERENCES users(user_id),
   FOREIGN KEY(post_id) REFERENCES posts(post_id)
 );
+
+CREATE TABLE otp (
+	otp VARCHAR(8) PRIMARY KEY, 
+  username VARCHAR(20) NOT NULL,
+  time_stamp DATETIME NOT NULL
+);
