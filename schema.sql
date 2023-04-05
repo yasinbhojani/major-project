@@ -66,3 +66,12 @@ create table notifications (
 	FOREIGN KEY(notification_from) REFERENCES users(user_id),
 	FOREIGN KEY(notification_for) REFERENCES users(user_id)
 );
+
+create table likes (
+	like_id varchar(40) primary key,
+  user_id varchar(20) not null,
+  post_id varchar(40) not null,
+  liked_at datetime not null,
+  FOREIGN KEY(user_id) REFERENCES users(user_id),
+  FOREIGN KEY(post_id) REFERENCES posts(post_id)
+);
