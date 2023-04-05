@@ -1,0 +1,38 @@
+.account {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0px 10px;
+  border-radius: 50px;
+  transition: 0.2s background-color ease;
+  cursor: pointer;
+}
+
+.account:hover {
+  background-color: #7076fe33;
+}
+
+.account img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.account .text p {
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.account .text b {
+  font-size: 1rem;
+}
+
+.account .text b .verified {
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+}

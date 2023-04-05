@@ -11,7 +11,7 @@ const CommentControl = () => {
       <div className={styles.svgcontainer}>
         <img src={commentImg} alt="comment icon" onClick={onCommentHandler} />
       </div>
-      <p>10</p>
+      <p>0</p>
     </div>
   );
 };

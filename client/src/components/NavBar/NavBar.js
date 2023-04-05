@@ -20,6 +20,7 @@ import Dropdown from "../UI/Dropdown/Dropdown";
 import DropdownOption from "../UI/Dropdown/DropdownOption";
 import Button from "../UI/Button/Button";
 import NewPearl from "../Pearls/NewPearls/NewPearl";
+import AccountData from "./AccountData/AccountData";
 
 const NavBar = (props) => {
   const [modalIsVisible, setModalIsVisible] = useState(false);
@@ -46,41 +47,48 @@ const NavBar = (props) => {
   return (
     <>
       <nav className={styles.NavBar}>
-        <a href="/">
-          <button className={styles.NavBarLogo}>
-            <img src={logo} alt="logo" />
-          </button>
-        </a>
-        <NavButtons path="/" iconSource={home} page="Home" />
-        <NavButtons path="/search" iconSource={search} page="Search" />
-        <NavButtons path="/news" iconSource={news} page="News" />
-        <NavButtons path="/chats" iconSource={chats} page="Chats" />
-        <NavButtons
-          path="/notification"
-          iconSource={notification}
-          page="Notifications"
-        />
-        {decodedToken && (
+        <div>
+          <a href="/">
+            <button className={styles.NavBarLogo}>
+              <img src={logo} alt="logo" />
+            </button>
+          </a>
+          <NavButtons path="/" iconSource={home} page="Home" />
+          <NavButtons path="/search" iconSource={search} page="Search" />
+          <NavButtons path="/news" iconSource={news} page="News" />
+          <NavButtons path="/chats" iconSource={chats} page="Chats" />
           <NavButtons
-            path={`/profile/${decodedToken.user_id}`}
-            iconSource={profile}
-            page="Profile"
+            path="/notification"
+            iconSource={notification}
+            page="Notifications"
           />
-        )}
-        <Dropdown text="More" icon={more}>
-          <DropdownOption
-            icon={settings}
-            text="Settings"
-            onClick={() => navigate("/settings")}
-          />
-          <DropdownOption
-            icon={info}
-            text="About"
-            onClick={() => navigate("/about")}
-          />
-          <DropdownOption icon={logout} text="Logout" onClick={logoutHandler} />
-        </Dropdown>
-        <Button text="New Pearl" onClick={newPearlHandler} />
+          {decodedToken && (
+            <NavButtons
+              path={`/profile/${decodedToken.user_id}`}
+              iconSource={profile}
+              page="Profile"
+            />
+          )}
+          <Dropdown text="More" icon={more}>
+            <DropdownOption
+              icon={settings}
+              text="Settings"
+              onClick={() => navigate("/settings")}
+            />
+            <DropdownOption
+              icon={info}
+              text="About"
+              onClick={() => navigate("/about")}
+            />
+            <DropdownOption
+              icon={logout}
+              text="Logout"
+              onClick={logoutHandler}
+            />
+          </Dropdown>
+          <Button text="New Pearl" onClick={newPearlHandler} />
+        </div>
+        <AccountData />
       </nav>
       {modalIsVisible && (
         <NewPearl

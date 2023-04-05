@@ -1,7 +1,7 @@
 .NavBar {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-start;
   padding: 10px 30px;
   height: 100vh;

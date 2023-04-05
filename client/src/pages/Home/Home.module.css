@@ -5,3 +5,26 @@
   border-left: 1px solid #eaeaea;
   border-right: 1px solid #eaeaea;
 }
+
+.placeholder {
+  height: 60px;
+  width: 600px;
+}
+
+.heading {
+  height: 60px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 20px;
+  backdrop-filter: blur(20px);
+  position: fixed;
+  width: 600px;
+  z-index: 100;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.heading h2 {
+  margin: 0;
+  font-size: 1.7rem;
+}
