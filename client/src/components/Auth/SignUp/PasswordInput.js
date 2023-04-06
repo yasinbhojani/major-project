@@ -34,6 +34,17 @@ const PasswordInput = (props) => {
     timeoutId.current = setTimeout(() => {
       setTouched();
       props.setConfPassInput(props.passInput);
+
+      const isValid = regex.test(event.target.value.trim());
+      if (!isValid) {
+        props.setIsError(true);
+        props.setMessage("Invalid Format");
+        return;
+      } else {
+        props.setIsError(false);
+        props.setMessage("");
+      }
+
       if (props.passInput === event.target.value) {
         setPasswordIsMatched(true);
       } else {
