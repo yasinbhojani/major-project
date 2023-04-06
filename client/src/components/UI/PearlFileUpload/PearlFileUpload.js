@@ -18,6 +18,15 @@ const PearlFileUpload = ({ setMediaURL }) => {
       return;
     }
 
+    const file = event.target.files[0];
+    const fileSize = file.size / 1024 / 1024; // Convert to MB
+    if (fileSize > 8) {
+      alert("File size exceeds 8MB limit.");
+      event.target.value = ""; // Clear the file input
+      setUploading(false);
+      return;
+    }
+
     const storageRef = ref(storage, `/images/${event.target.files[0].name}`);
     const uploadTask = uploadBytesResumable(storageRef, event.target.files[0]);
 
