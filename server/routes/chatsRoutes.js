@@ -34,7 +34,7 @@ router.get("/deleteChats/:sender/:reciver", (req, res) => {
     (err, data) => {
       if (data) {
         connection.query(
-          `UPDATE conversation SET last_message="Start New Conversation :)"  WHERE user1="${sender}" AND user2="${reciver}" OR user1="${reciver}" AND user2="${sender}";`,
+          `UPDATE conversation SET last_message="No message available"  WHERE user1="${sender}" AND user2="${reciver}" OR user1="${reciver}" AND user2="${sender}";`,
           (e, r) => {
             res.send(r);
           }

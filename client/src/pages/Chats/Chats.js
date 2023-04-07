@@ -17,6 +17,10 @@ const Chats = (props) => {
   console.log("Chats");
   const redirect = useNavigate();
 
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const [status, setStatus] = useState([]);
+  const [newMessages, setNewMessages] = useState([]);
+
   let decodedToken = null;
   if (localStorage.getItem("accessToken")) {
     decodedToken = jwt_decode(localStorage.getItem("accessToken"));
@@ -123,13 +127,60 @@ const Chats = (props) => {
   // // I am Online
   socket.emit("online", { userId: decodedToken.user_id });
 
+  // Checking Is Other Users Online
+  socket.off("onlineUsers").on("onlineUsers", (data) => {
+    // Here in data there is array of object with soket id and users id which are online
+    // this for loope fillter the data to extract names of online users and then checks if this list contain recivers name or not
+    for (let propName in data) {
+      if (data.hasOwnProperty(propName)) {
+        if (!onlineUsers.includes(data[propName])) {
+          setOnlineUsers([...onlineUsers, data[propName]]);
+        }
+      }
+    }
+  });
+
+  // Checking if User Typing
+  socket.off("Typing").on("Typing", (data) => {
+    if (data.reciver === decodedToken.user_id) {
+      if (!status.includes(data.sender)) {
+        setStatus([...status, data.sender]);
+      }
+    }
+  });
+
+  // Checking if User stoped Typing
+  socket.off("TypingStoped").on("TypingStoped", (data) => {
+    if (data.reciver === decodedToken.user_id) {
+      if (status.includes(data.sender)) {
+        let index = status.indexOf(data.sender);
+        let array = status.splice(index, index);
+        setStatus(array);
+      }
+    }
+  });
+
+  // Onces Recive New Message Firstly Typing Will be removed then a new promt will occer near Active saying new message
+  socket.off("latestMessage").on("latestMessage", (data) => {
+    if (data.reciver === decodedToken.user_id) {
+      if (status.includes(data.sender)) {
+        let index = status.indexOf(data.sender);
+        let array = status.splice(index, index);
+        setStatus(array);
+        if (!newMessages.includes(data.sender)) {
+          setNewMessages([...newMessages, data.sender]);
+        }
+      }
+    }
+  });
+
   // HTML here
   return (
     <div className={styles.Search}>
       <form onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
-          placeholder="Search Users"
+          placeholder="Select an users to start chat"
           onChange={searchUserOnChangeHandler}
           required
         />
@@ -154,7 +205,14 @@ const Chats = (props) => {
                 );
               }}
             >
-              <img src={user.avatar_url} alt="" />
+              <img
+                src={user.avatar_url}
+                alt=""
+                onClick={(e) => {
+                  e.stopPropagation();
+                  redirect(`/profile/${user.user_id}`);
+                }}
+              />
               <div className={styles.nameAndLastMessage}>
                 <p>
                   <b>{user.username}</b>
@@ -162,8 +220,17 @@ const Chats = (props) => {
                     <img src={verified} alt="" className={styles.verified} />
                   )}
                 </p>
-                <p className={styles.mess}>{user.message}</p>
+                {status.includes(user.user_id) ? (
+                  <p className={styles.currentStatus}>Typing...</p>
+                ) : newMessages.includes(user.user_id) ? (
+                  <p className={styles.currentStatus}>New Message</p>
+                ) : (
+                  <p className={styles.mess}>{user.message}</p>
+                )}
               </div>
+              {onlineUsers.includes(user.user_id) && (
+                <div className={styles.isOnline}>Active</div>
+              )}
             </div>
           );
         })}

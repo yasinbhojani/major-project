@@ -4,6 +4,7 @@
   flex-direction: column;
   overflow: scroll;
   overflow-x: hidden;
+  background: #fafafa;
 }
 .senderChat,
 .reciverChat {
@@ -28,7 +29,6 @@
 .reciverChat div .mess {
   margin: 0px;
   padding: 5px 15px;
-  border-radius: 20px;
   background-color: #dbdeff;
   font-size: 16px;
   max-width: 300px;
@@ -46,16 +46,21 @@
   font-size: 13px;
   margin: 0px 5px;
 }
-.reciverChat div .mess {
+.senderChat div .mess {
   background-color: #7076fe;
   color: white;
+  border-radius: 20px 20px 0px 20px;
 }
-.reciverChat div .mess a {
+.senderChat div .mess a {
   color: white;
 }
-.reciverChat div .mess a:hover {
+.senderChat div .mess a:hover {
   color: #d3d6ff;
 }
+.reciverChat div .mess {
+  border-radius: 20px 20px 20px 0px;
+}
+
 /* Scroll-Bar */
 .chats::-webkit-scrollbar {
   width: 5px;
@@ -77,6 +82,21 @@
 }
 
 .ytImg {
+  border-radius: 10px;
   width: 270px;
-  padding-top: 10px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.noChats {
+  width: 60%;
+  margin: auto;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.senderChat div .mess a,
+.reciverChat div .mess a {
+  display: inline-block;
+  padding-bottom: 5px;
 }

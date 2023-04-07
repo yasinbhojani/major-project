@@ -169,6 +169,11 @@ const RenderChats = (props) => {
         })}
       {/* Scroll Div */}
       <div ref={messageEndRef} />
+      {chats.length === 0 && (
+        <p className={styles.noChats}>
+          No message are available. Once you send message they will appear here.
+        </p>
+      )}
     </div>
   );
 };

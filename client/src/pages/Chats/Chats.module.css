@@ -114,6 +114,20 @@
   opacity: 0.8;
 }
 
+.isOnline {
+  color: white;
+  background-color: #74d17e;
+  font-size: 13px;
+  padding: 3px 13px;
+  border-radius: 50px;
+  margin: 0px 50px;
+}
+
+.currentStatus {
+  color: #7076fe;
+  font-weight: bold;
+}
+
 @keyframes spinner-d3wgkg {
   to {
     transform: rotate(1turn);
