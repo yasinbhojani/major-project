@@ -1,0 +1,16 @@
+.textcontent {
+  font-size: 1.1rem;
+}
+
+.media {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  object-fit: cover;
+  border: 1px solid #eaeaea;
+}
+
+.timestamp {
+  opacity: 0.8;
+}

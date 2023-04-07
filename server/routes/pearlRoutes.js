@@ -6,21 +6,47 @@ const { v4: uuid } = require("uuid");
 const connection = require("../configs/db.config");
 
 router.get("/post", [verify], (req, res) => {
+  const { post_id } = req.query;
+  const user = req.user;
+
+  connection.query(
+    "SELECT users.username, users.avatar_url, users.followers, posts.post_id, posts.author_id, posts.post_content, posts.media_url, posts.likes, posts.comments, posts.created_date, CASE WHEN (SELECT COUNT(*) FROM likes WHERE likes.user_id = ? AND likes.post_id = posts.post_id) > 0 THEN true ELSE false END AS 'like_exists' FROM posts INNER JOIN users ON users.user_id = posts.author_id WHERE posts.post_id = ?",
+    [user.user_id, post_id],
+    (err, data) => {
+      if (err) {
+        res.json({ ok: false, message: "An error occured" });
+      }
+
+      if (data.length === 0) {
+        res.json({ ok: false, message: "Pearl doesn't exist" });
+      }
+
+      res.json({ ok: true, post: data[0] });
+    }
+  );
+});
+
+router.get("/posts", [verify], (req, res) => {
   const { page_no } = req.query;
   const { user_id } = req.query;
   const user = req.user;
 
   // const user = req.user;
   const limit = 20 * (page_no - 1);
+  let count_query = "SELECT COUNT(*) as total_posts FROM posts";
 
-  // this query will be subject to modifications in a future update as to getting posts for a particular user.
-  connection.query("SELECT COUNT(*) as total_posts FROM posts", (err, data) => {
+  if (user_id) {
+    count_query = `SELECT COUNT(*) as total_posts FROM posts WHERE author_id = "${user_id}"`;
+  }
+
+  connection.query(count_query, (err, data) => {
     if (err) {
       return res.json({ ok: false, message: "An Error Occured" });
     }
 
     const totalData = data[0].total_posts;
 
+    // this query will be subject to modifications in a future update as to getting posts for a particular user.
     let query = `SELECT users.username, users.avatar_url, users.followers, posts.post_id, posts.author_id, posts.post_content, posts.media_url, posts.likes, posts.comments, posts.created_date, CASE WHEN (SELECT COUNT(*) FROM likes WHERE likes.user_id = '${user.user_id}' AND likes.post_id = posts.post_id) > 0 THEN true ELSE false END AS 'like_exists' FROM posts INNER JOIN users ON users.user_id = posts.author_id ORDER BY posts.created_date DESC LIMIT ${limit}, 20;`;
 
     if (user_id) {

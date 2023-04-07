@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./LikeControl.module.css";
 
-import likeRedImage from "../../../../assets/Pearls/likered.svg";
-import likeImage from "../../../../assets/Pearls/like.svg";
+import likeRedImage from "../../../../../assets/Pearls/likered.svg";
+import likeImage from "../../../../../assets/Pearls/like.svg";
 
 const LikeControl = (props) => {
   const [likeCount, setLikeCount] = useState(0);
@@ -15,7 +15,8 @@ const LikeControl = (props) => {
     setIsLiked(likeExists);
   }, [likes, likeExists]);
 
-  const onLikeHandler = () => {
+  const onLikeHandler = (e) => {
+    e.stopPropagation();
     const flag = isLiked ? "unlike" : "like";
 
     fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/pearl/like`, {
@@ -53,9 +54,9 @@ const LikeControl = (props) => {
   const imageSource = isLiked ? likeRedImage : likeImage;
 
   return (
-    <div className={styles.likes}>
+    <div className={styles.likes} onClick={onLikeHandler}>
       <div className={styles.svgcontainer}>
-        <img src={imageSource} onClick={onLikeHandler} alt="red like icon" />
+        <img src={imageSource} alt="red like icon" />
       </div>
       <p>{likeCount}</p>
     </div>
