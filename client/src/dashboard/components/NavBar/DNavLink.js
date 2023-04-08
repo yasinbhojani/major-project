@@ -1,13 +1,13 @@
 import { NavLink } from "react-router-dom";
-import styles from "./NavBar.module.css";
-const NavButtons = (props) => {
+import styles from "./DNavBar.module.css";
+const DNavLinks = (props) => {
   return (
     <>
       <NavLink to={props.path} className={styles.navBarLink} end>
-        <img src={props.iconSource} alt="homeIcon" />
+        {/* <img src={props.iconSource} alt="homeIcon" /> */}
         <span> {props.page} </span>
       </NavLink>
     </>
   );
 };
-export default NavButtons;
+export default DNavLinks;

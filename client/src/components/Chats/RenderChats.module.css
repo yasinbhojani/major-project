@@ -4,7 +4,7 @@
   flex-direction: column;
   overflow: scroll;
   overflow-x: hidden;
-  background: #fafafa;
+  /* background: #fafafa; */
 }
 .senderChat,
 .reciverChat {
@@ -34,6 +34,7 @@
   max-width: 300px;
   overflow: hidden;
   word-wrap: break-word;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .reciverChat div .time {
   text-align: left;

@@ -24,8 +24,14 @@ import UpdateProfile from "./components/UpdateProfile/UpdateProfile";
 
 import PrivateChats from "./components/Chats/PrivateChats";
 
+import Analytics from "./dashboard/pages/Analytics/Analytics";
+import Storage from "./dashboard/pages/Storage/Storage";
+import Tables from "./dashboard/pages/Tables/Tables";
+import SQLW from "./dashboard/pages/SQLWorkbench/SQLW";
+
 const App = () => {
   const router = createBrowserRouter([
+    // Users Routes
     {
       path: "",
       element: <Root />,
@@ -47,6 +53,8 @@ const App = () => {
         },
       ],
     },
+
+    // Login and SignUp Routes
     {
       path: "/auth",
       element: <AuthRoot />,
@@ -56,7 +64,22 @@ const App = () => {
         { path: "signup", element: <SignUp /> },
       ],
     },
+
+    // Shell main pahe Route
     { path: "/about", element: <About /> },
+
+    // Admin Dashboard Routes
+    {
+      path: "/admin",
+      element: <Root Nav="admin" />,
+      errorElement: <NotFound />,
+      children: [
+        { path: "", element: <Analytics /> },
+        { path: "Storage", element: <Storage /> },
+        { path: "Tables", element: <Tables /> },
+        { path: "SQLW", element: <SQLW /> },
+      ],
+    },
   ]);
 
   return (
