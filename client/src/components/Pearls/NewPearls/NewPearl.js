@@ -78,6 +78,7 @@ const NewPearl = (props) => {
         if (!data.ok) {
           throw new Error(data.message);
         }
+        redirect(0);
       })
       .catch((err) => console.error(err));
 

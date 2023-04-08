@@ -14,10 +14,10 @@ const PearlsInfiniteContainer = ({ user_id }) => {
     if (posts.length >= maxLength) {
       return;
     }
-    let URL = `${process.env.REACT_APP_API_ENDPOINT}/api/pearl/post?page_no=${pageNo}`;
+    let URL = `${process.env.REACT_APP_API_ENDPOINT}/api/pearl/posts?page_no=${pageNo}`;
 
     if (user_id) {
-      URL = `${process.env.REACT_APP_API_ENDPOINT}/api/pearl/post?page_no=${pageNo}&user_id=${user_id}`;
+      URL = `${process.env.REACT_APP_API_ENDPOINT}/api/pearl/posts?page_no=${pageNo}&user_id=${user_id}`;
     }
 
     fetch(URL, {
@@ -28,7 +28,7 @@ const PearlsInfiniteContainer = ({ user_id }) => {
       .then((res) => res.json())
       .then((users) => {
         setPosts(posts.concat(users.data));
-        setMaxLength(users.totalData);
+        setMaxLength(users.records);
         setPageNo(pageNo + 1);
       })
       .catch((err) => {

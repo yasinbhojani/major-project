@@ -13,6 +13,7 @@ import Chats from "./pages/Chats/Chats";
 import Notification from "./pages/Notification/Notification";
 import Profile from "./pages/Profile/Profile";
 import About from "./pages/About/About";
+import ExpandedPearl from "./pages/Pearl/ExpandedPearl";
 import Settings from "./pages/Settings/Settings";
 import Root from "./pages/Root";
 import NotFound from "./pages/NotFound/NotFound";
@@ -45,6 +46,7 @@ const App = () => {
         { path: "/profile/:user_id", element: <Profile /> },
         { path: "/profile/update/:user_id", element: <UpdateProfile /> },
         { path: "/settings", element: <Settings /> },
+        { path: "/pearl/:post_id", element: <ExpandedPearl /> },
 
         // Some Extra Chats Routes
         {

@@ -21,6 +21,10 @@
   object-fit: cover;
 }
 
+.account .text {
+  margin-right: 10px;
+}
+
 .account .text p {
   font-size: 0.9rem;
   margin: 0;

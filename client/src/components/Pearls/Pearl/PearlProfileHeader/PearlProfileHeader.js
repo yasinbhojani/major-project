@@ -1,15 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ReactTimeAgo from "react-time-ago";
-
 import styles from "./PearlProfileHeader.module.css";
-import verified from "../../../assets/Profile/verified.svg";
+import verified from "../../../../assets/Profile/verified.svg";
 
 const PearlProfileHeader = (props) => {
   const navigate = useNavigate();
   const date = new Date(props.created_date);
-  const redirectToProfile = () => {
-    console.log("navigate")
+
+  const redirectToProfile = (event) => {
+    event.stopPropagation();
+    console.log("navigate");
     navigate(`/profile/${props.author_id}`);
   };
 
