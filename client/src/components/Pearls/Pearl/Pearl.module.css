@@ -2,6 +2,12 @@
   border-bottom: 1px solid #eaeaea;
   padding: 20px 15px 5px;
   display: flex;
+  cursor: pointer;
+  transition: 0.1s background-color ease;
+}
+
+.container:hover {
+  background-color: #fafafa;
 }
 
 .avatarcontainer {

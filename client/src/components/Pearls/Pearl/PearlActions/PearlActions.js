@@ -4,12 +4,14 @@ import LikeControl from "./Like/LikeControl";
 import CommentControl from "./Comment/CommentControl";
 
 import styles from "./PearlActions.module.css";
+import BookmarkControl from "./Bookmark/BookmarkControl";
 
 const PearlActions = (props) => {
   return (
     <div className={styles.actioncontainer}>
       <LikeControl {...props} />
       <CommentControl {...props} />
+      <BookmarkControl {...props} />
     </div>
   );
 };
