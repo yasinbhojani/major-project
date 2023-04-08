@@ -3,9 +3,10 @@ import styles from "./DNavBar.module.css";
 import logo from "../../../assets/shell-logo.png";
 import DNavLinks from "./DNavLink";
 
-import Chart from "../../components/NavBar/icons/Chart.svg";
-import Database from "../../components/NavBar/icons/Database.svg";
-import Table from "../../components/NavBar/icons/Table.svg";
+import Database from "./icons/Database.svg";
+import File from "./icons/Storage.svg";
+import SQL from "./icons/SQL.svg";
+import Bars from "./icons/Analytics.svg";
 
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
@@ -37,14 +38,14 @@ const DNavBar = (props) => {
             <h3>Dashboard</h3>
           </button>
         </a>
-        <DNavLinks path="/admin" iconSource={Chart} page="Analytics" />
+        <DNavLinks path="/admin" iconSource={Bars} page="Analytics" />
         <DNavLinks
           path="/admin/Storage"
-          iconSource={Database}
+          iconSource={File}
           page="Storage Bucket"
         />
-        <DNavLinks path="/admin/Tables" iconSource={Table} page="Database" />
-        <DNavLinks path="/admin/SQLW" page="SQL Workbench" />
+        <DNavLinks path="/admin/Tables" iconSource={Database} page="Database" />
+        <DNavLinks path="/admin/SQLW" iconSource={SQL} page="SQL Workbench" />
       </div>
     </nav>
   );

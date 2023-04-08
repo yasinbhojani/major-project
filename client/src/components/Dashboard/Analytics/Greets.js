@@ -1,6 +1,6 @@
 import styles from "./Greets.module.css";
 import Button from "../../../components/UI/Button/Button";
-import pie from "../../assets/Analytics/pie.svg";
+import pie from "../../../assets/Analytics/pie.svg";
 const Greets = (props) => {
   return (
     <div className={styles.greets}>

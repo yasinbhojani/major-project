@@ -2,13 +2,12 @@ import React, { useEffect } from "react";
 
 import { Outlet, useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar/NavBar";
-import DNavBar from "../dashboard/components/NavBar/DNavBar";
 import jwt_decode from "jwt-decode";
 
 import { io } from "socket.io-client";
 const socket = io.connect(process.env.REACT_APP_API_ENDPOINT);
 
-const Root = (props) => {
+const Root = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,7 +29,7 @@ const Root = (props) => {
         justifyContent: "center",
       }}
     >
-      {props.Nav === "admin" ? <DNavBar /> : <NavBar />}
+      <NavBar />
       <Outlet />
     </section>
   );

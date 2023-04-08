@@ -25,10 +25,12 @@ import UpdateProfile from "./components/UpdateProfile/UpdateProfile";
 
 import PrivateChats from "./components/Chats/PrivateChats";
 
-import Analytics from "./dashboard/pages/Analytics/Analytics";
-import Storage from "./dashboard/pages/Storage/Storage";
-import Tables from "./dashboard/pages/Tables/Tables";
-import SQLW from "./dashboard/pages/SQLWorkbench/SQLW";
+import DashboardRoot from "./pages/DashboardRoot";
+
+import Analytics from "./pages/Dashboard/Analytics/Analytics";
+import Storage from "./pages/Dashboard/Storage/Storage";
+import Tables from "./pages/Dashboard/Tables/Tables";
+import SQLW from "./pages/Dashboard/SQLWorkbench/SQLW";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -73,7 +75,7 @@ const App = () => {
     // Admin Dashboard Routes
     {
       path: "/admin",
-      element: <Root Nav="admin" />,
+      element: <DashboardRoot />,
       errorElement: <NotFound />,
       children: [
         { path: "", element: <Analytics /> },

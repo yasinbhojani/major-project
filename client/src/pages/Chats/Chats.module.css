@@ -112,6 +112,8 @@
 }
 .nameAndLastMessage .mess {
   opacity: 0.8;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .isOnline {
