@@ -2,9 +2,10 @@
 const express = require("express");
 const router = express.Router();
 const connection = require("../configs/db.config");
+const verify = require("../middlewares/verifyToken");
 
 // Logic To retrive Users Data From Databses
-router.get("/openProfile/:userId", (req, res) => {
+router.get("/openProfile/:userId", [verify], (req, res) => {
   const { userId } = req.params;
   if (userId !== undefined) {
     connection.query(
@@ -47,7 +48,7 @@ router.get("/searchProfile/:query", (req, res) => {
 });
 
 // Updating User Profile
-router.put("/update/:user_id", (req, res) => {
+router.put("/update/:user_id", [verify], (req, res) => {
   const { name, bio, imgUrl, phoneNo, location } = req.body;
   const { user_id } = req.params;
   // Name Updattion

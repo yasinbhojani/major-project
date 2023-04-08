@@ -43,6 +43,7 @@ const PrivateChats = (props) => {
           method: "get",
           headers: {
             "Content-Type": "application/json",
+            authorization: "Bearer " + localStorage.getItem("accessToken"),
           },
         }
       )
@@ -179,6 +180,7 @@ const PrivateChats = (props) => {
         method: "get",
         headers: {
           "Content-Type": "application/json",
+          authorization: "Bearer " + localStorage.getItem("accessToken"),
         },
       }
     )
