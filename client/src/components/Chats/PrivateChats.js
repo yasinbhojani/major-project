@@ -43,6 +43,7 @@ const PrivateChats = (props) => {
           method: "get",
           headers: {
             "Content-Type": "application/json",
+            authorization: "Bearer " + localStorage.getItem("accessToken"),
           },
         }
       )
@@ -179,6 +180,7 @@ const PrivateChats = (props) => {
         method: "get",
         headers: {
           "Content-Type": "application/json",
+          authorization: "Bearer " + localStorage.getItem("accessToken"),
         },
       }
     )
@@ -218,7 +220,7 @@ const PrivateChats = (props) => {
           <div className={styles.more}>
             {isOnline && (
               <h1 className={styles.isOnline}>
-                <span>Online</span>
+                <span>Active</span>
               </h1>
             )}
             <div
@@ -242,7 +244,7 @@ const PrivateChats = (props) => {
       <form onSubmit={newMessageSend}>
         <input
           type="text"
-          placeholder="New Message"
+          placeholder="Type a message Here... "
           onChange={newMessageChangeHandler}
           value={newMessage}
           maxLength="200"

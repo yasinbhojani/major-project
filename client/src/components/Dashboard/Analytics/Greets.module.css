@@ -1,0 +1,23 @@
+.greets {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border: none;
+  border-radius: 20px;
+  background-color: #dbdeff;
+  padding: 30px 20px;
+  width: 80%;
+  margin: 30px auto;
+}
+.greets div {
+  width: 45%;
+  border-right: 1px solid #7076fe;
+}
+.greets div p {
+  width: 70%;
+  margin: 20px 0px;
+}
+.greets img {
+  width: 35%;
+}

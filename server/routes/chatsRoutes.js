@@ -2,8 +2,9 @@
 const express = require("express");
 const router = express.Router();
 const connection = require("../configs/db.config");
+const verify = require("../middlewares/verifyToken");
 
-router.get("/conversation/:user_id", (req, res) => {
+router.get("/conversation/:user_id", [verify], (req, res) => {
   const { user_id } = req.params;
   let arrayOfConversation = [];
   connection.query(
@@ -27,14 +28,14 @@ router.get("/conversation/:user_id", (req, res) => {
   );
 });
 
-router.get("/deleteChats/:sender/:reciver", (req, res) => {
+router.get("/deleteChats/:sender/:reciver", [verify], (req, res) => {
   const { sender, reciver } = req.params;
   connection.query(
     `delete from chats where sender_id="${sender}" and reciver_id="${reciver}" or sender_id="${reciver}" and reciver_id="${sender}";`,
     (err, data) => {
       if (data) {
         connection.query(
-          `UPDATE conversation SET last_message="Start New Conversation :)"  WHERE user1="${sender}" AND user2="${reciver}" OR user1="${reciver}" AND user2="${sender}";`,
+          `UPDATE conversation SET last_message="No message available"  WHERE user1="${sender}" AND user2="${reciver}" OR user1="${reciver}" AND user2="${sender}";`,
           (e, r) => {
             res.send(r);
           }
@@ -44,7 +45,7 @@ router.get("/deleteChats/:sender/:reciver", (req, res) => {
   );
 });
 
-router.get("/:sender/:reciver", (req, res) => {
+router.get("/:sender/:reciver", [verify], (req, res) => {
   const { sender, reciver } = req.params;
   connection.query(
     `SELECT * FROM chats WHERE sender_id="${sender}" AND reciver_id="${reciver}" OR sender_id="${reciver}" AND reciver_id="${sender}" order by sent_date`,

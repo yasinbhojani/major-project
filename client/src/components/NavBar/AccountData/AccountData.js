@@ -26,7 +26,14 @@ const AccountData = () => {
       fetch(
         process.env.REACT_APP_API_ENDPOINT +
           "/api/profile/openProfile/" +
-          token.user_id
+          token.user_id,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer " + localStorage.getItem("accessToken"),
+          },
+        }
       )
         .then((res) => res.json())
         .then((data) => {

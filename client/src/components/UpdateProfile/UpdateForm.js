@@ -44,6 +44,7 @@ const UpdateForm = (props) => {
         method: "put",
         headers: {
           "Content-Type": "application/json",
+          authorization: "Bearer " + localStorage.getItem("accessToken"),
         },
         body: JSON.stringify({
           name: name,

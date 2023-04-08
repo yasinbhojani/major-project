@@ -47,6 +47,7 @@ const socket = (server) => {
         }
       );
       socket.broadcast.emit("ReceiveMessage", data);
+      socket.broadcast.emit("latestMessage", data);
     });
     socket.on("Typing", (data) => {
       socket.broadcast.emit("Typing", data);

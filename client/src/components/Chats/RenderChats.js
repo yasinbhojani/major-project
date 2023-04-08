@@ -28,6 +28,7 @@ const RenderChats = (props) => {
           method: "get",
           headers: {
             "Content-Type": "application/json",
+            authorization: "Bearer " + localStorage.getItem("accessToken"),
           },
         }
       )
@@ -72,6 +73,60 @@ const RenderChats = (props) => {
     messageEndRef.current?.scrollIntoView();
   });
 
+  // Refactor The Date
+  const refactorDate = (currentData) => {
+    let date =
+      new Date(currentData).toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }) !== "Invalid Date"
+        ? new Date(currentData).toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        : new Date().toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+    return date.trim().toString();
+  };
+
+  // Refactor Youtube Link
+  const refactorYTLink = (Link) => {
+    if (Link.includes("https://www.")) {
+      return (
+        Link.indexOf("https://www.youtube.com/watch?v=") !== -1 && (
+          <a href={Link} target="_blank" rel="noreferrer">
+            <img
+              src={`https://img.youtube.com/vi/${Link.split("v=")[1].substring(
+                0,
+                11
+              )}/maxresdefault.jpg`}
+              alt=""
+              className={styles.ytImg}
+            />
+          </a>
+        )
+      );
+    }
+    if (Link.includes("https://youtu.be/")) {
+      return (
+        Link.indexOf("https://youtu.be/") !== -1 && (
+          <a href={Link} target="_blank" rel="noreferrer">
+            <img
+              src={`https://img.youtube.com/vi/${Link.split("be/")[1].substring(
+                0,
+                11
+              )}/maxresdefault.jpg`}
+              alt=""
+              className={styles.ytImg}
+            />
+          </a>
+        )
+      );
+    }
+  };
+
   // HTML here
   return (
     <div className={styles.chats}>
@@ -105,29 +160,8 @@ const RenderChats = (props) => {
                           message.message.indexOf("https://")
                         )}
                       </>
-                      {Link.indexOf("https://www.youtube.com/watch?v=") !==
-                        -1 && (
-                        <a href={Link} target="_blank" rel="noreferrer">
-                          <img
-                            src={`https://img.youtube.com/vi/${Link.split(
-                              "v="
-                            )[1].substring(0, 11)}/maxresdefault.jpg`}
-                            alt=""
-                            className={styles.ytImg}
-                          />
-                        </a>
-                      )}
-                      {Link.indexOf("https://youtu.be/") !== -1 && (
-                        <a href={Link} target="_blank" rel="noreferrer">
-                          <img
-                            src={`https://img.youtube.com/vi/${Link.split(
-                              "be/"
-                            )[1].substring(0, 11)}/maxresdefault.jpg`}
-                            alt=""
-                            className={styles.ytImg}
-                          />
-                        </a>
-                      )}
+                      {/* Checking For Youtube Links */}
+                      {refactorYTLink(Link)}
                       <a href={Link} target="_blank" rel="noreferrer">
                         {Link}
                       </a>
@@ -149,26 +183,18 @@ const RenderChats = (props) => {
                   )}
                 </>
                 {/* This Div Is For Data Output */}
-                <p className={styles.time}>
-                  {new Date(message.sent_date).toLocaleTimeString("en-US", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  }) !== "Invalid Date"
-                    ? new Date(message.sent_date).toLocaleTimeString("en-US", {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })
-                    : new Date().toLocaleTimeString("en-US", {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                </p>
+                <p className={styles.time}>{refactorDate(message.sent_date)}</p>
               </div>
             </div>
           );
         })}
       {/* Scroll Div */}
       <div ref={messageEndRef} />
+      {chats.length === 0 && (
+        <p className={styles.noChats}>
+          No message are available. Once you send message they will appear here.
+        </p>
+      )}
     </div>
   );
 };
