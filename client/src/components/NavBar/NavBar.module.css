@@ -37,6 +37,7 @@
   color: black;
   text-decoration: none;
   margin-top: 10px;
+  transition: 0.2s background-color ease-out;
 }
 .NavBar .navBarLink:hover {
   background-color: #dbdeff;

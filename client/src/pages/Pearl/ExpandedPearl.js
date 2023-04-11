@@ -26,7 +26,7 @@ const ExpandedPearl = () => {
         if (!data.ok) {
           throw new Error(data.message);
         }
-        console.log(data);
+        console.log(data.post);
         setPearlData(data.post);
       })
       .catch((err) => console.error(err));

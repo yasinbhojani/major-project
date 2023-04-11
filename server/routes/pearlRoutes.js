@@ -10,8 +10,8 @@ router.get("/post", [verify], (req, res) => {
   const user = req.user;
 
   connection.query(
-    "SELECT users.username, users.avatar_url, users.followers, posts.post_id, posts.author_id, posts.post_content, posts.media_url, posts.likes, posts.comments, posts.created_date, CASE WHEN (SELECT COUNT(*) FROM likes WHERE likes.user_id = ? AND likes.post_id = posts.post_id) > 0 THEN true ELSE false END AS 'like_exists' FROM posts INNER JOIN users ON users.user_id = posts.author_id WHERE posts.post_id = ?",
-    [user.user_id, post_id],
+    "SELECT users.username, users.avatar_url, users.followers, posts.post_id, posts.author_id, posts.post_content, posts.media_url, posts.likes, posts.comments, posts.created_date, posts.bookmarks, CASE WHEN (SELECT COUNT(*) FROM likes WHERE likes.user_id = ? AND likes.post_id = posts.post_id) > 0 THEN true ELSE false END AS 'like_exists', CASE WHEN (SELECT COUNT(*) FROM bookmarks WHERE bookmarks.user_id = ? AND bookmarks.post_id = posts.post_id) > 0 THEN true ELSE false END AS 'bookmark_exists' FROM posts INNER JOIN users ON users.user_id = posts.author_id WHERE posts.post_id = ?",
+    [user.user_id, user.user_id, post_id],
     (err, data) => {
       if (err) {
         res.json({ ok: false, message: "An error occured" });
@@ -47,10 +47,10 @@ router.get("/posts", [verify], (req, res) => {
     const totalData = data[0].total_posts;
 
     // this query will be subject to modifications in a future update as to getting posts for a particular user.
-    let query = `SELECT users.username, users.avatar_url, users.followers, posts.post_id, posts.author_id, posts.post_content, posts.media_url, posts.likes, posts.comments, posts.created_date, CASE WHEN (SELECT COUNT(*) FROM likes WHERE likes.user_id = '${user.user_id}' AND likes.post_id = posts.post_id) > 0 THEN true ELSE false END AS 'like_exists' FROM posts INNER JOIN users ON users.user_id = posts.author_id ORDER BY posts.created_date DESC LIMIT ${limit}, 20;`;
+    let query = `SELECT users.username, users.avatar_url, users.followers, posts.post_id, posts.author_id, posts.post_content, posts.media_url, posts.likes, posts.comments, posts.created_date, posts.bookmarks, CASE WHEN (SELECT COUNT(*) FROM likes WHERE likes.user_id = '${user.user_id}' AND likes.post_id = posts.post_id) > 0 THEN true ELSE false END AS 'like_exists', CASE WHEN (SELECT COUNT(*) FROM bookmarks WHERE bookmarks.user_id = '${user.user_id}' AND bookmarks.post_id = posts.post_id) > 0 THEN true ELSE false END AS 'bookmark_exists' FROM posts INNER JOIN users ON users.user_id = posts.author_id ORDER BY posts.created_date DESC LIMIT ${limit}, 20;`;
 
     if (user_id) {
-      query = `SELECT users.username, users.avatar_url, users.followers, posts.post_id, posts.author_id, posts.post_content, posts.media_url, posts.likes, posts.comments, posts.created_date, CASE WHEN (SELECT COUNT(*) FROM likes WHERE likes.user_id = '${user_id}' AND likes.post_id = posts.post_id) > 0 THEN true ELSE false END AS 'like_exists' FROM posts INNER JOIN users ON users.user_id = posts.author_id WHERE users.user_id = "${user_id}" ORDER BY posts.created_date DESC LIMIT ${limit}, 20;`;
+      query = `SELECT users.username, users.avatar_url, users.followers, posts.post_id, posts.author_id, posts.post_content, posts.media_url, posts.likes, posts.comments, posts.created_date, posts.bookmarks, CASE WHEN (SELECT COUNT(*) FROM likes WHERE likes.user_id = '${user_id}' AND likes.post_id = posts.post_id) > 0 THEN true ELSE false END AS 'like_exists', CASE WHEN (SELECT COUNT(*) FROM bookmarks WHERE bookmarks.user_id = '${user.user_id}' AND bookmarks.post_id = posts.post_id) > 0 THEN true ELSE false END AS 'bookmark_exists' FROM posts INNER JOIN users ON users.user_id = posts.author_id WHERE users.user_id = "${user_id}" ORDER BY posts.created_date DESC LIMIT ${limit}, 20;`;
     }
 
     connection.query(query, (err, data) => {
@@ -103,6 +103,41 @@ router.post("/like", [verify], (req, res) => {
   }
 
   connection.query(likes_table_query, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.json({ ok: false, message: "An error occured" });
+    }
+
+    connection.query(posts_table_query, (err, data) => {
+      if (err) {
+        console.log(err);
+        return res.json({ ok: false, message: "An error occured" });
+      }
+      res.json({ ok: true, message: "operation successful" });
+    });
+  });
+});
+
+router.post("/bookmark", [verify], (req, res) => {
+  // operation_flag consists of 'bookmark' or 'unbookmark'
+  const operation_flag = req.body.flag;
+  const post_id = req.body.post_id;
+  const { user_id } = req.user;
+
+  let bookmarks_table_query;
+  let posts_table_query;
+
+  if (operation_flag === "bookmark") {
+    bookmarks_table_query = `INSERT INTO bookmarks values ("${user_id}", "${post_id}", now())`;
+    posts_table_query = `UPDATE posts SET bookmarks = bookmarks + 1 WHERE post_id = "${post_id}"`;
+  }
+
+  if (operation_flag === "unbookmark") {
+    bookmarks_table_query = `DELETE FROM bookmarks WHERE user_id = "${user_id}" AND post_id = "${post_id}"`;
+    posts_table_query = `UPDATE posts SET bookmarks = bookmarks - 1 WHERE post_id = "${post_id}"`;
+  }
+
+  connection.query(bookmarks_table_query, (err, data) => {
     if (err) {
       console.log(err);
       return res.json({ ok: false, message: "An error occured" });

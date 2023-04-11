@@ -23,6 +23,7 @@ create table posts (
   likes int DEFAULT 0,
   comments int DEFAULT 0,
   created_date datetime NOT NULL,
+  bookmarks INT DEFAULT 0,
   PRIMARY KEY(post_id),
   FOREIGN KEY(author_id) REFERENCES users(user_id)
 );
@@ -89,4 +90,13 @@ CREATE TABLE user_followers (
   PRIMARY KEY (follower_id, following_id),
   FOREIGN KEY (follower_id) REFERENCES users (user_id),
   FOREIGN KEY (following_id) REFERENCES users (user_id)
+);
+
+CREATE TABLE bookmarks (
+  user_id varchar(20) NOT NULL,
+  post_id varchar(40) NOT NULL,
+  bookmarked_date datetime NOT NULL,
+  PRIMARY KEY(user_id, post_id),
+  FOREIGN KEY(user_id) REFERENCES users(user_id),
+  FOREIGN KEY(post_id) REFERENCES posts(post_id)
 );
