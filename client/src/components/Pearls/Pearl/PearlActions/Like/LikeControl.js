@@ -43,9 +43,11 @@ const LikeControl = (props) => {
       });
 
     if (flag === "like") {
+      props.setLikes && props.setLikes((likes) => likes + 1);
       setIsLiked(true);
       setLikeCount(likeCount + 1);
     } else {
+      props.setLikes && props.setLikes((likes) => likes - 1);
       setIsLiked(false);
       setLikeCount(likeCount - 1);
     }
@@ -58,7 +60,7 @@ const LikeControl = (props) => {
       <div className={styles.svgcontainer}>
         <img src={imageSource} alt="red like icon" />
       </div>
-      <p>{likeCount}</p>
+      {props.displayCount && <p>{likeCount}</p>}
     </div>
   );
 };

@@ -25,7 +25,9 @@ const ExpandedPearlBody = (props) => {
     <div>
       <p className={styles.textcontent}>{props.post_content}</p>
       {props.media_url && (
-        <img src={props.media_url} alt="media" className={styles.media} />
+        <a target="_blank" href={props.media_url} rel="noreferrer">
+          <img src={props.media_url} alt="media" className={styles.media} />
+        </a>
       )}
       <p className={styles.timestamp}>
         {formattedTime.toUpperCase()} • {newDate}

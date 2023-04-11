@@ -3,7 +3,7 @@ import styles from "./BookmarkControl.module.css";
 
 import bookmarkImg from "../../../../../assets/Pearls/bookmark.svg";
 
-const BookmarkControl = () => {
+const BookmarkControl = (props) => {
   const onBookmarkHandler = (e) => {
     e.stopPropagation();
   };
@@ -13,7 +13,7 @@ const BookmarkControl = () => {
       <div className={styles.svgcontainer}>
         <img src={bookmarkImg} alt="bookmark icon" />
       </div>
-      <p>0</p>
+      {props.displayCount && <p>0</p>}
     </div>
   );
 };

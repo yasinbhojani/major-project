@@ -9,9 +9,9 @@ import BookmarkControl from "./Bookmark/BookmarkControl";
 const PearlActions = (props) => {
   return (
     <div className={styles.actioncontainer}>
-      <LikeControl {...props} />
-      <CommentControl {...props} />
-      <BookmarkControl {...props} />
+      <LikeControl {...props} displayCount={true} />
+      <CommentControl {...props} displayCount={true} />
+      <BookmarkControl {...props} displayCount={true} />
     </div>
   );
 };

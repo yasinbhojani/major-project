@@ -20,7 +20,7 @@ const CommentControl = (props) => {
       <div className={styles.svgcontainer}>
         <img src={commentImg} alt="comment icon" />
       </div>
-      <p>{commentsCount}</p>
+      {props.displayCount && <p>{commentsCount}</p>}
     </div>
   );
 };

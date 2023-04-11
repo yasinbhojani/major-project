@@ -10,3 +10,29 @@
   margin: 0;
   margin-right: 2rem;
 }
+
+.controls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.controls div div {
+  box-sizing: unset;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 10px;
+  transition: 0.2s all ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls div div img {
+  width: 24px;
+  height: 24px;
+}

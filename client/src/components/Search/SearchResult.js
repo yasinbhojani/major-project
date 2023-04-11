@@ -13,6 +13,7 @@ const SearchResult = (props) => {
   }
   const followUser = (e) => {
     e.stopPropagation();
+    //* follow code goes here
   };
   return (
     <>

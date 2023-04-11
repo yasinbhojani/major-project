@@ -81,3 +81,12 @@ CREATE TABLE otp (
   username VARCHAR(20) NOT NULL,
   time_stamp DATETIME NOT NULL
 );
+
+CREATE TABLE user_followers (
+  follower_id varchar(20) NOT NULL,
+  following_id varchar(20) NOT NULL,
+  followed_date datetime NOT NULL,
+  PRIMARY KEY (follower_id, following_id),
+  FOREIGN KEY (follower_id) REFERENCES users (user_id),
+  FOREIGN KEY (following_id) REFERENCES users (user_id)
+);

@@ -15,6 +15,8 @@ const ProfileHeader = (props) => {
     redirect(`/profile/update/${userObject.user_id}`);
   };
 
+  const followHandler = () => {};
+
   return (
     <>
       <div className={styles.profileDetailsNameAndEdit}>
@@ -47,7 +49,7 @@ const ProfileHeader = (props) => {
               Edit Profile
             </button>
           ) : (
-            <Button text="Follow" />
+            <Button text="Follow" onClick={followHandler} />
           )}
         </div>
       </div>
