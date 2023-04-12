@@ -119,6 +119,9 @@ router.post("/like", [verify], (req, res) => {
       if (operation_flag === "like") {
         getUserID(post_id).then((result) => {
           let notification_for = result[0][0].author_id;
+          if(notification_for === user_id) {
+            return;
+          }
           connection.query(
             `INSERT INTO notifications VALUES ("${uuid().substring(
               0,

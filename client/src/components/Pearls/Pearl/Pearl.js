@@ -22,7 +22,7 @@ const Pearl = (props) => {
       </div>
       <div className={styles.content}>
         <PearlProfileHeader {...props} />
-        <p className={styles.text}>{props.post_content}</p>
+        <pre className={styles.text}>{props.post_content}</pre>
         {props.media_url && (
           <img src={props.media_url} className={styles.image} alt="media" />
         )}

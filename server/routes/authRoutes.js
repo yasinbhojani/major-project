@@ -8,6 +8,7 @@ const bcrypt = require("bcryptjs");
 const { emailExists } = require("../middlewares/emailExists");
 const { sendOTP, verifyOTP } = require("../middlewares/otpVerification");
 const { hashPassword } = require("../middlewares/hashPassword");
+const verify = require("../middlewares/verifyToken");
 
 // Utils
 const { generateAccessToken } = require("../utils/token.util");
@@ -99,6 +100,33 @@ router.post("/register", [verifyOTP, hashPassword], async (req, res) => {
       });
     });
   });
+});
+
+//! Route to check if user is admin
+
+router.get("/isadmin", [verify], (req, res) => {
+  const user = req.user;
+  connection.query(
+    "select is_admin from users where user_id = ?",
+    [user.user_id],
+    (err, data) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ ok: false, message: "An error occured" });
+      }
+      if (data[0].is_admin === 1) {
+        return res
+          .status(200)
+          .json({ ok: true, message: "user is admin", is_admin: true });
+      } else {
+        return res.status(401).json({
+          ok: true,
+          message: "user is not admin",
+          is_admin: false,
+        });
+      }
+    }
+  );
 });
 
 module.exports = router;

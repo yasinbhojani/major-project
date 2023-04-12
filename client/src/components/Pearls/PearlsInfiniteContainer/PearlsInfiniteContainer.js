@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "./PearlsInfiniteContainer.module.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Pearl from "../Pearl/Pearl";
@@ -10,7 +10,7 @@ const PearlsInfiniteContainer = ({ user_id }) => {
   const [maxLength, setMaxLength] = useState(Infinity);
   const hasMore = posts.length < maxLength;
 
-  const getPosts = useCallback(async () => {
+  const getPosts = async () => {
     if (posts.length >= maxLength) {
       return;
     }
@@ -29,17 +29,19 @@ const PearlsInfiniteContainer = ({ user_id }) => {
       .then((users) => {
         setPosts(posts.concat(users.data));
         setMaxLength(users.records);
-        setPageNo(pageNo + 1);
+        setPageNo((pageno) => pageno + 1);
+        console.log(users.data);
+        console.log(pageNo);
       })
       .catch((err) => {
         alert(`An error occured while fetching the posts: ${err?.message}`);
       });
-    // eslint-disable-next-line
-  }, []);
+  };
 
   useEffect(() => {
     getPosts();
-  }, [getPosts]);
+    // eslint-disable-next-line
+  }, []);
 
   const loader = useMemo(() => <p>Loading...</p>, []);
   const endMessage = useMemo(
