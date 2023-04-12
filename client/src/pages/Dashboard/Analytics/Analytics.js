@@ -12,8 +12,6 @@ const Analytics = () => {
     decodedToken = jwt_decode(localStorage.getItem("accessToken"));
   }
 
-  console.log(decodedToken);
-
   return (
     <>
       <div className={styles.Analytics}>

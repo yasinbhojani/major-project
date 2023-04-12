@@ -64,6 +64,7 @@ create table notifications (
 	notification_for varchar(40),
   content varchar(255),
   sent_date datetime,
+  notification_type varchar(20) not null,
 	FOREIGN KEY(notification_from) REFERENCES users(user_id),
 	FOREIGN KEY(notification_for) REFERENCES users(user_id)
 );

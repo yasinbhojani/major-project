@@ -5,6 +5,7 @@ const { v4: uuid } = require("uuid");
 
 const connection = require("../configs/db.config");
 
+const getUserID = require("../utils/getUserID");
 router.get("/post", [verify], (req, res) => {
   const { post_id } = req.query;
   const user = req.user;
@@ -68,8 +69,10 @@ router.post("/post", [verify], (req, res) => {
   const content = req.body.pearlContent;
   const mediaurl = req.body.mediaURL;
 
+  const post_id = uuid();
+
   connection.query(
-    `INSERT INTO posts (post_id, author_id, post_content, media_url, created_date) values ("${uuid()}", "${user_id}", "${content}", "${mediaurl}", now())`,
+    `INSERT INTO posts (post_id, author_id, post_content, media_url, created_date) values ("${post_id}", "${user_id}", "${content}", "${mediaurl}", now())`,
     (err, data) => {
       if (err) {
         return res.json({
@@ -113,7 +116,24 @@ router.post("/like", [verify], (req, res) => {
         console.log(err);
         return res.json({ ok: false, message: "An error occured" });
       }
-      res.json({ ok: true, message: "operation successful" });
+      if (operation_flag === "like") {
+        getUserID(post_id).then((result) => {
+          let notification_for = result[0][0].author_id;
+          connection.query(
+            `INSERT INTO notifications VALUES ("${uuid().substring(
+              0,
+              5
+            )}","${user_id}","${notification_for}","liked your post",now(),"like");`,
+            (err, data) => {
+              if (err) {
+                console.log(err);
+                return res.json({ ok: false, message: "An error occured" });
+              }
+              res.json({ ok: true, message: "operation successful" });
+            }
+          );
+        });
+      }
     });
   });
 });

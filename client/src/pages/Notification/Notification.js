@@ -46,6 +46,17 @@ const Notification = () => {
       });
   }, [decodedToken.user_id]);
 
+  const redirectToPage = (n_type, options) => {
+    if (n_type === "first_time") {
+      redirect(
+        `/chats/private/${decodedToken.user_id}/${options.notification_from}`
+      );
+    }
+    if (n_type === "like") {
+      redirect(`/profile/${options.notification_from}`);
+    }
+  };
+
   // HTML Here
   return (
     <div className={styles.notification}>
@@ -69,6 +80,7 @@ const Notification = () => {
               </div>
             )}
             {notifications.map((notification) => {
+              console.log(notification);
               const date = new Date(notification.sent_date);
               return (
                 <div
@@ -84,17 +96,11 @@ const Notification = () => {
                   />
                   <div
                     className={styles.notificationClick}
-                    onClick={() => {
-                      if (
-                        notification.content.includes(
-                          "Messaged You For The First Time"
-                        )
-                      ) {
-                        redirect(
-                          `/chats/private/${decodedToken.user_id}/${notification.notification_from}`
-                        );
-                      }
-                    }}
+                    onClick={() =>
+                      redirectToPage(notification.notification_type, {
+                        notification_from: notification.notification_from,
+                      })
+                    }
                   >
                     <p>
                       <b>@{notification.notification_from}</b>{" "}
