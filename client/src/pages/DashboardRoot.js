@@ -5,7 +5,16 @@ const DashboardRoot = () => {
   return (
     <section>
       <DNavBar />
-      <Outlet />
+      <section style={{ display: "flex" }}>
+        <div
+          style={{
+            minWidth: "260px",
+            height: "100vh",
+            border: "1px solid red",
+          }}
+        ></div>
+        <Outlet />
+      </section>
     </section>
   );
 };
