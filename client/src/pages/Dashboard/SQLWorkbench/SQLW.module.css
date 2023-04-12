@@ -1,0 +1,62 @@
+.SQLW .QueryForm {
+  position: absolute;
+  left: 50%;
+  top: 0%;
+  transform: translate(-50%);
+  border: 1px solid #ebebeb;
+  width: 40%;
+}
+
+.SQLW .QueryForm .querry {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom: 1px solid #ebebeb;
+}
+.SQLW .QueryForm .querry input {
+  border-radius: 5px;
+  padding: 4px 13px;
+  width: 70%;
+  border: 1px solid #ebebeb;
+}
+.SQLW .QueryForm .querry button {
+  border-radius: 5px;
+  padding: 5px 13px;
+  font-weight: 500;
+  width: 20%;
+}
+.SQLW .QueryForm .queryBtns {
+  margin: 10px;
+  padding: 3px 10px;
+  border: none;
+  background-color: #dbdeff;
+}
+.SQLW .QueryForm .queryBtns:hover {
+  background-color: #c7ccff;
+}
+.error {
+  background-color: #ffcfcf;
+  border: 2px solid red;
+}
+
+.SQlbg {
+  user-select: none;
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: -1;
+}
+.SQlbg img {
+  width: 50%;
+}
+.SQlbg div {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.SQlbg div p {
+  opacity: 0.7;
+}

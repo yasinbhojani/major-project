@@ -36,7 +36,7 @@ const socket = (server) => {
               `INSERT INTO conversation values ("${conversation_id}","${data.sender}","${data.reciver}","${data.message}",now());`,
               (error, resultdata) => {
                 connection.query(`
-                  INSERT INTO notifications values ("${notification_id}","${data.sender}","${data.reciver}","Messaged You For The First Time",now())`);
+                  INSERT INTO notifications values ("${notification_id}","${data.sender}","${data.reciver}","Messaged You For The First Time",now(),"first_time")`);
               }
             );
           } else {

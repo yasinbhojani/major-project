@@ -10,7 +10,6 @@ const DashboardRoot = () => {
           style={{
             minWidth: "260px",
             height: "100vh",
-            border: "1px solid red",
           }}
         ></div>
         <Outlet />
