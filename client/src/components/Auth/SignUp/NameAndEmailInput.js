@@ -1,5 +1,5 @@
 import Input from "../../UI/Input/Input";
-import btnstyles from "../../../css/button.module.css";
+import btnstyles from "../styles/button.module.css"
 import { useEffect, useState } from "react";
 
 import styles from "../Login/Login.module.css";

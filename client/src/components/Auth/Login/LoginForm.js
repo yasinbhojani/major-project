@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import Input from "../../UI/Input/Input";
-import btnstyles from "../../../css/button.module.css";
+import btnstyles from "../styles/button.module.css"
 import { useNavigate } from "react-router-dom";
 
 import styles from "./Login.module.css";
