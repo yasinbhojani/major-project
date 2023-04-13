@@ -1,0 +1,25 @@
+.gallary h1 {
+  font-size: 20px;
+  margin: 10px;
+  opacity: 0.8;
+}
+
+.pictures {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pictures div {
+  text-align: center;
+  cursor: pointer;
+}
+.pictures div img {
+  width: 150px;
+  margin: 10px;
+}
+.pictures div h1 {
+  font-size: 15px;
+}
