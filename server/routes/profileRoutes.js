@@ -82,4 +82,14 @@ router.put("/update/:user_id", [verify], (req, res) => {
     );
   }
 });
+
+// Who to follow
+router.get("/whotofollow", (req, res) => {
+  connection.query(
+    `SELECT * FROM users ORDER BY RAND() LIMIT 3; `,
+    (err, data) => {
+      res.send(data);
+    }
+  );
+});
 module.exports = router;

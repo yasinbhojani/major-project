@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import styles from "./Home.module.css";
 import PearlsInfiniteContainer from "../../components/Pearls/PearlsInfiniteContainer/PearlsInfiniteContainer";
+import WhoToFollow from "../../components/WhoToFollow/WhoToFollow";
 
 const Home = () => {
   useEffect(() => {
@@ -9,13 +10,16 @@ const Home = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.heading}>
-        <h2>Home</h2>
+    <>
+      <div className={styles.container}>
+        <div className={styles.heading}>
+          <h2>Home</h2>
+        </div>
+        <div className={styles.placeholder}></div>
+        <PearlsInfiniteContainer />
       </div>
-      <div className={styles.placeholder}></div>
-      <PearlsInfiniteContainer />
-    </div>
+      <WhoToFollow />
+    </>
   );
 };
 

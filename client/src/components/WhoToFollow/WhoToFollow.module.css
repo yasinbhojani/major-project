@@ -1,0 +1,94 @@
+.WhoToFollow {
+  height: fit-content;
+  margin: 20px;
+  margin-left: 989px;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  padding-bottom: 10px;
+  position: fixed;
+}
+.WhoToFollow .header {
+  font-size: 25px;
+  font-weight: bolder;
+  padding: 10px 20px;
+  color: #7076fe;
+  border-bottom: 2px solid #f0f0f0;
+}
+.user {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+}
+.user img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.user .verification {
+  width: 20px;
+  height: 20px;
+  margin: 0px 3px;
+}
+.user h1 {
+  margin: 0px;
+  padding: 0px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.user p {
+  margin: 0px;
+  font-size: 12px;
+  width: 100%;
+}
+.user button {
+  margin: 0px;
+  padding: 5px 15px;
+  font-size: 13px;
+}
+.user div {
+  margin: 10px 20px;
+}
+.user:hover {
+  background-color: #ededed;
+  cursor: pointer;
+}
+.twoRecords,
+.threeRecords {
+  font-size: 13px;
+  margin-left: 979px;
+  position: fixed;
+  text-align: center;
+}
+.twoRecords a,
+.threeRecords a {
+  text-decoration: none;
+  color: black;
+}
+.twoRecords span,
+.threeRecords span {
+  color: #7076fe;
+  font-weight: bold;
+}
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.footer p {
+  margin: 0px 5px;
+}
+.footer p:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.threeRecords {
+  margin-top: 295px;
+}
+.twoRecords {
+  margin-top: 235px;
+}

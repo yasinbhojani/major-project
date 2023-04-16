@@ -13,6 +13,7 @@ import Chats from "./pages/Chats/Chats";
 import Notification from "./pages/Notification/Notification";
 import Profile from "./pages/Profile/Profile";
 import About from "./pages/About/About";
+import Career from "./pages/Career/Career";
 import ExpandedPearl from "./pages/Pearl/ExpandedPearl";
 import Settings from "./pages/Settings/Settings";
 import Root from "./pages/Root";
@@ -71,6 +72,7 @@ const App = () => {
 
     // Shell main pahe Route
     { path: "/about", element: <About /> },
+    { path: "/career", element: <Career /> },
 
     // Admin Dashboard Routes
     {
