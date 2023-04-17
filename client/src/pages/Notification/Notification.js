@@ -47,13 +47,17 @@ const Notification = () => {
   }, [decodedToken.user_id]);
 
   const redirectToPage = (n_type, options) => {
-    if (n_type === "first_time") {
-      redirect(
-        `/chats/private/${decodedToken.user_id}/${options.notification_from}`
-      );
-    }
-    if (n_type === "like") {
-      redirect(`/profile/${options.notification_from}`);
+    switch (n_type) {
+      case "first_time":
+        redirect(
+          `/chats/private/${decodedToken.user_id}/${options.notification_from}`
+        );
+        break;
+      case "like":
+        redirect(`/profile/${options.notification_from}`);
+        break;
+      default:
+        redirect(`/profile/${options.notification_from}`);
     }
   };
 

@@ -10,7 +10,6 @@ const PearlProfileHeader = (props) => {
 
   const redirectToProfile = (event) => {
     event.stopPropagation();
-    console.log("navigate");
     navigate(`/profile/${props.author_id}`);
   };
 
