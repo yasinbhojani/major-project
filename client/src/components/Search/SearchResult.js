@@ -1,4 +1,3 @@
-import Button from "../UI/Button/Button";
 import styles from "./SearchResult.module.css";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
@@ -11,51 +10,39 @@ const SearchResult = (props) => {
   if (localStorage.getItem("accessToken")) {
     decodedToken = jwt_decode(localStorage.getItem("accessToken"));
   }
-  const followUser = (e) => {
-    e.stopPropagation();
-    //* follow code goes here
-  };
   return (
-    <>
-      {profiles[0] === "no users" ? (
-        <div className={styles.noUserFound}>
-          <h3>Sorry, We Didn't Found Any Users {": ("}</h3>
-        </div>
-      ) : (
-        profiles.map((user) => {
-          return (
-            <div
-              className={styles.searchResult}
-              onClick={() => redirect(`/profile/${user.user_id}`)}
-              key={user.user_id}
-            >
-              <div className={styles.nameAvatar}>
-                <img src={user.avatar_url} alt="" />
-                <div className={styles.nameAndUserName}>
-                  <h3>
-                    {user.username}
-                    {user.followers > 10 && <img src={verified} alt="" />}
-                  </h3>
-                  <p>@{user.user_id}</p>
+    profiles.length > 0 && (
+      <div className={styles.result}>
+        {profiles[0] === "no users" ? (
+          <div className={styles.noUserFound}>
+            <h3>No Records {": ("}</h3>
+          </div>
+        ) : (
+          profiles.map((user) => {
+            if (user.user_id !== decodedToken.user_id) {
+              return (
+                <div
+                  className={styles.searchResult}
+                  onClick={() => redirect(`/profile/${user.user_id}`)}
+                  key={user.user_id}
+                >
+                  <img src={user.avatar_url} alt="" />
+                  <div className={styles.nameAndUserName}>
+                    <h3>
+                      {user.username}
+                      {user.followers > 10 && <img src={verified} alt="" />}
+                    </h3>
+                    <p>@{user.user_id}</p>
+                  </div>
                 </div>
-              </div>
-              {user.user_id === decodedToken.user_id ? (
-                <Button
-                  text="Edit Profile"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    redirect(`/profile/update/${user.user_id}`);
-                  }}
-                  className={styles.myProfile}
-                />
-              ) : (
-                <Button text="Follow" onClick={followUser} />
-              )}
-            </div>
-          );
-        })
-      )}
-    </>
+              );
+            } else {
+              return null;
+            }
+          })
+        )}
+      </div>
+    )
   );
 };
 export default SearchResult;
