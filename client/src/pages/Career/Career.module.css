@@ -1,0 +1,102 @@
+.career nav {
+  display: flex;
+  flex-direction: row;
+  background-color: #dbdeff;
+  animation: nav-load 500ms ease-in;
+}
+.career nav a {
+  color: #7076fe;
+  text-decoration: none;
+}
+.logoAndField {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 10px 150px;
+  width: 50%;
+}
+.logoAndField img {
+  width: 50px;
+  cursor: pointer;
+}
+.logoAndField h1 {
+  color: #7076fe;
+  margin: 0px 17px;
+  font-size: 30px;
+}
+.NavBtns {
+  width: 60%;
+  margin: 0px 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.NavBtns .navButton {
+  margin: auto 10px;
+  border: none;
+  background-color: transparent;
+  color: #7076fe;
+  font-weight: bold;
+}
+.shellButton {
+  margin-left: 15px;
+}
+.NavBtns .navButton:hover,
+.about nav a:hover {
+  color: #4953ff;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  border-bottom: 2px solid #7076fe;
+  margin: 100px 150px;
+  padding-bottom: 50px;
+  margin-bottom: 65px;
+}
+.header h1 {
+  color: #7076fe;
+  width: 60%;
+  font-size: 60px;
+  animation: nav-load 500ms ease-in;
+}
+.header p {
+  font-size: 20px;
+  width: 75%;
+  margin: 50px 0px;
+  animation: nav-load 500ms ease-in;
+}
+
+.header button {
+  animation: nav-load 500ms ease-in;
+}
+
+.header img {
+  animation: fade-load 500ms ease-in;
+}
+@keyframes nav-load {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes fade-load {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

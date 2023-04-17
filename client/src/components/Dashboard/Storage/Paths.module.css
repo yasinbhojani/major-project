@@ -1,0 +1,21 @@
+.firestoreFile {
+  margin: 10px;
+  border: none;
+  background-color: white;
+  text-align: left;
+  opacity: 0.8;
+}
+
+.firestoreFile:hover {
+  color: #1420fa;
+  text-decoration: underline;
+}
+
+.firestoreFile img {
+  margin: 0px 5px;
+}
+
+.pathButtons {
+  display: flex;
+  flex-direction: column;
+}

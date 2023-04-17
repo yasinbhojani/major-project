@@ -9,13 +9,15 @@ const Home = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.heading}>
-        <h2>Home</h2>
+    <>
+      <div className={styles.container}>
+        <div className={styles.heading}>
+          <h2>Home</h2>
+        </div>
+        <div className={styles.placeholder}></div>
+        <PearlsInfiniteContainer />
       </div>
-      <div className={styles.placeholder}></div>
-      <PearlsInfiniteContainer />
-    </div>
+    </>
   );
 };
 

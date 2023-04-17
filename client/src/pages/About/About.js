@@ -69,7 +69,14 @@ const About = () => {
           <button className={styles.navButton}>
             <a href="#features">Features</a>
           </button>
-          <button className={styles.navButton}>Careers</button>
+          <button
+            className={styles.navButton}
+            onClick={() => {
+              redirect("/career");
+            }}
+          >
+            Careers
+          </button>
           <Button
             text="Shell.com"
             onClick={() => {
@@ -138,7 +145,7 @@ const About = () => {
         })}
       </div>
       <p className={styles.blue}>
-        @2023 Team <span>Shell</span>
+        © 2023 Team <span>Shell</span>
       </p>
     </div>
   );
