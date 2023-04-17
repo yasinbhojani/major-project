@@ -1,5 +1,9 @@
 .textcontent {
   font-size: 1.1rem;
+  margin-bottom: 1rem;
+  font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  word-wrap: break-word;
+  white-space:break-spaces;
 }
 
 .media {

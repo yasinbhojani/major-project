@@ -23,7 +23,7 @@ const ExpandedPearlBody = (props) => {
 
   return (
     <div>
-      <p className={styles.textcontent}>{props.post_content}</p>
+      <pre className={styles.textcontent}>{props.post_content}</pre>
       {props.media_url && (
         <a target="_blank" href={props.media_url} rel="noreferrer">
           <img src={props.media_url} alt="media" className={styles.media} />
