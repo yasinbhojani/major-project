@@ -8,11 +8,9 @@
   position: fixed;
 }
 .WhoToFollow .header {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bolder;
   padding: 10px 20px;
-  color: #7076fe;
-  border-bottom: 2px solid #f0f0f0;
 }
 .user {
   display: flex;
@@ -20,6 +18,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
+}
+.userNameAndAvatar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 .user img {
   width: 50px;
@@ -48,7 +52,7 @@
   padding: 5px 15px;
   font-size: 13px;
 }
-.user div {
+.userNameAndAvatar div {
   margin: 10px 20px;
 }
 .user:hover {
@@ -90,5 +94,5 @@
   margin-top: 295px;
 }
 .twoRecords {
-  margin-top: 235px;
+  margin-top: 230px;
 }

@@ -133,7 +133,9 @@ const NewPearl = (props) => {
       </div>
       <textarea
         className={styles.textarea}
-        placeholder="Share your thoughts"
+        placeholder={
+          Math.random() >= 0.5 ? "What's in your mind?" : "Share your thoughts"
+        }
         onChange={pearlChangeHandler}
         value={pearlDraft}
       ></textarea>

@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import styles from "./WhoToFollow.module.css";
-import Button from "../UI/Button/Button";
-import verification from "../../assets/Profile/verified.svg";
-import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import Users from "./Users";
+import Footer from "./Footer";
 const WhoToFollow = () => {
-  const redirect = useNavigate();
   const [suggestion, setSuggestion] = useState([]);
   const [records, setRecords] = useState(3);
   let decodedToken = null;
@@ -29,8 +27,8 @@ const WhoToFollow = () => {
             setRecords(2);
             break;
           }
-          setSuggestion(details);
         }
+        setSuggestion(details);
       })
       .catch((err) => {
         alert("An error occured, please try again later: " + err.message);
@@ -42,54 +40,9 @@ const WhoToFollow = () => {
         <h1 className={styles.header}>
           {Math.random() >= 0.5 ? "Suggested for you" : "Who to follow "}
         </h1>
-        {suggestion.map((user) => {
-          if (user.user_id !== decodedToken.user_id) {
-            return (
-              <div
-                className={styles.user}
-                key={user.user_id}
-                onClick={() => redirect(`/profile/${user.user_id}`)}
-              >
-                <img src={user.avatar_url} alt="" />
-                <div>
-                  <h1>
-                    {user.username}
-                    {user.followers > 20 && (
-                      <img
-                        src={verification}
-                        alt=""
-                        className={styles.verification}
-                      />
-                    )}
-                  </h1>
-                  <p>@{user.user_id}</p>
-                </div>
-                <Button text="Follow" />
-              </div>
-            );
-          } else {
-            return null;
-          }
-        })}
+        <Users suggestion={suggestion} />
       </div>
-      <div className={records === 2 ? styles.twoRecords : styles.threeRecords}>
-        <div className={styles.footer}>
-          <p onClick={() => redirect("/about")}>About</p>
-          <p>
-            <a
-              href="https://github.com/yasinbhojani/major-project"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Contribute
-            </a>
-          </p>
-          <p onClick={() => redirect("/career")}>Career</p>
-        </div>
-        <p>
-          © 2023 Team <span>Shell</span>
-        </p>
-      </div>
+      <Footer records={records} />
     </>
   );
 };

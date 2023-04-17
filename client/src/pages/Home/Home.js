@@ -2,7 +2,6 @@ import { useEffect } from "react";
 
 import styles from "./Home.module.css";
 import PearlsInfiniteContainer from "../../components/Pearls/PearlsInfiniteContainer/PearlsInfiniteContainer";
-import WhoToFollow from "../../components/WhoToFollow/WhoToFollow";
 
 const Home = () => {
   useEffect(() => {
@@ -18,7 +17,6 @@ const Home = () => {
         <div className={styles.placeholder}></div>
         <PearlsInfiniteContainer />
       </div>
-      <WhoToFollow />
     </>
   );
 };
