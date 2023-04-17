@@ -1,11 +1,22 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import styles from "./ProfileHeader.module.css";
 import Button from "../UI/Button/Button";
 import verified from "../../assets/Profile/verified.svg";
 import jwt_decode from "jwt-decode";
-import { useNavigate } from "react-router-dom";
+
 const ProfileHeader = (props) => {
   let userObject = props.userObject;
+  const isFollowed = userObject.is_following;
   const redirect = useNavigate();
+
+  const [isFollowing, setIsFollowing] = useState(true);
+
+  useEffect(() => {
+    setIsFollowing(isFollowed === 0 ? false : true);
+  }, [isFollowed]);
+
   let decodedToken = null;
   if (localStorage.getItem("accessToken")) {
     decodedToken = jwt_decode(localStorage.getItem("accessToken"));
@@ -15,7 +26,38 @@ const ProfileHeader = (props) => {
     redirect(`/profile/update/${userObject.user_id}`);
   };
 
-  const followHandler = () => {};
+  const followHandler = () => {
+    // follow code goes here
+    fetch(process.env.REACT_APP_API_ENDPOINT + "/api/profile/follow", {
+      method: "post",
+      body: JSON.stringify({
+        following_id: userObject.user_id,
+        flag: isFollowing ? "unfollow" : "follow",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("accessToken"),
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.ok) {
+          throw new Error(data.message);
+        }
+
+        console.log(data);
+        setIsFollowing(!isFollowing);
+      })
+      .catch((err) => console.error(err.message));
+  };
+
+  const ButtonStyles = isFollowing
+    ? {
+        border: "2px solid #7076FE",
+        backgroundColor: "white",
+        color: "black",
+      }
+    : null;
 
   return (
     <>
@@ -49,7 +91,11 @@ const ProfileHeader = (props) => {
               Edit Profile
             </button>
           ) : (
-            <Button text="Follow" onClick={followHandler} />
+            <Button
+              style={ButtonStyles}
+              text={isFollowing ? "Following" : "Follow"}
+              onClick={followHandler}
+            />
           )}
         </div>
       </div>

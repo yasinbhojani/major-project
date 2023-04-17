@@ -12,7 +12,7 @@ const verify = require("../middlewares/verifyToken");
 
 // Utils
 const { generateAccessToken } = require("../utils/token.util");
-const mail = require("../services/mail");
+const mail = require("../utils/mail.util");
 
 //! Route for Login
 router.post("/login", (req, res) => {

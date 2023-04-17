@@ -1,5 +1,5 @@
 const transporter = require("../configs/nodemailer.config");
-const { otpMessage, welcomeMessage } = require("../utils/messages.util");
+const { otpMessage, welcomeMessage } = require("./messages.util");
 
 const mail = (config) => {
   const { name, email, type, otp } = config;

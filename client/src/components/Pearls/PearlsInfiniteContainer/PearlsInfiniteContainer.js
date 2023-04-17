@@ -30,8 +30,6 @@ const PearlsInfiniteContainer = ({ user_id }) => {
         setPosts(posts.concat(users.data));
         setMaxLength(users.records);
         setPageNo((pageno) => pageno + 1);
-        console.log(users.data);
-        console.log(pageNo);
       })
       .catch((err) => {
         alert(`An error occured while fetching the posts: ${err?.message}`);
@@ -39,9 +37,18 @@ const PearlsInfiniteContainer = ({ user_id }) => {
   };
 
   useEffect(() => {
-    getPosts();
+    setMaxLength(Infinity);
+    setPosts([]);
+    setPageNo(1);
     // eslint-disable-next-line
-  }, []);
+  }, [user_id]);
+  
+  useEffect(() => {
+    if (pageNo === 1) {
+      getPosts();
+    }
+    // eslint-disable-next-line
+  }, [pageNo]);
 
   const loader = useMemo(() => <p>Loading...</p>, []);
   const endMessage = useMemo(

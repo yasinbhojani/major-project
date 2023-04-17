@@ -3,13 +3,15 @@ const express = require("express");
 const router = express.Router();
 const connection = require("../configs/db.config");
 const verify = require("../middlewares/verifyToken");
+const { followUser } = require("../controllers/followUserController");
 
 // Logic To retrive Users Data From Databses
 router.get("/openProfile/:userId", [verify], (req, res) => {
   const { userId } = req.params;
+  const { user_id: logged_user_id } = req.user;
   if (userId !== undefined) {
     connection.query(
-      `SELECT * FROM users WHERE user_id = "${userId}"`,
+      `SELECT u.*, CASE WHEN f.following_id IS NULL THEN FALSE ELSE TRUE END AS is_following FROM users u LEFT JOIN user_followers f ON u.user_id = f.following_id AND f.follower_id = "${logged_user_id}" WHERE u.user_id = "${userId}";`,
       (err, data) => {
         if (data.length !== 0) {
           res.json({
@@ -82,4 +84,7 @@ router.put("/update/:user_id", [verify], (req, res) => {
     );
   }
 });
+
+router.post("/follow", [verify], followUser);
+
 module.exports = router;

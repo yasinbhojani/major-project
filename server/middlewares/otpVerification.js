@@ -1,4 +1,4 @@
-const mail = require("../services/mail");
+const mail = require("../utils/mail.util");
 const generateRandomOTP = require("../utils/otp.util");
 const connection = require("../configs/db.config");
 
