@@ -1,55 +1,62 @@
+.result {
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  z-index: 1;
+  background-color: white;
+  padding: 10px 0px;
+  max-height: 500px;
+  overflow: scroll;
+  width: 330px;
+}
 .searchResult {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: 30px;
+  padding: 10px;
   cursor: pointer;
-  border-bottom: 1px solid #d4d4d4;
   background-color: white;
 }
 .searchResult img {
-  width: 90px;
-  height: 90px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
-
   object-fit: cover;
 }
-.searchResult .nameAvatar {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.searchResult .nameAvatar .nameAndUserName {
+.searchResult .nameAndUserName {
   margin: 0 25px;
 }
-.searchResult .nameAvatar .nameAndUserName h3 img {
-  width: 27px;
-  height: 27px;
+.searchResult .nameAndUserName h3 img {
+  width: 20px;
+  height: 20px;
   box-shadow: none;
   margin: 0 10px;
 }
 
 .searchResult .nameAndUserName h3 {
   margin: 0px;
-  font-size: 25px;
+  font-size: 18px;
   display: flex;
   align-items: center;
 }
 .searchResult .nameAndUserName p {
   margin: 0px;
-  font-size: 18px;
+  font-size: 14px;
 }
+
+.searchResult:hover {
+  background-color: #ededed;
+  cursor: pointer;
+}
+
 .noUserFound {
+  width: 100%;
   background-color: white;
   text-align: center;
-  padding: 15px;
 }
-.myProfile {
-  background-color: #dbdeff;
-  color: black;
-}
-.myProfile:hover {
-  background-color: #c9ceff;
+.noUserFound h3 {
+  font-size: 30px;
+  margin-top: 20px;
 }

@@ -5,7 +5,6 @@ import logo from "../../assets/shell-logo.png";
 import NavButtons from "./NavButtons";
 
 import home from "./icon/home.svg";
-import search from "./icon/search.svg";
 import news from "./icon/news.svg";
 import chats from "./icon/message.svg";
 import notification from "./icon/notification.svg";
@@ -54,7 +53,6 @@ const NavBar = (props) => {
             </button>
           </a>
           <NavButtons path="/" iconSource={home} page="Home" />
-          <NavButtons path="/search" iconSource={search} page="Search" />
           <NavButtons path="/news" iconSource={news} page="News" />
           <NavButtons path="/chats" iconSource={chats} page="Chats" />
           <NavButtons

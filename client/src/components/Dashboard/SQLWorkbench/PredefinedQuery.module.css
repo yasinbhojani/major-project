@@ -1,0 +1,10 @@
+.queryBtns {
+  margin: 10px;
+  padding: 3px 10px;
+  border: none;
+  background-color: #dbdeff;
+  border-radius: 5px;
+}
+.queryBtns:hover {
+  background-color: #c7ccff;
+}

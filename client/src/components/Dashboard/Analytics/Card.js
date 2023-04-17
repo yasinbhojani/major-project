@@ -19,7 +19,6 @@ const Card = (props) => {
         return data.json();
       })
       .then((details) => {
-        console.log(details[0].count);
         setData(details[0].count);
       })
       .catch((err) => {

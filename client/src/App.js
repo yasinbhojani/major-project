@@ -7,12 +7,12 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./pages/Home/Home";
-import Search from "./pages/Search/Search";
 import News from "./pages/News/News";
 import Chats from "./pages/Chats/Chats";
 import Notification from "./pages/Notification/Notification";
 import Profile from "./pages/Profile/Profile";
 import About from "./pages/About/About";
+import Career from "./pages/Career/Career";
 import ExpandedPearl from "./pages/Pearl/ExpandedPearl";
 import Settings from "./pages/Settings/Settings";
 import Root from "./pages/Root";
@@ -41,7 +41,6 @@ const App = () => {
       errorElement: <NotFound />,
       children: [
         { index: true, element: <Home /> },
-        { path: "/Search", element: <Search /> },
         { path: "/news", element: <News /> },
         { path: "/chats", element: <Chats /> },
         { path: "/notification", element: <Notification /> },
@@ -71,6 +70,7 @@ const App = () => {
 
     // Shell main pahe Route
     { path: "/about", element: <About /> },
+    { path: "/career", element: <Career /> },
 
     // Admin Dashboard Routes
     {

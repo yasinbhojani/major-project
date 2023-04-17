@@ -1,3 +1,6 @@
+.SQLW {
+  width: 100%;
+}
 .SQLW .QueryForm {
   position: absolute;
   left: 50%;
@@ -26,15 +29,7 @@
   font-weight: 500;
   width: 20%;
 }
-.SQLW .QueryForm .queryBtns {
-  margin: 10px;
-  padding: 3px 10px;
-  border: none;
-  background-color: #dbdeff;
-}
-.SQLW .QueryForm .queryBtns:hover {
-  background-color: #c7ccff;
-}
+
 .error {
   background-color: #ffcfcf;
   border: 2px solid red;

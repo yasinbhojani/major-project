@@ -7,9 +7,11 @@ import Database from "./icons/Database.svg";
 import File from "./icons/Storage.svg";
 import SQL from "./icons/SQL.svg";
 import Bars from "./icons/Analytics.svg";
+import back from "./icons/back.svg";
+import { useNavigate } from "react-router-dom";
 
 const DNavBar = (props) => {
-
+  const redirect = useNavigate();
   return (
     <nav className={styles.NavBar}>
       <div>
@@ -27,6 +29,9 @@ const DNavBar = (props) => {
         />
         <DNavLinks path="/admin/Tables" iconSource={Database} page="Database" />
         <DNavLinks path="/admin/SQLW" iconSource={SQL} page="SQL Workbench" />
+      </div>
+      <div className={styles.backButton} onClick={() => redirect("/")}>
+        <img src={back} alt="" />
       </div>
     </nav>
   );

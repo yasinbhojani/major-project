@@ -11,4 +11,16 @@ router.post("/SQLW", [verify], (req, res) => {
   });
 });
 
+router.get("/storage/avatar", [verify], (req, res) => {
+  connection.query(`select avatar_url,username from users;`, (err, data) => {
+    res.send(data);
+  });
+});
+
+router.get("/storage/posts", [verify], (req, res) => {
+  connection.query(`select media_url,author_id from posts; `, (err, data) => {
+    res.send(data);
+  });
+});
+
 module.exports = router;

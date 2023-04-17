@@ -3,9 +3,36 @@ import QueryReport from "../../../components/Dashboard/SQLWorkbench/QueryReport"
 import Button from "../../../components/UI/Button/Button";
 import styles from "./SQLW.module.css";
 import bg from "../../../assets/Dashboard/SQLW/bgimg.svg";
+import PredefinedQuery from "../../../components/Dashboard/SQLWorkbench/PredefinedQuery";
 const SQLW = () => {
   const [query, setQuery] = useState("");
   const [error, setError] = useState(false);
+  const predefinedQuery = [
+    {
+      onClick: () => {
+        querryButtons("users");
+      },
+      text: "Users",
+    },
+    {
+      onClick: () => {
+        querryButtons("posts");
+      },
+      text: "Pearls",
+    },
+    {
+      onClick: () => {
+        querryButtons("chats");
+      },
+      text: "Chats",
+    },
+    {
+      onClick: () => {
+        querryButtons("likes");
+      },
+      text: "Likes",
+    },
+  ];
   let baground = (
     <div className={styles.SQlbg}>
       <img src={bg} alt="" />
@@ -53,38 +80,9 @@ const SQLW = () => {
             <Button text="Run Query" onClick={runQuery} />
           </div>
           <div style={{ textAlign: "center" }}>
-            <button
-              className={styles.queryBtns}
-              onClick={() => {
-                querryButtons("users");
-              }}
-            >
-              Users
-            </button>
-            <button
-              className={styles.queryBtns}
-              onClick={() => {
-                querryButtons("posts");
-              }}
-            >
-              Pearls
-            </button>
-            <button
-              className={styles.queryBtns}
-              onClick={() => {
-                querryButtons("chats");
-              }}
-            >
-              Chats
-            </button>
-            <button
-              className={styles.queryBtns}
-              onClick={() => {
-                querryButtons("likes");
-              }}
-            >
-              Likes
-            </button>
+            {predefinedQuery.map((btn) => {
+              return <PredefinedQuery onClick={btn.onClick} text={btn.text} />;
+            })}
           </div>
         </div>
         {page}

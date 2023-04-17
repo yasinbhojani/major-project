@@ -1,8 +1,6 @@
 import styles from "./Search.module.css";
-import Button from "../../components/UI/Button/Button";
 import { useEffect, useRef, useState } from "react";
-import SearchResult from "../../components/Search/SearchResult";
-import SearchDefaultIcon from "../../assets/Search/Search.svg";
+import SearchResult from "./SearchResult";
 const Search = (props) => {
   const [searchedUser, setSearchedUser] = useState("");
   const [result, setResult] = useState();
@@ -62,34 +60,16 @@ const Search = (props) => {
   return (
     <>
       <form className={styles.SearchPage} onSubmit={(e) => e.preventDefault()}>
-        <div className={styles.searchBox}>
-          <input
-            type="text"
-            placeholder="# Search Users"
-            className={styles.searchInput}
-            onChange={searchUserHandler}
-            value={searchedUser}
-            required
-          />
-          <Button
-            text="Search"
-            className={styles.searchBtn}
-            onClick={searchUser}
-          />
-        </div>
+        <input
+          type="text"
+          placeholder="# Search Shell"
+          className={styles.searchInput}
+          onChange={searchUserHandler}
+          value={searchedUser}
+          required
+        />
         {result && <SearchResult profiles={result} />}
       </form>
-      <div className={styles.noConversation}>
-        <img src={SearchDefaultIcon} alt="" />
-        <div>
-          <h3>Search For Users</h3>
-          <p>
-            Search for your friends & follow them or chat with them.
-            <br />
-            Also see their activity or posts.
-          </p>
-        </div>
-      </div>
     </>
   );
 };

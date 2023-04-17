@@ -59,6 +59,21 @@
 .NavBar .navBarLink:hover {
   background-color: #dbdeff;
 }
+.backButton {
+  text-align: center;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.backButton:hover {
+  background-color: #dbdeff;
+}
+.backButton img {
+  width: 30px;
+  height: 30px;
+  margin: 0px auto;
+}
 
 @keyframes nav-load {
   0% {

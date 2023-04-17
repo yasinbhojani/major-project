@@ -1,0 +1,20 @@
+.SearchPage {
+  position: fixed;
+  z-index: 1;
+  margin-left: 970px;
+}
+.searchInput {
+  margin: 20px 0px;
+  padding: 0 20px;
+  height: 35px;
+  border-radius: 50px;
+  border: 2px solid #dedede;
+  font-size: 1rem;
+  width: 330px;
+  margin-bottom: 0px;
+}
+.searchInput:focus {
+  outline: none;
+  border: 2px solid var(--purpleblue);
+  filter: drop-shadow(0px 4px 4px #7076fe55);
+}
