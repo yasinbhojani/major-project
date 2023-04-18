@@ -7,9 +7,11 @@ import NavButtons from "./NavButtons";
 import home from "./icon/home.svg";
 import news from "./icon/news.svg";
 import chats from "./icon/message.svg";
+import bookmark from "./icon/bookmark.svg";
 import notification from "./icon/notification.svg";
 import profile from "./icon/profile.svg";
 import more from "./icon/more.svg";
+import analytics from "../../components/Dashboard/NavBar/icons/Analytics.svg";
 import settings from "./icon/settings.svg";
 import info from "./icon/about.svg";
 import logout from "./icon/signout.svg";
@@ -55,6 +57,7 @@ const NavBar = (props) => {
           <NavButtons path="/" iconSource={home} page="Home" />
           <NavButtons path="/news" iconSource={news} page="News" />
           <NavButtons path="/chats" iconSource={chats} page="Chats" />
+          <NavButtons path="/bookmark" iconSource={bookmark} page="Bookmarks" />
           <NavButtons
             path="/notification"
             iconSource={notification}
@@ -68,6 +71,15 @@ const NavBar = (props) => {
             />
           )}
           <Dropdown text="More" icon={more}>
+            {decodedToken.is_admin ? (
+              <DropdownOption
+                icon={analytics}
+                text="Dashboard"
+                onClick={() => navigate("/admin")}
+              />
+            ) : (
+              <></>
+            )}
             <DropdownOption
               icon={settings}
               text="Settings"

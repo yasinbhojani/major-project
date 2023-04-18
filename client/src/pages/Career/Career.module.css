@@ -44,6 +44,7 @@
   margin-left: 15px;
 }
 .NavBtns .navButton:hover,
+.NavBtns .navButton a:hover,
 .about nav a:hover {
   color: #4953ff;
 }
@@ -59,7 +60,7 @@
   border-bottom: 2px solid #7076fe;
   margin: 100px 150px;
   padding-bottom: 50px;
-  margin-bottom: 65px;
+  margin-bottom: 30px;
 }
 .header h1 {
   color: #7076fe;
@@ -81,6 +82,18 @@
 .header img {
   animation: fade-load 500ms ease-in;
 }
+
+.blue {
+  margin: 0px 150px;
+  padding: 30px;
+  text-align: center;
+  border-top: 2px solid #7076fe;
+}
+.blue span {
+  color: #7076fe;
+  font-weight: bold;
+}
+
 @keyframes nav-load {
   0% {
     opacity: 0;

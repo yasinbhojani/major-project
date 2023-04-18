@@ -23,4 +23,40 @@ router.get("/storage/posts", [verify], (req, res) => {
   });
 });
 
+router.get("/analytics/accounts", [verify], (req, res) => {
+  connection.query(
+    `SELECT count(*) as users_joined, DATE(joined_date) dateonly FROM users group by dateonly;`,
+    (err, data) => {
+      res.send(data);
+    }
+  );
+});
+
+router.get("/analytics/pearls", [verify], (req, res) => {
+  connection.query(
+    `SELECT count(*) as users_posts, DATE(created_date) dateonly FROM posts group by dateonly;`,
+    (err, data) => {
+      res.send(data);
+    }
+  );
+});
+
+router.get("/analytics/chats", [verify], (req, res) => {
+  connection.query(
+    `SELECT count(*) as users_chats, DATE(sent_date) dateonly FROM chats group by dateonly;`,
+    (err, data) => {
+      res.send(data);
+    }
+  );
+});
+
+router.get("/analytics/likes", [verify], (req, res) => {
+  connection.query(
+    `SELECT count(*) as users_likes, DATE(liked_at) dateonly FROM likes group by dateonly;`,
+    (err, data) => {
+      res.send(data);
+    }
+  );
+});
+
 module.exports = router;

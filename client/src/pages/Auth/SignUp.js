@@ -6,7 +6,6 @@ import NameAndEmailInput from "../../components/Auth/SignUp/NameAndEmailInput";
 import PasswordInput from "../../components/Auth/SignUp/PasswordInput";
 import OTPVerification from "../../components/Auth/SignUp/OTPVerification";
 
-// import minipc from "../../assets/minipc.png";
 import minipc from "../../assets/objects.jpg";
 import WellcomeText from "../../components/Auth/WellcomeText";
 import SideBanner from "../../components/Auth/SideBanner";

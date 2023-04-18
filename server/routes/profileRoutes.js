@@ -13,16 +13,22 @@ router.get("/openProfile/:userId", [verify], (req, res) => {
     connection.query(
       `SELECT u.*, CASE WHEN f.following_id IS NULL THEN FALSE ELSE TRUE END AS is_following FROM users u LEFT JOIN user_followers f ON u.user_id = f.following_id AND f.follower_id = "${logged_user_id}" WHERE u.user_id = "${userId}";`,
       (err, data) => {
-        if (data.length !== 0) {
-          res.json({
-            ok: true,
-            ...data[0],
-          });
-        } else {
-          res.json({
-            ok: false,
-          });
-        }
+        connection.query(
+          `select count(*) as total_posts from posts where author_id="${userId}"`,
+          (error, results) => {
+            if (data.length !== 0) {
+              res.json({
+                ok: true,
+                ...data[0],
+                results,
+              });
+            } else {
+              res.json({
+                ok: false,
+              });
+            }
+          }
+        );
       }
     );
   }

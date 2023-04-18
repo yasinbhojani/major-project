@@ -20,7 +20,7 @@ const ProfileDetails = (props) => {
           <p>{userObject.followers}</p> Followers
         </span>
         <span>
-          <p>0</p> Pearls
+          <p>{userObject.results[0].total_posts}</p> Pearls
         </span>
       </div>
       <div className={styles.date}>
