@@ -5,6 +5,7 @@ import ExpandedPearlHeader from "../../components/ExpandedPearl/EPearlHeader/Exp
 import BackButton from "../../components/UI/Button/BackButton";
 import ExpandedPearlBody from "../../components/ExpandedPearl/EPearlBody/ExpandedPearlBody";
 import ExpandedPearlActions from "../../components/ExpandedPearl/EPearlActions/ExpandedPearlActions";
+import CommentBox from "../../components/ExpandedPearl/CommentBox/CommentBox";
 
 const ExpandedPearl = () => {
   const { post_id } = useParams();
@@ -39,6 +40,9 @@ const ExpandedPearl = () => {
         <ExpandedPearlHeader {...pearlData} />
         <ExpandedPearlBody {...pearlData} />
         <ExpandedPearlActions {...pearlData} />
+      </div>
+      <div className={styles.comments}>
+        <CommentBox />
       </div>
     </div>
   );
