@@ -1,6 +1,25 @@
-/* .Analytics {
-  margin-left: 260px;
-} */
 .Analytics h2 {
   margin: 30px;
+}
+.graphs {
+  margin: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+}
+.graphs div {
+  width: 100%;
+}
+.blue {
+  margin: 30px;
+  padding-top: 20px;
+  text-align: center;
+  border-top: 2px solid #7076fe;
+  width: 80%;
+}
+.blue span {
+  color: #7076fe;
+  font-weight: bold;
 }

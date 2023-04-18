@@ -3,6 +3,7 @@ import logo from "../../assets/About/logo.png";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/UI/Button/Button";
 import icon from "../../assets/Career/team.svg";
+import Team from "../../components/Career/Team";
 const Career = () => {
   const redirect = useNavigate();
   return (
@@ -20,10 +21,7 @@ const Career = () => {
         </div>
         <div className={styles.NavBtns}>
           <button className={styles.navButton}>
-            <a href="#mission">Our Mission</a>
-          </button>
-          <button className={styles.navButton}>
-            <a href="#features">Features</a>
+            <a href="#team">Team</a>
           </button>
           <button
             className={styles.navButton}
@@ -55,6 +53,12 @@ const Career = () => {
         </div>
         <img src={icon} alt="" width="40%" />
       </div>
+      <div id="team">
+        <Team />
+      </div>
+      <p className={styles.blue}>
+        © 2023 Team <span>Shell</span>
+      </p>
     </div>
   );
 };

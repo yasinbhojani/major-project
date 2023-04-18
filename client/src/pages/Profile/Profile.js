@@ -22,6 +22,7 @@ const Profile = (props) => {
     password_hash: "",
     user_id: "",
     username: "",
+    results: [{ total_posts: 0 }],
   });
 
   useEffect(() => {

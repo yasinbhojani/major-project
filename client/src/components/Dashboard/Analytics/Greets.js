@@ -11,7 +11,9 @@ const Greets = (props) => {
           I hope you are doing well today. Here are latest stats for you to
           analysis and to take further decision.
         </p>
-        <Button text="Explore Now" />
+        <a href="#overview">
+          <Button text="Explore Now" />
+        </a>
       </div>
       <img src={pie} alt="" />
     </div>

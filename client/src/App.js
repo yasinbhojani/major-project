@@ -9,6 +9,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import News from "./pages/News/News";
 import Chats from "./pages/Chats/Chats";
+import Bookmark from "./pages/Bookmark/Bookmark";
 import Notification from "./pages/Notification/Notification";
 import Profile from "./pages/Profile/Profile";
 import About from "./pages/About/About";
@@ -43,6 +44,7 @@ const App = () => {
         { index: true, element: <Home /> },
         { path: "/news", element: <News /> },
         { path: "/chats", element: <Chats /> },
+        { path: "/bookmark", element: <Bookmark /> },
         { path: "/notification", element: <Notification /> },
         { path: "/profile/:user_id", element: <Profile /> },
         { path: "/profile/update/:user_id", element: <UpdateProfile /> },
