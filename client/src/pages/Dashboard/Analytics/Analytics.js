@@ -4,10 +4,10 @@ import jwt_decode from "jwt-decode";
 
 import Greets from "../../../components/Dashboard/Analytics/Greets";
 import Cards from "../../../components/Dashboard/Analytics/Cards";
-import Accounts from "../../../components/Dashboard/Analytics/Accounts/Accounts";
-import PearlsS from "../../../components/Dashboard/Analytics/Pearls/PearlsS";
-import ChatsS from "../../../components/Dashboard/Analytics/Chats/ChatsS";
-import LikesS from "../../../components/Dashboard/Analytics/Likes/LikesS";
+import AccountsCharts from "../../../components/Dashboard/Analytics/Accounts/AccountsCharts";
+import PearlsCharts from "../../../components/Dashboard/Analytics/Pearls/PearlsCharts";
+import ChatsCharts from "../../../components/Dashboard/Analytics/Chats/ChatsCharts";
+import LikesCharts from "../../../components/Dashboard/Analytics/Likes/LikesCharts";
 
 const Analytics = () => {
   let decodedToken;
@@ -21,12 +21,12 @@ const Analytics = () => {
       <div className={styles.Analytics}>
         <Greets name={decodedToken.user_id} />
         <div className={styles.graphs}>
-          <Accounts />
-          <PearlsS />
+          <AccountsCharts />
+          <PearlsCharts />
         </div>
         <div className={styles.graphs}>
-          <ChatsS />
-          <LikesS />
+          <ChatsCharts />
+          <LikesCharts />
         </div>
         <h2 id="overview">Overview</h2>
         <Cards />
