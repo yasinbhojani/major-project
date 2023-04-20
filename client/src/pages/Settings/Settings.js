@@ -11,13 +11,6 @@ const Settings = (props) => {
       <div className={styles.heading}>
         <h3>Settings</h3>
       </div>
-      {/* <div className={styles.settingNav}>
-        <h5>Your Account</h5>
-        <p>
-          See information about your account, or learn about your account
-          deletion options
-        </p>
-      </div> */}
       <Options />
     </div>
   );

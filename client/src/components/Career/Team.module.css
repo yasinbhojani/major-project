@@ -5,11 +5,10 @@
   align-items: center;
   background-color: #7076fe;
   height: 150px;
-  margin-bottom: 200px;
+  margin: 190px auto;
 }
 .teamHeder {
   margin: 30px 145px;
-  margin-bottom: 150px;
   color: #7076fe;
 }
 
@@ -39,4 +38,15 @@
 .card .icon img {
   width: 40px;
   cursor: pointer;
+}
+
+.role {
+  font-weight: 700;
+}
+
+.summary {
+  margin: 10px 150px;
+  font-size: 18px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid #7076fe;
 }

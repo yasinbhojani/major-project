@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./Accounts.module.css";
 import dateFormater from "../../../../functions/dateFormater";
 import LineChart from "../ChartTypes/LineChart";
-const Accounts = (props) => {
+const AccountsCharts = (props) => {
   const [data, setData] = useState("");
   useEffect(() => {
     fetch(
@@ -45,4 +45,4 @@ const Accounts = (props) => {
     </div>
   );
 };
-export default Accounts;
+export default AccountsCharts;

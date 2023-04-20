@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import dateFormater from "../../../../functions/dateFormater";
-import BarChart from "../ChartTypes/BarChart";
 import styles from "../Accounts/Accounts.module.css";
-const ChatsS = () => {
+import dateFormater from "../../../../functions/dateFormater";
+import LineChart from "../ChartTypes/LineChart";
+const LikesCharts = () => {
   const [data, setData] = useState("");
   useEffect(() => {
     fetch(
-      `${process.env.REACT_APP_API_ENDPOINT}/api/dashboard/analytics/chats`,
+      `${process.env.REACT_APP_API_ENDPOINT}/api/dashboard/analytics/likes`,
       {
         method: "get",
         headers: {
@@ -19,14 +19,15 @@ const ChatsS = () => {
         return data.json();
       })
       .then((details) => {
-        console.log(details);
         setData({
           labels: details.map((data) => dateFormater(data.dateonly)),
           datasets: [
             {
-              label: "Chats Statistics",
-              data: details.map((data) => Math.floor(data.users_chats)),
-              backgroundColor: "#7076fe",
+              label: "Likes Statistics",
+              data: details.map((data) => Math.floor(data.users_likes)),
+              backgroundColor: "#dbdeff",
+              borderColor: "#7076fe",
+              borderWidth: 1,
             },
           ],
         });
@@ -35,14 +36,13 @@ const ChatsS = () => {
         alert("An error occured, please try again later: " + err.message);
       });
   }, []);
-  console.log(data);
   return (
     <div className={styles.Statistics}>
-      <h1>New Chats</h1>
+      <h1>Pearls Liked</h1>
       <div className={styles.graph}>
-        {data !== "" && <BarChart AccountsData={data} text="Chats" />}
+        {data !== "" && <LineChart AccountsData={data} text="Likes" />}
       </div>
     </div>
   );
 };
-export default ChatsS;
+export default LikesCharts;
