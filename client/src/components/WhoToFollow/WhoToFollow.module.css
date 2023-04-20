@@ -61,6 +61,7 @@
   background-color: #ededed;
   cursor: pointer;
 }
+.oneRecord,
 .twoRecords,
 .threeRecords {
   font-size: 13px;
@@ -68,11 +69,13 @@
   position: fixed;
   text-align: center;
 }
+.oneRecord a,
 .twoRecords a,
 .threeRecords a {
   text-decoration: none;
   color: black;
 }
+.oneRecord span,
 .twoRecords span,
 .threeRecords span {
   color: #7076fe;
@@ -97,4 +100,11 @@
 }
 .twoRecords {
   margin-top: 285px;
+}
+.oneRecord {
+  margin-top: 220px;
+}
+.noSuggestion {
+  text-align: center;
+  width: 340px;
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import logo from "../../assets/shell-logo.png";
@@ -24,6 +24,7 @@ import NewPearl from "../Pearls/NewPearls/NewPearl";
 import AccountData from "./AccountData/AccountData";
 
 const NavBar = (props) => {
+  const [isAdmin, setIsAdmin] = useState(false);
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const navigate = useNavigate();
   let decodedToken;
@@ -44,6 +45,28 @@ const NavBar = (props) => {
   const newPearlHandler = () => {
     setModalIsVisible(true);
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/auth/isadmin`, {
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("accessToken"),
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (!data.ok) {
+            throw new Error(data.message);
+          }
+          if (data.is_admin === true) {
+            setIsAdmin(true);
+          }
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    }
+  }, []);
 
   return (
     <>
@@ -71,7 +94,7 @@ const NavBar = (props) => {
             />
           )}
           <Dropdown text="More" icon={more}>
-            {decodedToken.is_admin ? (
+            {isAdmin && decodedToken.is_admin ? (
               <DropdownOption
                 icon={analytics}
                 text="Dashboard"

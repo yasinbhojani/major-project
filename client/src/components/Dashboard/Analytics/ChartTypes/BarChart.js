@@ -1,7 +1,7 @@
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto"; // eslint-disable-line
 const BarChart = (props) => {
-  const opetions = {
+  const options = {
     scales: {
       x: {
         title: {
@@ -17,6 +17,6 @@ const BarChart = (props) => {
       },
     },
   };
-  return <Bar data={props.AccountsData} options={opetions} />;
+  return <Bar data={props.AccountsData} options={options} />;
 };
 export default BarChart;

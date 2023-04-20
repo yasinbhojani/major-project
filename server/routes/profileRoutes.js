@@ -94,9 +94,10 @@ router.put("/update/:user_id", [verify], (req, res) => {
 router.post("/follow", [verify], followUser);
 
 // Who to follow
-router.get("/whotofollow", (req, res) => {
+router.get("/whotofollow/:user", (req, res) => {
+  const { user } = req.params;
   connection.query(
-    `SELECT * FROM users ORDER BY RAND() LIMIT 3; `,
+    `SELECT * FROM users WHERE user_id NOT IN (SELECT following_id FROM user_followers WHERE follower_id = "${user}") ORDER BY RAND() LIMIT 3;`,
     (err, data) => {
       res.send(data);
     }

@@ -1,7 +1,7 @@
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto"; // eslint-disable-line
 const LineChart = (props) => {
-  const opetions = {
+  const options = {
     scales: {
       x: {
         title: {
@@ -17,6 +17,6 @@ const LineChart = (props) => {
       },
     },
   };
-  return <Line data={props.AccountsData} options={opetions} />;
+  return <Line data={props.AccountsData} options={options} />;
 };
 export default LineChart;

@@ -11,22 +11,32 @@ const WhoToFollow = () => {
     decodedToken = jwt_decode(localStorage.getItem("accessToken"));
   }
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/profile/whotofollow`, {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: "Bearer " + localStorage.getItem("accessToken"),
-      },
-    })
+    fetch(
+      `${process.env.REACT_APP_API_ENDPOINT}/api/profile/whotofollow/${decodedToken.user_id}`,
+      {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + localStorage.getItem("accessToken"),
+        },
+      }
+    )
       .then((data) => {
         return data.json();
       })
       .then((details) => {
         for (let user in details) {
           if (details[user].user_id === decodedToken.user_id) {
-            setRecords(2);
+            if (details.length === 2) {
+              setRecords(1);
+            } else {
+              setRecords(2);
+            }
             break;
           }
+        }
+        if (details.length === 1) {
+          setRecords(1);
         }
         setSuggestion(details);
       })
@@ -40,7 +50,12 @@ const WhoToFollow = () => {
         <h1 className={styles.header}>
           {Math.random() >= 0.5 ? "Suggested for you" : "Who to follow "}
         </h1>
-        <Users suggestion={suggestion} />
+        {suggestion.length === 1 &&
+        suggestion[0].user_id === decodedToken.user_id ? (
+          <p className={styles.noSuggestion}>No suggestion for you</p>
+        ) : (
+          <Users suggestion={suggestion} />
+        )}
       </div>
       <Footer records={records} />
     </>

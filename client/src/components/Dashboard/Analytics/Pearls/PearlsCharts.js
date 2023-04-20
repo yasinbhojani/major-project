@@ -2,7 +2,7 @@ import styles from "../Accounts/Accounts.module.css";
 import dateFormater from "../../../../functions/dateFormater";
 import BarChart from "../ChartTypes/BarChart";
 import { useEffect, useState } from "react";
-const PearlsS = (props) => {
+const PearlsCharts = (props) => {
   const [data, setData] = useState("");
   useEffect(() => {
     fetch(
@@ -44,4 +44,4 @@ const PearlsS = (props) => {
     </div>
   );
 };
-export default PearlsS;
+export default PearlsCharts;
