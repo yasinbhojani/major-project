@@ -32,3 +32,8 @@
   border-radius: 1rem;
   font-weight: 500;
 }
+
+.commentbox button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

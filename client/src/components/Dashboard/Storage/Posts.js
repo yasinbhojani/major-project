@@ -37,7 +37,7 @@ const Posts = () => {
               if (url.media_url !== "") {
                 return (
                   <div
-                    key={Math.random()}
+                    key={Math.random().toString()}
                     onClick={() => showModel(url.media_url)}
                   >
                     <img src={url.media_url} alt="" />

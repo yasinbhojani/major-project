@@ -6,6 +6,7 @@ import BackButton from "../../components/UI/Button/BackButton";
 import ExpandedPearlBody from "../../components/ExpandedPearl/EPearlBody/ExpandedPearlBody";
 import ExpandedPearlActions from "../../components/ExpandedPearl/EPearlActions/ExpandedPearlActions";
 import CommentBox from "../../components/ExpandedPearl/CommentBox/CommentBox";
+import Comments from "../../components/ExpandedPearl/Comments/Comments";
 
 const ExpandedPearl = () => {
   const { post_id } = useParams();
@@ -27,7 +28,6 @@ const ExpandedPearl = () => {
         if (!data.ok) {
           throw new Error(data.message);
         }
-        console.log(data.post);
         setPearlData(data.post);
       })
       .catch((err) => console.error(err));
@@ -42,7 +42,8 @@ const ExpandedPearl = () => {
         <ExpandedPearlActions {...pearlData} />
       </div>
       <div className={styles.comments}>
-        <CommentBox />
+        <CommentBox post_id={pearlData.post_id} />
+        <Comments post_id={pearlData.post_id} />
       </div>
     </div>
   );

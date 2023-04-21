@@ -39,10 +39,10 @@ const ProfilePhotos = () => {
             imagesList.map((url) => {
               return (
                 <div
-                  key={Math.random()}
+                  key={Math.random().toString()}
                   onClick={() => showModel(url.avatar_url)}
                 >
-                  <img src={url.avatar_url} alt="" />
+                  <img src={url.avatar_url} alt="" className={styles.profile}/>
                   <h1>{url.username}</h1>
                 </div>
               );

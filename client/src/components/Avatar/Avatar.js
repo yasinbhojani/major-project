@@ -11,6 +11,10 @@ const Avatar = ({ src, alt }) => {
   };
 
   useEffect(() => {
+    if (src) {
+      return;
+    }
+
     let token;
     if (localStorage.getItem("accessToken")) {
       token = jwt_decode(localStorage.getItem("accessToken"));
@@ -37,7 +41,7 @@ const Avatar = ({ src, alt }) => {
           console.error(err);
         });
     }
-  }, []);
+  }, [src]);
 
   return <img src={src ? src : imageUrl} alt={alt} style={styles} />;
 };

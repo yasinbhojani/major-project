@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const verify = require("../middlewares/verifyToken");
+
 const { v4: uuid } = require("uuid");
 
 const connection = require("../configs/db.config");
-
+const verify = require("../middlewares/verifyToken");
 const getUserID = require("../utils/getUserID");
+const { addComment, getComments } = require("../controllers/commentController");
+
 router.get("/post", [verify], (req, res) => {
   const { post_id } = req.query;
   const user = req.user;
@@ -23,6 +25,28 @@ router.get("/post", [verify], (req, res) => {
       }
 
       res.json({ ok: true, post: data[0] });
+    }
+  );
+});
+
+router.post("/post", [verify], (req, res) => {
+  const { user_id } = req.user;
+  const content = req.body.pearlContent;
+  const mediaurl = req.body.mediaURL;
+
+  const post_id = uuid();
+
+  connection.query(
+    `INSERT INTO posts (post_id, author_id, post_content, media_url, created_date) values ("${post_id}", "${user_id}", "${content}", "${mediaurl}", now())`,
+    (err, data) => {
+      if (err) {
+        return res.json({
+          ok: false,
+          message: "An error occured while posting",
+        });
+      }
+
+      return res.json({ ok: true, message: "Posted Succesfully" });
     }
   );
 });
@@ -64,28 +88,6 @@ router.get("/posts", [verify], (req, res) => {
   });
 });
 
-router.post("/post", [verify], (req, res) => {
-  const { user_id } = req.user;
-  const content = req.body.pearlContent;
-  const mediaurl = req.body.mediaURL;
-
-  const post_id = uuid();
-
-  connection.query(
-    `INSERT INTO posts (post_id, author_id, post_content, media_url, created_date) values ("${post_id}", "${user_id}", "${content}", "${mediaurl}", now())`,
-    (err, data) => {
-      if (err) {
-        return res.json({
-          ok: false,
-          message: "An error occured while posting",
-        });
-      }
-
-      return res.json({ ok: true, message: "Posted Succesfully" });
-    }
-  );
-});
-
 router.post("/like", [verify], (req, res) => {
   // operation_flag consists of 'like' or 'unlike'
   const operation_flag = req.body.flag;
@@ -119,7 +121,7 @@ router.post("/like", [verify], (req, res) => {
       if (operation_flag === "like") {
         getUserID(post_id).then((result) => {
           let notification_for = result[0][0].author_id;
-          if(notification_for === user_id) {
+          if (notification_for === user_id) {
             return;
           }
           connection.query(
@@ -175,5 +177,9 @@ router.post("/bookmark", [verify], (req, res) => {
     });
   });
 });
+
+router.get("/comments", [verify], getComments);
+
+router.post("/comment", [verify], addComment);
 
 module.exports = router;

@@ -40,13 +40,13 @@ const Followers = (props) => {
           >
             <img src={user.avatar_url} alt="" className={styles.avatar} />
             <div className={styles.userInfo}>
-              <h1>
+              <p className={styles.username}>
                 {user.username}
                 {user.followers > 20 && (
                   <img src={verified} alt="" className={styles.verified} />
                 )}
-              </h1>
-              <p>@{user.user_id}</p>
+              </p>
+              <p className={styles.user_id}>@{user.user_id}</p>
             </div>
           </div>
         );

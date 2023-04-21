@@ -30,9 +30,10 @@ create table posts (
 
 create table comments (
   comment_id varchar(40) UNIQUE NOT NULL,
-  user_id varchar(20),
-  post_id varchar(40),
-  comment varchar(200),
+  user_id varchar(20) NOT NULL,
+  post_id varchar(40) NOT NULL,
+  comment_content varchar(255) NOT NULL,
+  created_date datetime NOT NULL,
   PRIMARY KEY(comment_id),
   FOREIGN KEY(user_id) REFERENCES users(user_id),
   FOREIGN KEY(post_id) REFERENCES posts(post_id)

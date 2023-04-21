@@ -1,0 +1,9 @@
+.comments {
+  padding: .5rem 1rem;
+}
+
+.comments > p{
+  width: 100%;
+  text-align: center;
+  margin: 2rem 0;
+}

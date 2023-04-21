@@ -18,7 +18,13 @@
 }
 .pictures div img {
   width: 150px;
+  height: 150px;
+  object-fit: cover;
   margin: 10px;
+}
+
+.pictures div img.profile {
+  border-radius: 50%;
 }
 .pictures div h1 {
   font-size: 15px;

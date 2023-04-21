@@ -14,6 +14,10 @@
   list-style: none;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   margin: 0;
   font-family: "Roboto", "Segoe UI", sans-serif;

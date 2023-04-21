@@ -8,6 +8,7 @@
   justify-content: flex-start;
   align-items: center;
   width: 80%;
+  max-width: 80%;
 }
 .graphs div {
   width: 100%;

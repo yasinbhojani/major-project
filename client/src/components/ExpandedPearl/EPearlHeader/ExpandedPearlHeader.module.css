@@ -8,7 +8,9 @@
   height: 50px;
   object-fit: cover;
   border-radius: 50%;
+  cursor: pointer;
 }
+
 .header div {
   margin-left: 1rem;
 }
