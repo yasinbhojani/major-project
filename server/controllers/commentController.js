@@ -42,8 +42,6 @@ const addComment = (req, res) => {
 const getComments = (req, res) => {
   const { post_id } = req.query;
 
-  console.log(post_id);
-
   connection.query(
     "SELECT comments.comment_id, comments.comment_content, comments.created_date, users.user_id, users.username, users.avatar_url, users.followers FROM comments INNER JOIN users ON comments.user_id = users.user_id WHERE comments.post_id = ? ORDER BY created_date DESC",
     [post_id],

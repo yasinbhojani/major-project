@@ -7,6 +7,7 @@
   position: relative;
   margin-left: -12px;
   max-width: 80%;
+  user-select: none;
 }
 
 .actioncontainer > div {
@@ -18,7 +19,6 @@
 .actioncontainer > div p {
   margin: 0;
   margin-left: .3rem;
-  user-select: none;
 }
 
 .actioncontainer > div div {
