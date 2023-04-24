@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./CommentBox.module.css";
 import Avatar from "../../Avatar/Avatar";
 
-const CommentBox = ({ post_id }) => {
+const CommentBox = ({ post_id, setTempComments, setComments }) => {
   const [comment, setComment] = useState("");
   const [buttonIsEnabled, setButtonIsEnabled] = useState(false);
 
@@ -39,7 +39,8 @@ const CommentBox = ({ post_id }) => {
         if (!data.ok) {
           throw new Error(data.message);
         }
-
+        setTempComments((cmnts) => [comment.trim(), ...cmnts]);
+        setComments((prevState) => prevState + 1);
         setComment("");
       })
       .catch((err) => console.error(err));

@@ -44,7 +44,7 @@ router.post("/login", (req, res) => {
             ok: true,
             message: "Login Successful",
             payload: {
-              username: data[0].username,
+              user: data[0],
               is_admin: data[0].is_admin,
               accessToken,
             },
@@ -93,7 +93,7 @@ router.post("/register", [verifyOTP, hashPassword], async (req, res) => {
         ok: true,
         message: "Signup Succesful",
         payload: {
-          username: data[0].username,
+          user: data[0],
           is_admin: data[0].is_admin,
           accessToken,
         },
@@ -119,7 +119,7 @@ router.get("/isadmin", [verify], (req, res) => {
           .status(200)
           .json({ ok: true, message: "user is admin", is_admin: true });
       } else {
-        return res.status(401).json({
+        return res.json({
           ok: true,
           message: "user is not admin",
           is_admin: false,

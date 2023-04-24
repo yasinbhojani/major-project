@@ -7,19 +7,20 @@ import BookmarkControl from "../../Pearls/Pearl/PearlActions/Bookmark/BookmarkCo
 const ExpandedPearlActions = (props) => {
   const {
     likes: likesCount,
-    comments: commentsCount,
     bookmarks: bookmarksCount,
+    commentsCount,
+    comments,
+    setComments,
   } = props;
 
   const [likes, setLikes] = useState(0);
-  const [comments, setComments] = useState(0);
   const [bookmarks, setBookmarks] = useState(0);
 
   useEffect(() => {
     setLikes(likesCount);
     setComments(commentsCount);
     setBookmarks(bookmarksCount);
-  }, [likesCount, commentsCount, bookmarksCount]);
+  }, [likesCount, commentsCount, bookmarksCount, setComments]);
 
   return (
     <div>

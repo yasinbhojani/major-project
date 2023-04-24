@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import Input from "../../UI/Input/Input";
-import btnstyles from "../styles/button.module.css"
+import btnstyles from "../styles/button.module.css";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./Login.module.css";
@@ -43,7 +43,7 @@ const LoginForm = (props) => {
         throw new Error(response.message);
       }
 
-      localStorage.setItem("username", response.payload.username);
+      localStorage.setItem("user", JSON.stringify(response.payload.user));
       localStorage.setItem("is_admin", response.payload.is_admin);
       localStorage.setItem("accessToken", response.payload.accessToken);
       localStorage.setItem("notifications", "true");
