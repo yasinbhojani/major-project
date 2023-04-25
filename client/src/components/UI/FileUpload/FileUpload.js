@@ -1,4 +1,5 @@
 import styles from "./FileUpload.module.css";
+import Resizer from "react-image-file-resizer";
 import { useState } from "react";
 import { storage } from "./firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -25,15 +26,29 @@ const FileUpload = (props) => {
     if (props.type === "image") {
       if (props.folder === "profile") {
         // Write Code Here For Low Resoultion
-        const imageRef = ref(storage, `/profile/${image.name}`);
-        uploadBytes(imageRef, image).then(() => {
-          getDownloadURL(imageRef).then((imgUrl) => {
-            setUploadedImage(imgUrl); //This Show Demo Image
-            props.setUrl(imgUrl); //This Returs Hosted URL of img from setUrl state function
-            setActiveUpload(true); //Afterd uplodding This desebles the button
-            setStatus("Uploaded"); //This chages text that is insied of the button
-          });
-        });
+        Resizer.imageFileResizer(
+          image,
+          400,
+          400,
+          "JPEG",
+          70,
+          0,
+          (uri) => {
+            setImage(uri);
+            // Uploading code below here
+            const imageRef = ref(storage, `/profile/${image.name}_400x400`);
+            uploadBytes(imageRef, uri).then(() => {
+              getDownloadURL(imageRef).then((imgUrl) => {
+                setUploadedImage(imgUrl); //This Show Demo Image
+                props.setUrl(imgUrl); //This Returs Hosted URL of img from setUrl state function
+                setActiveUpload(true); //Afterd uplodding This desebles the button
+                setStatus("Uploaded"); //This chages text that is insied of the button
+              });
+            });
+          },
+          "file"
+        );
+
       }
     }
     // This Code is Responsible to upload Video And Plz Ignor Name I can't do anything about it i am lezzy : )
