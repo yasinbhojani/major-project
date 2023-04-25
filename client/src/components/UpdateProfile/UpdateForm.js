@@ -55,6 +55,22 @@ const UpdateForm = (props) => {
         }),
       }
     );
+
+    const URL = `${process.env.REACT_APP_API_ENDPOINT}/api/profile/user`;
+    fetch(URL, {
+      headers: {
+        authorization: "Bearer " + localStorage.getItem("accessToken"),
+      },
+    })
+      .then((res) => res.json())
+      .then((user) => {
+        if (!user.ok) {
+          throw new Error(user.message);
+        }
+        localStorage.setItem("user", JSON.stringify(user.user_data));
+      })
+      .catch((err) => console.error(err));
+
     redirect(`/profile/${props.userDetails.user_id}`);
   };
   // Redirectring to Profile Page

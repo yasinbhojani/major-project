@@ -59,7 +59,6 @@
 table {
   border: 2px solid var(--purpleblue);
   border-radius: 10px;
-  max-width: 200px;
   overflow-x: hidden;
 }
 
@@ -67,4 +66,6 @@ table th,
 table td {
   border: 1px solid black;
   padding: 4px;
+  max-height: 50px;
+  overflow: hidden;
 }

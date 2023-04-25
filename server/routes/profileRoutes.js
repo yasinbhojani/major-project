@@ -4,6 +4,9 @@ const router = express.Router();
 const connection = require("../configs/db.config");
 const verify = require("../middlewares/verifyToken");
 const { followUser } = require("../controllers/followUserController");
+const { getUser } = require("../controllers/getUserController");
+
+router.get("/user", [verify], getUser);
 
 // Logic To retrive Users Data From Databses
 router.get("/openProfile/:userId", [verify], (req, res) => {

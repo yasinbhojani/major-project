@@ -11,6 +11,7 @@ const PearlsInfiniteContainer = ({ user_id, flag }) => {
   const hasMore = posts.length < maxLength;
 
   const getPosts = async () => {
+    console.log("called")
     if (posts.length >= maxLength) {
       return;
     }

@@ -7,10 +7,11 @@ import PearlFileUpload from "../../UI/PearlFileUpload/PearlFileUpload";
 import styles from "./NewPearl.module.css";
 import verified from "../../../assets/Profile/verified.svg";
 import jwt_decode from "jwt-decode";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const NewPearl = (props) => {
   const redirect = useNavigate();
+  const location = useLocation();
 
   const [userData, setUserData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -85,7 +86,14 @@ const NewPearl = (props) => {
         if (!data.ok) {
           throw new Error(data.message);
         }
-        redirect(0);
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (
+          location.pathname === "/" ||
+          location.pathname === `/profile/${user.user_id}`
+        ) {
+          redirect(0);
+        }
       })
       .catch((err) => console.error(err));
 

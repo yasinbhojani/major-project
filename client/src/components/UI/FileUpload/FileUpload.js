@@ -36,7 +36,7 @@ const FileUpload = (props) => {
           (uri) => {
             setImage(uri);
             // Uploading code below here
-            const imageRef = ref(storage, `/profile/${image.name}_400x400`);
+            const imageRef = ref(storage, `/profile/400x400_${image.name}`);
             uploadBytes(imageRef, uri).then(() => {
               getDownloadURL(imageRef).then((imgUrl) => {
                 setUploadedImage(imgUrl); //This Show Demo Image
