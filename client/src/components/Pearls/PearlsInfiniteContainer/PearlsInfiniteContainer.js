@@ -4,7 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Pearl from "../Pearl/Pearl";
 import notfound from "../../../assets/postsnotfound.svg";
 
-const PearlsInfiniteContainer = ({ user_id }) => {
+const PearlsInfiniteContainer = ({ user_id, flag }) => {
   const [posts, setPosts] = useState([]);
   const [pageNo, setPageNo] = useState(1);
   const [maxLength, setMaxLength] = useState(Infinity);
@@ -18,6 +18,10 @@ const PearlsInfiniteContainer = ({ user_id }) => {
 
     if (user_id) {
       URL = `${process.env.REACT_APP_API_ENDPOINT}/api/pearl/posts?page_no=${pageNo}&user_id=${user_id}`;
+    }
+
+    if (flag === "bookmarks") {
+      URL = `${process.env.REACT_APP_API_ENDPOINT}/api/pearl/bookmarks?page_no=${pageNo}`;
     }
 
     fetch(URL, {
@@ -40,9 +44,8 @@ const PearlsInfiniteContainer = ({ user_id }) => {
     setMaxLength(Infinity);
     setPosts([]);
     setPageNo(1);
-    // eslint-disable-next-line
-  }, [user_id]);
-  
+  }, [user_id, flag]);
+
   useEffect(() => {
     if (pageNo === 1) {
       getPosts();
@@ -56,19 +59,32 @@ const PearlsInfiniteContainer = ({ user_id }) => {
     []
   );
 
-  let content = (
-    <div className={styles.notfound}>
-      <img src={notfound} alt="Not found vector" />
-      <div>
-        <h3>Posts Not Available</h3>
-        <p>
-          There are no posts available at the moment.
-          <br />
-          Please try again later.
-        </p>
+  let content =
+    flag === "bookmarks" ? (
+      <div className={styles.notfound}>
+        <img src={notfound} alt="Not found vector" />
+        <div>
+          <h3>No Bookmarks Found</h3>
+          <p>
+            You have no bookmarks
+            <br />
+            Browse the feed to bookmark the pearls.
+          </p>
+        </div>
       </div>
-    </div>
-  );
+    ) : (
+      <div className={styles.notfound}>
+        <img src={notfound} alt="Not found vector" />
+        <div>
+          <h3>Posts Not Available</h3>
+          <p>
+            There are no posts available at the moment.
+            <br />
+            Please try again later.
+          </p>
+        </div>
+      </div>
+    );
 
   if (posts.length > 0) {
     content = (

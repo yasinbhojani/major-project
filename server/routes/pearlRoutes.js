@@ -7,6 +7,7 @@ const connection = require("../configs/db.config");
 const verify = require("../middlewares/verifyToken");
 const getUserID = require("../utils/getUserID");
 const { addComment, getComments } = require("../controllers/commentController");
+const { getBookmarks } = require("../controllers/bookmarksController");
 
 router.get("/post", [verify], (req, res) => {
   const { post_id } = req.query;
@@ -142,6 +143,8 @@ router.post("/like", [verify], (req, res) => {
     });
   });
 });
+
+router.get("/bookmarks", [verify], getBookmarks);
 
 router.post("/bookmark", [verify], (req, res) => {
   // operation_flag consists of 'bookmark' or 'unbookmark'

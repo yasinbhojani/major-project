@@ -14,7 +14,7 @@
 .NavBar .NavBarLogo img {
   width: 40px;
   margin: 10px;
-  margin-left: 25px;
+  margin-left: -3px;
   height: auto;
 }
 .NavBar img {

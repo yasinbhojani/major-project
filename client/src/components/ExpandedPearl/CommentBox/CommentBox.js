@@ -19,7 +19,7 @@ const CommentBox = ({ post_id, setTempComments, setComments }) => {
   const submitComment = (e) => {
     e.preventDefault();
 
-    if (comment === "") {
+    if (comment.trim() === "") {
       return;
     }
 

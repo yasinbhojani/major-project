@@ -48,6 +48,8 @@ const ExpandedPearl = () => {
           comments={comments}
           setComments={setComments}
           post_id={pearlData.post_id}
+          like_exists={pearlData.like_exists}
+          bookmark_exists={pearlData.bookmark_exists}
         />
       </div>
       <div className={styles.comments}>
