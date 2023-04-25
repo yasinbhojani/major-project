@@ -2,12 +2,13 @@
   width: 100%;
 }
 .SQLW .QueryForm {
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 0%;
   transform: translate(-50%);
   border: 1px solid #ebebeb;
   width: 40%;
+  background-color: white;
 }
 
 .SQLW .QueryForm .querry {

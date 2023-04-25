@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./QueryReport.module.css";
 const QueryReport = (props) => {
   const [data, setData] = useState([]);
+  const [columns, setColumns] = useState([]);
+
   useEffect(() => {
     const retriveData = () => {
       fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/dashboard/SQLW`, {
@@ -19,7 +21,11 @@ const QueryReport = (props) => {
         })
         .then((details) => {
           setData(details);
-          console.log(details);
+          let columnArray = [];
+          for (let column in details[0]) {
+            columnArray.push(column);
+          }
+          setColumns(columnArray);
         })
         .catch((err) => {
           alert("An error occured, please try again later: " + err.message);
@@ -28,17 +34,42 @@ const QueryReport = (props) => {
     retriveData();
   }, [props.query]);
   return (
-    <div className={styles.Report}>
-      <div className={styles.header}>
-        <h1>Console</h1>
-        <button onClick={props.close}>X</button>
+    <React.Fragment>
+      <div className={styles.tablecontainer}>
+        <table>
+          <thead>
+            <tr>
+              {columns.map((column) => (
+                <th key={Math.random().toString()}>{column}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((d) => {
+              const row = Object.values(d);
+              return (
+                <tr key={Math.random().toString()}>
+                  {row.map((r) => (
+                    <td key={Math.random().toString()}>{r}</td>
+                  ))}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
-      {data.length === 0 ? (
-        <pre>Something went Wrong !</pre>
-      ) : (
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      )}
-    </div>
+      {/* <div className={styles.Report}>
+        <div className={styles.header}>
+          <h1>Console</h1>
+          <button onClick={props.close}>X</button>
+        </div>
+        {data.length === 0 ? (
+          <pre>Something went Wrong !</pre>
+        ) : (
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        )}
+      </div> */}
+    </React.Fragment>
   );
 };
 export default QueryReport;

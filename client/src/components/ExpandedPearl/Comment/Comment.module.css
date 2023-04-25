@@ -2,6 +2,7 @@
   padding: 1rem 0;
   display: flex;
   flex-direction: row;
+  border-bottom: 1px solid #eaeaea;
 }
 
 .comment .content {

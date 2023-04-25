@@ -1,7 +1,7 @@
 .Report {
   border: 1px solid black;
   margin: 10px 20px;
-  margin-top: 150px;
+  /* margin-top: 150px; */
   padding: 10px;
   background-color: black;
   color: white;
@@ -49,4 +49,22 @@
 .Report pre::-webkit-scrollbar-thumb {
   background: #ffffff;
   border-radius: 0px;
+}
+
+.tablecontainer {
+  margin: 10px 20px;
+  margin-top: 150px;
+}
+
+table {
+  border: 2px solid var(--purpleblue);
+  border-radius: 10px;
+  max-width: 200px;
+  overflow-x: hidden;
+}
+
+table th, 
+table td {
+  border: 1px solid black;
+  padding: 4px;
 }
