@@ -37,7 +37,7 @@ const AccountData = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-          setUserData(data);
+          setUserData(data.profileData);
         })
         .catch((err) => {
           setIsError(true);

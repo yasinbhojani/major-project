@@ -35,7 +35,7 @@ const Avatar = ({ src, alt }) => {
       )
         .then((res) => res.json())
         .then((data) => {
-          setImageUrl(data.avatar_url);
+          setImageUrl(data.profileData.avatar_url);
         })
         .catch((err) => {
           console.error(err);
