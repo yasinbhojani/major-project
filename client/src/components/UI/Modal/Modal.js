@@ -22,6 +22,7 @@ const Modal = (props) => {
         <div className={styles.backdrop}>
           <div className={styles.overlay}>
             <div className={styles.closediv}>
+              <h3>{props.title}</h3>
               <img
                 src={close}
                 onClick={modalCloseHandler}

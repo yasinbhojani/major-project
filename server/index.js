@@ -23,7 +23,7 @@ app.use("/api/profile", require("./routes/profileRoutes"));
 app.use("/api/pearl", require("./routes/pearlRoutes"));
 app.use("/api/chats", require("./routes/chatsRoutes"));
 app.use("/api/notification", require("./routes/notificationRoutes"));
-app.use("/api/followFollowing", require("./routes/followRoutes"));
+app.use("/api/connections", require("./routes/connectionsRoutes"));
 app.use("/api/dashboard", require("./routes/dashboardRoutes"));
 
 server.listen(port, () => {

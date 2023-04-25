@@ -44,7 +44,7 @@ const NewPearl = (props) => {
       )
         .then((res) => res.json())
         .then((data) => {
-          setUserData(data);
+          setUserData(data.profileData);
         })
         .catch((err) => {
           alert("An error occured, please try again later: " + err.message);

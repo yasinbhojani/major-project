@@ -41,7 +41,7 @@ const UpdateProfile = (props) => {
             return data.json();
           })
           .then((details) => {
-            setUserDetails(details);
+            setUserDetails(details.profileData);
           })
           .catch((err) => {
             alert("An error occured, please try again later: " + err.message);

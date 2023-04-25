@@ -3,11 +3,11 @@ import calendar from "../../assets/Profile/calendar.svg";
 import location from "../../assets/Profile/location.svg";
 import Modal from "../UI/Modal/Modal";
 import styles from "./ProfileDetails.module.css";
-import Following from "./Following";
-import Followers from "./Followers";
+import Connections from "./Connections";
 const ProfileDetails = (props) => {
   let userObject = props.userObject;
   const [show, setShow] = useState(false);
+  const [title, setTitle] = useState("Followers");
   const [children, setChildren] = useState(<></>);
   const date = new Date(userObject.joined_date).toLocaleDateString("en-IN", {
     month: "long",
@@ -15,11 +15,25 @@ const ProfileDetails = (props) => {
   });
   const followers = () => {
     setShow(true);
-    setChildren(<Followers close={() => setShow(false)} />);
+    setTitle("Followers");
+    setChildren(
+      <Connections
+        onClose={() => setShow(false)}
+        path="followers"
+        message="No followers found"
+      />
+    );
   };
   const following = () => {
     setShow(true);
-    setChildren(<Following close={() => setShow(false)} />);
+    setTitle("Following");
+    setChildren(
+      <Connections
+        onClose={() => setShow(false)}
+        path="following"
+        message="This account does not follow anyone"
+      />
+    );
   };
   return (
     <>
@@ -35,7 +49,7 @@ const ProfileDetails = (props) => {
             <p>{userObject.followers}</p> Followers
           </span>
           <span>
-            <p>{userObject.results[0].total_posts}</p> Pearls
+            <p>{userObject.total_posts}</p> Pearls
           </span>
         </div>
         <div className={styles.date}>
@@ -49,7 +63,13 @@ const ProfileDetails = (props) => {
           )}
         </div>
       </div>
-      {show && <Modal onClose={() => setShow(false)} children={children} />}
+      {show && (
+        <Modal
+          onClose={() => setShow(false)}
+          children={children}
+          title={title}
+        />
+      )}
     </>
   );
 };

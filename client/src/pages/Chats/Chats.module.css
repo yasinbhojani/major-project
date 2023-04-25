@@ -1,7 +1,8 @@
 .Search {
   width: 600px;
   max-width: 600px;
-  border: 1px solid #d4d4d4;
+  border-left: 1px solid #eaeaea;
+  border-right: 1px solid #eaeaea;
   min-height: 100vh;
 }
 .Search form {

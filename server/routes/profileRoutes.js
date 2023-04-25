@@ -17,10 +17,13 @@ router.get("/openProfile/:userId", [verify], (req, res) => {
           `select count(*) as total_posts from posts where author_id="${userId}"`,
           (error, results) => {
             if (data.length !== 0) {
+              const profileData = {
+                ...data[0],
+                total_posts: results[0].total_posts,
+              };
               res.json({
                 ok: true,
-                ...data[0],
-                results,
+                profileData,
               });
             } else {
               res.json({

@@ -22,7 +22,7 @@ const Profile = (props) => {
     password_hash: "",
     user_id: "",
     username: "",
-    results: [{ total_posts: 0 }],
+    total_posts: 0,
   });
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const Profile = (props) => {
         if (!details.ok) {
           redirect("/");
         }
-        setUserObject(details);
+        setUserObject(details.profileData);
         document.title = `${details.username} (@${details.user_id}) / Shell`;
       })
       .catch((err) => {

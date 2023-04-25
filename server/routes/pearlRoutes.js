@@ -5,7 +5,7 @@ const { v4: uuid } = require("uuid");
 
 const connection = require("../configs/db.config");
 const verify = require("../middlewares/verifyToken");
-const getUserID = require("../utils/getUserID");
+const getUserID = require("../utils/getuserid.util");
 const { addComment, getComments } = require("../controllers/commentController");
 
 router.get("/post", [verify], (req, res) => {
