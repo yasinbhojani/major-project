@@ -141,7 +141,7 @@ const RenderChats = (props) => {
           );
           return (
             <div
-              key={message.sent_date || Math.random()}
+              key={message.chat_id || Math.random()}
               className={
                 decodedToken.user_id === message.sender_id ||
                 decodedToken.user_id === message.sender

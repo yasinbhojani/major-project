@@ -81,7 +81,13 @@ const SQLW = () => {
           </div>
           <div style={{ textAlign: "center" }}>
             {predefinedQuery.map((btn) => {
-              return <PredefinedQuery onClick={btn.onClick} text={btn.text} />;
+              return (
+                <PredefinedQuery
+                  onClick={btn.onClick}
+                  text={btn.text}
+                  key={Math.random()}
+                />
+              );
             })}
           </div>
         </div>

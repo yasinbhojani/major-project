@@ -106,7 +106,10 @@ const Chats = (props) => {
               return data.json();
             })
             .then((userDetails) => {
-              arrayOfUsers.push({ ...userDetails, ...details[users] });
+              arrayOfUsers.push({
+                ...userDetails.profileData,
+                ...details[users],
+              });
             })
             .catch((err) => {
               alert("An error occured, please try again later: " + err.message);
