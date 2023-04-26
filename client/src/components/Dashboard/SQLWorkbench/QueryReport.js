@@ -4,7 +4,7 @@ import "./ToggleButton.css";
 const QueryReport = (props) => {
   const [data, setData] = useState([]);
   const [columns, setColumns] = useState([]);
-
+  let json = props.json;
   useEffect(() => {
     const retriveData = () => {
       fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/dashboard/SQLW`, {
@@ -36,45 +36,49 @@ const QueryReport = (props) => {
   }, [props.query]);
   return (
     <React.Fragment>
-      <div class="checkbox-wrapper-6">
-        <input class="tgl tgl-light" id="cb1-6" type="checkbox" />
-        <label class="tgl-btn" for="cb1-6" />
-      </div>
+      {json === false ? (
+        <div className={styles.tablecontainer}>
+          <div style={{ textAlign: "right" }}>
+            <button onClick={props.close} className={styles.closeTable}>
+              Close Table
+            </button>
+          </div>
 
-      <div className={styles.tablecontainer}>
-        <table>
-          <thead>
-            <tr>
-              {columns.map((column) => (
-                <th key={Math.random().toString()}>{column}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((d) => {
-              const row = Object.values(d);
-              return (
-                <tr key={Math.random().toString()}>
-                  {row.map((r) => (
-                    <td key={Math.random().toString()}>{r}</td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      {/* <div className={styles.Report}>
-        <div className={styles.header}>
-          <h1>Console</h1>
-          <button onClick={props.close}>X</button>
+          <table>
+            <thead>
+              <tr>
+                {columns.map((column) => (
+                  <th key={Math.random().toString()}>{column}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((d) => {
+                const row = Object.values(d);
+                return (
+                  <tr key={Math.random().toString()}>
+                    {row.map((r) => (
+                      <td key={Math.random().toString()}>{r}</td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
-        {data.length === 0 ? (
-          <pre>Something went Wrong !</pre>
-        ) : (
-          <pre>{JSON.stringify(data, null, 2)}</pre>
-        )}
-      </div> */}
+      ) : (
+        <div className={styles.Report}>
+          <div className={styles.header}>
+            <h1>Console</h1>
+            <button onClick={props.close}>X</button>
+          </div>
+          {data.length === 0 ? (
+            <pre>Something went Wrong !</pre>
+          ) : (
+            <pre>{JSON.stringify(data, null, 2)}</pre>
+          )}
+        </div>
+      )}
     </React.Fragment>
   );
 };

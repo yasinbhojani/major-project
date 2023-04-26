@@ -3,12 +3,12 @@
 }
 .SQLW .QueryForm {
   position: fixed;
-  left: 50%;
-  top: 0%;
-  transform: translate(-50%);
-  border: 1px solid #ebebeb;
-  width: 40%;
+  /* border: 1px solid #ebebeb; */
+  width: 80%;
+  margin: 20px;
   background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  z-index: 2;
 }
 
 .SQLW .QueryForm .querry {
@@ -28,7 +28,7 @@
   border-radius: 5px;
   padding: 5px 13px;
   font-weight: 500;
-  width: 20%;
+  width: 250px;
 }
 
 .error {

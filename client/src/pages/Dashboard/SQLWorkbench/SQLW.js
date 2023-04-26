@@ -2,7 +2,7 @@ import { useState } from "react";
 import QueryReport from "../../../components/Dashboard/SQLWorkbench/QueryReport";
 import Button from "../../../components/UI/Button/Button";
 import styles from "./SQLW.module.css";
-import bg from "../../../assets/Dashboard/SQLW/bgimg.svg";
+// import bg from "../../../assets/Dashboard/SQLW/bgimg.svg";
 import PredefinedQuery from "../../../components/Dashboard/SQLWorkbench/PredefinedQuery";
 const SQLW = () => {
   const [query, setQuery] = useState("");
@@ -22,9 +22,27 @@ const SQLW = () => {
     },
     {
       onClick: () => {
+        querryButtons("comments");
+      },
+      text: "comments",
+    },
+    {
+      onClick: () => {
         querryButtons("chats");
       },
       text: "Chats",
+    },
+    {
+      onClick: () => {
+        querryButtons("conversation");
+      },
+      text: "Conversation",
+    },
+    {
+      onClick: () => {
+        querryButtons("notifications");
+      },
+      text: "Notifications",
     },
     {
       onClick: () => {
@@ -32,23 +50,30 @@ const SQLW = () => {
       },
       text: "Likes",
     },
+    {
+      onClick: () => {
+        querryButtons("user_followers");
+      },
+      text: "User Followers",
+    },
+    {
+      onClick: () => {
+        querryButtons("bookmarks");
+      },
+      text: "Bookmarks",
+    },
   ];
-  let baground = (
-    <div className={styles.SQlbg}>
-      <img src={bg} alt="" />
-      <div>
-        <h3>SQL Workbench</h3>
-        <p>
-          Start writing SQL querys directy from here.
-          <br />
-          or click on the button to run automatically.
-        </p>
-      </div>
-    </div>
-  );
-  const [page, setPage] = useState(baground);
+  const [json, setJson] = useState(false);
+  const [page, setPage] = useState(<></>);
+  const handleChange = (event) => {
+    if (event.target.checked) {
+      setJson(true);
+    } else {
+      setJson(false);
+    }
+  };
   const closeTerminal = () => {
-    setPage(baground);
+    setPage(<></>);
   };
   const queryOnChangeHandler = (e) => {
     setQuery(e.target.value);
@@ -56,14 +81,20 @@ const SQLW = () => {
   };
   const runQuery = () => {
     if (query.trim() !== "") {
-      setPage(<QueryReport query={query} close={closeTerminal} />);
+      setPage(<QueryReport query={query} close={closeTerminal} json={json} />);
       setQuery("");
     } else {
       setError(true);
     }
   };
   const querryButtons = (e) => {
-    setPage(<QueryReport query={`select * from ${e}`} close={closeTerminal} />);
+    setPage(
+      <QueryReport
+        query={`select * from ${e}`}
+        close={closeTerminal}
+        json={json}
+      />
+    );
   };
   return (
     <>
@@ -89,6 +120,17 @@ const SQLW = () => {
                 />
               );
             })}
+          </div>
+          <div class="checkbox-wrapper-6">
+            <p>Table</p>
+            <input
+              class="tgl tgl-light"
+              id="cb1-6"
+              type="checkbox"
+              onChange={handleChange}
+            />
+            <label class="tgl-btn" for="cb1-6" />
+            <p>JSON</p>
           </div>
         </div>
         {page}

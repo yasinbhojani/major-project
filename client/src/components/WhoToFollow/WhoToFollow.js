@@ -3,9 +3,11 @@ import styles from "./WhoToFollow.module.css";
 import jwt_decode from "jwt-decode";
 import Users from "./Users";
 import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
 const WhoToFollow = () => {
   const [suggestion, setSuggestion] = useState([]);
   const [records, setRecords] = useState(3);
+  const redirect = useNavigate();
   let decodedToken = null;
   if (localStorage.getItem("accessToken")) {
     decodedToken = jwt_decode(localStorage.getItem("accessToken"));
@@ -54,7 +56,22 @@ const WhoToFollow = () => {
         suggestion[0].user_id === decodedToken.user_id ? (
           <p className={styles.noSuggestion}>No suggestion for you</p>
         ) : (
-          <Users suggestion={suggestion} />
+          suggestion.map((user) => {
+            if (decodedToken.user_id !== user.user_id) {
+              return (
+                <Users
+                  key={user.user_id}
+                  onClick={() => redirect(`/profile/${user.user_id}`)}
+                  profilePicture={user.avatar_url}
+                  userName={user.username}
+                  userID={user.user_id}
+                  userFollowers={user.followers}
+                />
+              );
+            } else {
+              return null;
+            }
+          })
         )}
       </div>
       <Footer records={records} />
