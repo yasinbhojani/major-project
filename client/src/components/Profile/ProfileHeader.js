@@ -8,14 +8,19 @@ import jwt_decode from "jwt-decode";
 
 const ProfileHeader = (props) => {
   let userObject = props.userObject;
-  const isFollowed = userObject.is_following;
+  const { is_following: isFollowed, user_id } = userObject;
   const redirect = useNavigate();
 
   const [isFollowing, setIsFollowing] = useState(true);
 
   useEffect(() => {
-    setIsFollowing(isFollowed === 0 ? false : true);
-  }, [isFollowed]);
+    console.log(isFollowed + ` ${userObject.username}`);
+    if (isFollowed === 0) {
+      setIsFollowing(false);
+    } else if (isFollowed === 1) {
+      setIsFollowing(true);
+    }
+  }, [isFollowed, user_id]);
 
   let decodedToken = null;
   if (localStorage.getItem("accessToken")) {
@@ -45,7 +50,6 @@ const ProfileHeader = (props) => {
           throw new Error(data.message);
         }
 
-        console.log(data);
         setIsFollowing(!isFollowing);
       })
       .catch((err) => console.error(err.message));
