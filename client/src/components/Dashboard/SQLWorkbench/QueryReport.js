@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./QueryReport.module.css";
+import "./ToggleButton.css";
 const QueryReport = (props) => {
   const [data, setData] = useState([]);
   const [columns, setColumns] = useState([]);
@@ -35,6 +36,11 @@ const QueryReport = (props) => {
   }, [props.query]);
   return (
     <React.Fragment>
+      <div class="checkbox-wrapper-6">
+        <input class="tgl tgl-light" id="cb1-6" type="checkbox" />
+        <label class="tgl-btn" for="cb1-6" />
+      </div>
+
       <div className={styles.tablecontainer}>
         <table>
           <thead>

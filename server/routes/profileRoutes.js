@@ -103,7 +103,8 @@ router.post("/follow", [verify], followUser);
 router.get("/whotofollow/:user", (req, res) => {
   const { user } = req.params;
   connection.query(
-    `SELECT * FROM users WHERE user_id NOT IN (SELECT following_id FROM user_followers WHERE follower_id = "${user}") ORDER BY RAND() LIMIT 3;`,
+    `SELECT u.*, CASE WHEN f.following_id IS NULL THEN FALSE ELSE TRUE END AS is_following FROM users u LEFT JOIN user_followers f ON u.user_id = f.following_id AND f.follower_id = ? WHERE u.user_id NOT IN (SELECT following_id FROM user_followers WHERE follower_id = ?) ORDER BY RAND() LIMIT 3;`,
+    [user, user],
     (err, data) => {
       res.send(data);
     }

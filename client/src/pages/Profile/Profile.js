@@ -44,7 +44,7 @@ const Profile = (props) => {
           redirect("/");
         }
         setUserObject(details.profileData);
-        document.title = `${details.username} (@${details.user_id}) / Shell`;
+        document.title = `${details.profileData.username} (@${details.profileData.user_id}) / Shell`;
       })
       .catch((err) => {
         alert("An error occured, please try again later: " + err.message);
