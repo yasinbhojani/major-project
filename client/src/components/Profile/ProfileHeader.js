@@ -14,7 +14,6 @@ const ProfileHeader = (props) => {
   const [isFollowing, setIsFollowing] = useState(true);
 
   useEffect(() => {
-    console.log(isFollowed + ` ${userObject.username}`);
     if (isFollowed === 0) {
       setIsFollowing(false);
     } else if (isFollowed === 1) {
