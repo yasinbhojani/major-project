@@ -6,6 +6,8 @@ const Avatar = ({ src, alt }) => {
   const styles = {
     width: "50px",
     height: "50px",
+    minWidth: "50px",
+    minHeight: "50px",
     objectFit: "cover",
     borderRadius: "50%",
   };
