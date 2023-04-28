@@ -52,7 +52,7 @@ const Options = (props) => {
       <div className={styles.opetions} onClick={changepasswordHandler}>
         <img src={Edit} alt="" className={styles.icon} />
         <div className={styles.opetionInfo}>
-          <h1>Change your password</h1>
+          <h1>Change password</h1>
           <p>Change your password at any time.</p>
         </div>
         <img src={Open} alt="" />

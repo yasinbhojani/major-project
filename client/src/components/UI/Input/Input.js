@@ -15,6 +15,7 @@ const Input = (props) => {
         value={props.value}
         ref={props.ref}
         onBlur={props.onBlur}
+        style={props.style}
         required
       />
     </div>
