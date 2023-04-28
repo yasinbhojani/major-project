@@ -66,6 +66,7 @@ const WhoToFollow = () => {
                   userName={user.username}
                   userID={user.user_id}
                   userFollowers={user.followers}
+                  isFollowed={user.is_following}
                 />
               );
             } else {
