@@ -5,6 +5,7 @@ const connection = require("../configs/db.config");
 const verify = require("../middlewares/verifyToken");
 const { followUser } = require("../controllers/followUserController");
 const { getUser } = require("../controllers/getUserController");
+const { changePassword } = require("../controllers/changePasswordController");
 
 router.get("/user", [verify], getUser);
 
@@ -110,4 +111,7 @@ router.get("/whotofollow/:user", (req, res) => {
     }
   );
 });
+
+router.post("/changepassword", [verify], changePassword);
+
 module.exports = router;
