@@ -1,5 +1,6 @@
 const { v4: uuid } = require("uuid");
 const connection = require("../configs/db.config");
+const getUserID = require("../utils/getuserid.util");
 
 //* POST "/api/pearl/comment"
 const addComment = (req, res) => {
@@ -30,8 +31,23 @@ const addComment = (req, res) => {
               message: "An error occured while commenting",
             });
           }
-          
-          res.json({ ok: true, message: "operation successful" });
+
+          getUserID(post_id).then((result) => {
+            let notification_for_user_id = result[0][0].author_id;
+            connection.query(
+              `INSERT INTO notifications VALUES ("${uuid().substring(
+                0,
+                5
+              )}","${user_id}","${notification_for_user_id}","commented on your post",now(),"comment");`,
+              (err, data) => {
+                if (err) {
+                  console.log(err);
+                  return res.json({ ok: false, message: "An error occured" });
+                }
+                return res.json({ ok: true, message: "operation successful" });
+              }
+            );
+          });
         }
       );
     }
