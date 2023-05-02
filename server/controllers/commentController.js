@@ -38,7 +38,7 @@ const addComment = (req, res) => {
               `INSERT INTO notifications VALUES ("${uuid().substring(
                 0,
                 5
-              )}","${user_id}","${notification_for_user_id}","commented on your post",now(),"comment");`,
+              )}","${user_id}","${notification_for_user_id}","commented on your pearl",now(),"comment");`,
               (err, data) => {
                 if (err) {
                   console.log(err);

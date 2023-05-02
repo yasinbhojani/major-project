@@ -47,6 +47,32 @@ router.post("/post", [verify], (req, res) => {
         });
       }
 
+      // const words = content.split(/(\s+|\n+)/);
+      // const temp = words.filter((word) => {
+      //   if (word.startsWith("@")) {
+      //     if (word.split("@")[1] !== user_id) {
+      //       return word;
+      //     }
+      //   }
+      // });
+
+      // const mentions = temp.filter(
+      //   (item, index) => temp.indexOf(item) === index
+      // );
+
+      // console.log(mentions);
+      // mentions.forEach((mention) => {
+      //   const notification_for = mention.split("@")[1];
+      //   console.log(notification_for);
+
+      //   connection.query(
+      //     `INSERT INTO notifications VALUES ("${uuid().substring(
+      //       0,
+      //       5
+      //     )}","${user_id}","${notification_for}","mentioned you in their pearl",now(),"mention");`
+      //   );
+      // });
+
       return res.json({ ok: true, message: "Posted Succesfully" });
     }
   );
