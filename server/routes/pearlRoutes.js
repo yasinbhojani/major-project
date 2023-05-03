@@ -47,31 +47,42 @@ router.post("/post", [verify], (req, res) => {
         });
       }
 
-      // const words = content.split(/(\s+|\n+)/);
-      // const temp = words.filter((word) => {
-      //   if (word.startsWith("@")) {
-      //     if (word.split("@")[1] !== user_id) {
-      //       return word;
-      //     }
-      //   }
-      // });
+      const words = content.split(/(\s+|\n+)/);
+      const temp = words.filter((word) => {
+        if (word.startsWith("@")) {
+          if (word.split("@")[1] !== user_id) {
+            return word;
+          }
+        }
+      });
 
-      // const mentions = temp.filter(
-      //   (item, index) => temp.indexOf(item) === index
-      // );
+      const mentions = temp.filter(
+        (item, index) => temp.indexOf(item) === index
+      );
 
-      // console.log(mentions);
-      // mentions.forEach((mention) => {
-      //   const notification_for = mention.split("@")[1];
-      //   console.log(notification_for);
+      mentions.forEach((mention) => {
+        const notification_for = mention.split("@")[1];
 
-      //   connection.query(
-      //     `INSERT INTO notifications VALUES ("${uuid().substring(
-      //       0,
-      //       5
-      //     )}","${user_id}","${notification_for}","mentioned you in their pearl",now(),"mention");`
-      //   );
-      // });
+        connection.query(
+          "SELECT count(*) AS count_user FROM users WHERE user_id = ?",
+          [notification_for],
+          (err, data) => {
+            if (data[0].count_user !== 0) {
+              connection.query(
+                `INSERT INTO notifications VALUES ("${uuid().substring(
+                  0,
+                  5
+                )}","${user_id}","${notification_for}","mentioned you in their pearl",now(),"mention");`,
+                (err, data) => {
+                  console.log(
+                    "(server) mention notification sent to @" + notification_for
+                  );
+                }
+              );
+            }
+          }
+        );
+      });
 
       return res.json({ ok: true, message: "Posted Succesfully" });
     }
@@ -161,6 +172,9 @@ router.post("/like", [verify], (req, res) => {
                 console.log(err);
                 return res.json({ ok: false, message: "An error occured" });
               }
+              console.log(
+                "(server) like notification sent to @" + notification_for
+              );
               res.json({ ok: true, message: "operation successful" });
             }
           );

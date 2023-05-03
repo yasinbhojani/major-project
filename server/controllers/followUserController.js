@@ -42,6 +42,7 @@ const followUser = (req, res, next) => {
             console.log(err);
             return res.json({ ok: false, message: "An error occured" });
           }
+          console.log("(server) follow notification sent to @" + following_id);
           return res.json({
             ok: true,
             message: `${follower_id} is now following ${following_id}`,

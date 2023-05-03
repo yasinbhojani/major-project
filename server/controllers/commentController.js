@@ -34,19 +34,35 @@ const addComment = (req, res) => {
 
           getUserID(post_id).then((result) => {
             let notification_for_user_id = result[0][0].author_id;
-            connection.query(
-              `INSERT INTO notifications VALUES ("${uuid().substring(
-                0,
-                5
-              )}","${user_id}","${notification_for_user_id}","commented on your pearl",now(),"comment");`,
-              (err, data) => {
-                if (err) {
-                  console.log(err);
-                  return res.json({ ok: false, message: "An error occured" });
+
+            if (notification_for_user_id !== user_id) {
+              connection.query(
+                `INSERT INTO notifications VALUES ("${uuid().substring(
+                  0,
+                  5
+                )}","${user_id}","${notification_for_user_id}","commented on your pearl",now(),"comment");`,
+                (err, data) => {
+                  if (err) {
+                    console.log(err);
+                    return res.json({ ok: false, message: "An error occured" });
+                  }
+
+                  console.log(
+                    "(server) comment notification sent to @" +
+                      notification_for_user_id
+                  );
+                  return res.json({
+                    ok: true,
+                    message: "operation successful",
+                  });
                 }
-                return res.json({ ok: true, message: "operation successful" });
-              }
-            );
+              );
+            } else {
+              return res.json({
+                ok: true,
+                message: "operation successful",
+              });
+            }
           });
         }
       );
