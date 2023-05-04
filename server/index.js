@@ -25,6 +25,7 @@ app.use("/api/chats", require("./routes/chatsRoutes"));
 app.use("/api/notification", require("./routes/notificationRoutes"));
 app.use("/api/connections", require("./routes/connectionsRoutes"));
 app.use("/api/dashboard", require("./routes/dashboardRoutes"));
+app.use("/api/trending", require("./routes/trendingRoutes"));
 
 server.listen(port, () => {
   console.log(`Server started on port ${port}`);

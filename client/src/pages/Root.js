@@ -5,8 +5,7 @@ import NavBar from "../components/NavBar/NavBar";
 import jwt_decode from "jwt-decode";
 
 import { io } from "socket.io-client";
-import WhoToFollow from "../components/WhoToFollow/WhoToFollow";
-import Search from "../components/Search/Search";
+import SideBar from "./SideBar";
 const socket = io.connect(process.env.REACT_APP_API_ENDPOINT);
 
 const Root = () => {
@@ -33,8 +32,7 @@ const Root = () => {
     >
       <NavBar />
       <Outlet />
-      <Search />
-      <WhoToFollow />
+      <SideBar />
     </section>
   );
 };

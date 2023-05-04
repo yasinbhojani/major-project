@@ -1,17 +1,15 @@
 .SearchPage {
-  position: fixed;
-  z-index: 1;
-  margin-left: 970px;
+  text-align: center;
 }
 .searchInput {
-  margin: 20px 0px;
+  margin: 20px auto;
   padding: 0 20px;
   height: 35px;
   border-radius: 50px;
   border: 2px solid #dedede;
   font-size: 1rem;
   width: 330px;
-  margin-bottom: 0px;
+  margin-bottom: 0px !important;
 }
 .searchInput:focus {
   outline: none;

@@ -1,13 +1,9 @@
 .WhoToFollow {
   height: fit-content;
   margin: 20px;
-  margin-top: 75px;
-  margin-left: 989px;
   border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  border: 1px solid #eaeaea;
   padding-bottom: 10px;
-  position: fixed;
 }
 .WhoToFollow .header {
   font-size: 20px;
@@ -61,26 +57,6 @@
   background-color: #ededed;
   cursor: pointer;
 }
-.oneRecord,
-.twoRecords,
-.threeRecords {
-  font-size: 13px;
-  margin-left: 979px;
-  position: fixed;
-  text-align: center;
-}
-.oneRecord a,
-.twoRecords a,
-.threeRecords a {
-  text-decoration: none;
-  color: black;
-}
-.oneRecord span,
-.twoRecords span,
-.threeRecords span {
-  color: #7076fe;
-  font-weight: bold;
-}
 .footer {
   display: flex;
   flex-direction: row;
@@ -94,15 +70,20 @@
   text-decoration: underline;
   cursor: pointer;
 }
-
-.threeRecords {
-  margin-top: 355px;
+.Record {
+  margin-top: 0px;
+  font-size: 13px;
+  position: fixed;
+  text-align: center;
+  width: 350px;
 }
-.twoRecords {
-  margin-top: 285px;
+.Record a {
+  text-decoration: none;
+  color: black;
 }
-.oneRecord {
-  margin-top: 220px;
+.Record span {
+  color: #7076fe;
+  font-weight: bold;
 }
 .noSuggestion {
   text-align: center;

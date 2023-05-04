@@ -6,7 +6,6 @@ import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 const WhoToFollow = () => {
   const [suggestion, setSuggestion] = useState([]);
-  const [records, setRecords] = useState(3);
   const redirect = useNavigate();
   let decodedToken = null;
   if (localStorage.getItem("accessToken")) {
@@ -27,19 +26,6 @@ const WhoToFollow = () => {
         return data.json();
       })
       .then((details) => {
-        for (let user in details) {
-          if (details[user].user_id === decodedToken.user_id) {
-            if (details.length === 2) {
-              setRecords(1);
-            } else {
-              setRecords(2);
-            }
-            break;
-          }
-        }
-        if (details.length === 1) {
-          setRecords(1);
-        }
         setSuggestion(details);
       })
       .catch((err) => {
@@ -75,7 +61,7 @@ const WhoToFollow = () => {
           })
         )}
       </div>
-      <Footer records={records} />
+      <Footer />
     </>
   );
 };

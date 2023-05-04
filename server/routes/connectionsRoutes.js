@@ -1,8 +1,6 @@
-// imports
 const express = require("express");
 const router = express.Router();
 const connection = require("../configs/db.config");
-const verify = require("../middlewares/verifyToken");
 
 router.get("/following/:user", (req, res) => {
   const { user } = req.params;

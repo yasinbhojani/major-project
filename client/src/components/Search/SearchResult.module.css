@@ -1,13 +1,13 @@
 .result {
   border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  border: 1px solid #eaeaea;
   z-index: 1;
   background-color: white;
   padding: 10px 0px;
-  max-height: 500px;
+  max-height: 300px;
   overflow: scroll;
   width: 330px;
+  margin: auto;
 }
 .searchResult {
   display: flex;
@@ -27,6 +27,7 @@
 }
 .searchResult .nameAndUserName {
   margin: 0 25px;
+  text-align: left;
 }
 .searchResult .nameAndUserName h3 img {
   width: 20px;
