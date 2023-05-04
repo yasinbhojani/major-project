@@ -5,16 +5,19 @@ const WhatsHappening = () => {
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/trending/tags`, {
       method: "get",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("accessToken"),
+      },
     })
       .then((data) => {
         return data.json();
       })
       .then((details) => {
-        console.log(details);
         setData(details);
       })
       .catch((err) => {
-        alert("An error occured, please try again later: " + err.message);
+        console.log("An error occured, please try again later: " + err.message);
       });
   }, []);
 
@@ -27,7 +30,7 @@ const WhatsHappening = () => {
         data.map((tags) => {
           return (
             <div className={styles.trending} key={Math.random()}>
-              <h1>#{tags.trending_tag}</h1>
+              <h1>#{tags.tags}</h1>
               <p>Total pearls : {tags.count}</p>
             </div>
           );

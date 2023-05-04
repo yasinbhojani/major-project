@@ -103,6 +103,6 @@ CREATE TABLE bookmarks (
   FOREIGN KEY(post_id) REFERENCES posts(post_id)
 );
 
-CREATE TABLE trendings (
-  trending_tag varchar(20) NOT NULL,
+CREATE TABLE trending_tag (
+  tags varchar(100) NOT NULL
 );

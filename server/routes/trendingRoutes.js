@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const connection = require("../configs/db.config");
+const verify = require("../middlewares/verifyToken");
 
-router.get("/tags", (req, res) => {
+router.get("/tags", [verify], (req, res) => {
   connection.query(
-    `SELECT trending_tag, COUNT(*) AS count FROM trendings GROUP BY trending_tag ORDER BY count DESC LIMIT 3;
+    `SELECT tags, COUNT(*) AS count FROM trending_tag GROUP BY tags ORDER BY count DESC LIMIT 3;
       `,
     (err, data) => {
       res.send(data);

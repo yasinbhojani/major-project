@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const connection = require("../configs/db.config");
+const verify = require("../middlewares/verifyToken");
 
-router.get("/following/:user", (req, res) => {
+router.get("/following/:user", [verify], (req, res) => {
   const { user } = req.params;
   connection.query(
     `SELECT u.user_id, u.avatar_url, u.username,u.followers
@@ -16,7 +17,7 @@ router.get("/following/:user", (req, res) => {
   );
 });
 
-router.get("/followers/:user", (req, res) => {
+router.get("/followers/:user", [verify], (req, res) => {
   const { user } = req.params;
   connection.query(
     `SELECT u.user_id, u.username, u.avatar_url, u.followers
