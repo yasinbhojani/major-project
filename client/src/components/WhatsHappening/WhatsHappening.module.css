@@ -1,0 +1,33 @@
+.WhatsHappening {
+  height: fit-content;
+  margin: 20px;
+  border-radius: 15px;
+  border: 1px solid #eaeaea;
+  padding-bottom: 10px;
+}
+.WhatsHappening .header {
+  font-size: 20px;
+  font-weight: bolder;
+  padding: 10px 20px;
+}
+.trending {
+  margin: 10px 0px;
+}
+.trending h1 {
+  margin: 0px 20px;
+  color: #7076fe;
+  font-size: 18px;
+}
+.trending p {
+  margin: 0px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  opacity: 0.7;
+}
+.trending:hover {
+  cursor: pointer;
+}
+.trending h2 {
+  font-size: 20px;
+  margin: 0px 20px;
+}
