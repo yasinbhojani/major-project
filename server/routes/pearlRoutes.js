@@ -63,7 +63,7 @@ router.post("/post", [verify], (req, res) => {
       if (content.includes("#")) {
         let trendContent = content.split(/(\s+|\n+)/);
         for (let trend in trendContent) {
-          if (trendContent[trend].includes("#")) {
+          if (trendContent[trend].startsWith("#")) {
             connection.query(
               `INSERT INTO trending_tag values("${trendContent[trend]}");`,
               (err, data) => {
