@@ -60,6 +60,25 @@ router.post("/post", [verify], (req, res) => {
         (item, index) => temp.indexOf(item) === index
       );
 
+      if (content.includes("#")) {
+        let trendContent = content.split(/(\s+|\n+)/);
+        for (let trend in trendContent) {
+          if (trendContent[trend].includes("#")) {
+            connection.query(
+              `INSERT INTO trending_tag values("${trendContent[trend]}");`,
+              (err, data) => {
+                if (err) {
+                  return res.json({
+                    ok: false,
+                    message: "An error occured while posting trend",
+                  });
+                }
+              }
+            );
+          }
+        }
+      }
+
       mentions.forEach((mention) => {
         const notification_for = mention.split("@")[1];
 
@@ -83,7 +102,6 @@ router.post("/post", [verify], (req, res) => {
           }
         );
       });
-
       return res.json({ ok: true, message: "Posted Succesfully" });
     }
   );
@@ -166,7 +184,7 @@ router.post("/like", [verify], (req, res) => {
             `INSERT INTO notifications VALUES ("${uuid().substring(
               0,
               5
-            )}","${user_id}","${notification_for}","liked your post",now(),"like");`,
+            )}","${user_id}","${notification_for}","liked your pearl",now(),"like");`,
             (err, data) => {
               if (err) {
                 console.log(err);
