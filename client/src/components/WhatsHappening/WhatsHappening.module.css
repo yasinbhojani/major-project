@@ -28,6 +28,8 @@
   cursor: pointer;
 }
 .trending h2 {
-  font-size: 20px;
+  font-size: 15px;
   margin: 0px 20px;
+  font-weight: 400;
+  opacity: 0.7;
 }

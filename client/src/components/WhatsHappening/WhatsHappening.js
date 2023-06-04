@@ -30,14 +30,14 @@ const WhatsHappening = () => {
         data.map((tags) => {
           return (
             <div className={styles.trending} key={Math.random()}>
-              <h1>#{tags.tags}</h1>
-              <p>Total pearls : {tags.count}</p>
+              <h1>{tags.tags}</h1>
+              <p>{tags.count} pearls</p>
             </div>
           );
         })}
       {data && data.length === 0 && (
         <div className={styles.trending}>
-          <h2>Nothing to show here</h2>
+          <h2>Nothing to show here : (</h2>
         </div>
       )}
     </div>

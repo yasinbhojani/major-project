@@ -14,6 +14,8 @@ We hope you enjoy using Shell and connecting with others who share your interest
 
 Contributions are always welcome!
 
+[Demo Video](https://drive.google.com/file/d/1AahnZF4-XmG9k-K-0pwXvmEWH4w8FxwO/view?usp=sharing)
+
 ## Authors
 
 - [@Yasin Bhojani](https://github.com/yasinbhojani)
