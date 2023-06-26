@@ -3,7 +3,7 @@ import styles from "./DNavBar.module.css";
 import logo from "../../../assets/shell-logo.png";
 import DNavLinks from "./DNavLink";
 
-import Database from "./icons/Database.svg";
+// import Database from "./icons/Database.svg";
 import File from "./icons/Storage.svg";
 import SQL from "./icons/SQL.svg";
 import Bars from "./icons/Analytics.svg";
@@ -27,7 +27,7 @@ const DNavBar = (props) => {
           iconSource={File}
           page="Storage Bucket"
         />
-        <DNavLinks path="/admin/Tables" iconSource={Database} page="Database" />
+        {/* <DNavLinks path="/admin/Tables" iconSource={Database} page="Database" /> */}
         <DNavLinks path="/admin/SQLW" iconSource={SQL} page="SQL Workbench" />
       </div>
       <div className={styles.backButton} onClick={() => redirect("/")}>

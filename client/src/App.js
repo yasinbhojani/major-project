@@ -30,8 +30,8 @@ import DashboardRoot from "./pages/DashboardRoot";
 
 import Analytics from "./pages/Dashboard/Analytics/Analytics";
 import Storage from "./pages/Dashboard/Storage/Storage";
-import Tables from "./pages/Dashboard/Tables/Tables";
 import SQLW from "./pages/Dashboard/SQLWorkbench/SQLW";
+// import Tables from "./pages/Dashboard/Tables/Tables";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -82,7 +82,7 @@ const App = () => {
       children: [
         { path: "", element: <Analytics /> },
         { path: "Storage", element: <Storage /> },
-        { path: "Tables", element: <Tables /> },
+        // { path: "Tables", element: <Tables /> },
         { path: "SQLW", element: <SQLW /> },
       ],
     },
